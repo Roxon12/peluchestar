@@ -5,11 +5,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seleccionar Plan</title>
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      text-align: center; 
-      background-color: #6f4f28; /* Color café */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, 
+        #2a2d73, /* Azul espacial */
+        #6f4f28, /* Color café */
+        #a1c4fd, /* Azul claro */
+        #f0e68c, /* Amarillo suave */
+        #ff6347  /* Rojo tomate */
+      );
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
     }
+
+    /* Animación para el borde iluminado del logo */
+    @keyframes borderGlow {
+      0% {
+        border: 5px solid red;
+        box-shadow: 0 0 15px red, 0 0 25px red;
+      }
+      50% {
+        border: 5px solid green;
+        box-shadow: 0 0 15px green, 0 0 25px green;
+      }
+      100% {
+        border: 5px solid red;
+        box-shadow: 0 0 15px red, 0 0 25px red;
+      }
+    }
+    /* Estilo del logo con borde iluminado */
+    img {
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      animation: borderGlow 2s infinite alternate; /* Animación del borde */
+    }
+
+    .product-card {
+      max-width: 300px; 
+      margin: auto; 
+      padding: 10px; 
+      border: 1px solid #ddd; 
+      border-radius: 8px; 
+      display: inline-block; 
+      margin: 10px; 
+      background: #fff;
+      position: relative;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); /* Efecto de luz LED */
+      transition: all 0.3s ease; /* Transición suave */
+    }
+
+    /* Efecto de parpadeo de la luz LED */
+    @keyframes ledGlow {
+      0% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); }
+      50% { box-shadow: 0 0 30px rgba(0, 255, 255, 1); }
+      100% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); }
+    }
+
+    .product-card:hover { 
+      animation: ledGlow 1.5s ease-in-out infinite; /* Aplica el parpadeo al pasar el mouse */
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
     .product-card { 
       max-width: 300px; 
       margin: auto; 
@@ -20,15 +90,18 @@
       margin: 10px; 
       background: #fff;
     }
+
     .product-card img { 
       width: 100%; 
       height: auto; 
       border-radius: 5px; 
     }
+
     .product-card h3 { 
       font-size: 18px; 
       margin: 10px 0; 
     }
+
     .product-card button { 
       margin-top: 10px; 
       padding: 8px 16px; 
@@ -37,9 +110,11 @@
       border: none; 
       cursor: pointer; 
     }
+
     .product-card button:hover { 
       background-color: #45a049; 
     }
+
     /* Estilos para el carrito */
     #cart {
       display: none; 
@@ -52,10 +127,12 @@
       margin-left: auto;
       margin-right: auto;
     }
+
     .cart-item {
       border-bottom: 1px solid #ccc;
       padding: 10px 0;
     }
+
     .cart-item button {
       padding: 4px 8px;
       background-color: #d9534f;
@@ -64,9 +141,11 @@
       cursor: pointer;
       border-radius: 4px;
     }
+
     .cart-item button:hover {
       background-color: #c9302c;
     }
+
     /* Estilos para la sección de pago */
     #confirmation {
       display: none;
@@ -79,21 +158,19 @@
       margin-left: auto;
       margin-right: auto;
     }
+
     #confirmation h2, #confirmation h3 {
       margin-top: 0;
     }
+
     .input-field input, .input-field select {
       padding: 8px;
       width: 100%;
       border-radius: 4px;
       border: 1px solid #ddd;
     }
-    /* Estilos para el contador de visitas */
-    #visit-counter {
-      margin: 20px;
-      font-size: 18px;
-      color: #fff;
-    }
+
+
     /* Barra de "Trabaja con nosotros" */
     #work-with-us {
       background-color: #fff;
@@ -106,6 +183,7 @@
       max-width: 300px;
       font-weight: bold;
     }
+
     /* Estilos para el registro de vendedores */
     #vendor-registration {
       display: none; /* Oculto por defecto */
@@ -117,9 +195,11 @@
       border-radius: 8px;
       text-align: left;
     }
+
     #vendor-registration h2 {
       margin-top: 0;
     }
+
     #vendor-registration input {
       width: 100%;
       padding: 8px;
@@ -127,6 +207,7 @@
       border: 1px solid #ddd;
       border-radius: 4px;
     }
+
     #vendor-registration button {
       padding: 8px 16px;
       background-color: #4CAF50;
@@ -135,9 +216,11 @@
       cursor: pointer;
       border-radius: 4px;
     }
+
     #vendor-registration button:hover {
       background-color: #45a049;
     }
+
     /* Mensaje de costo de registro */
     #vendor-cost {
       background-color: #f2f2f2;
@@ -147,15 +230,24 @@
       font-weight: bold;
       text-align: center;
     }
+
   </style>
 </head>
 <body>
   <h1>PELUCHE STAR</h1>
-  <img src="images/logo.jpg" alt="Logo" style="max-width: 200px; height: auto; margin-bottom: 20px;">
+  <img src="images/logo.jpg" alt="Logo">
   <h1>Seleccionar Plan</h1>
 
-  <!-- Contador de visitas -->
-  <div id="visit-counter"></div>
+  
+
+  <!-- Pie de página -->
+  <footer>
+    <p style="color: white; font-size: 14px;">CEO de la página: MSc. Roxon Nazareno | Copyright &copy; 2025</p>
+  </footer>
+</body>
+</html>
+
+  </footer>
 
   <!-- Barra de "Trabaja con nosotros" -->
   <div id="work-with-us">Trabaja con nosotros</div>
@@ -217,15 +309,6 @@
   <!-- Se asume que telegram.js contiene la función sendTelegramMessage -->
   <script src="telegram.js"></script>
   <script>
-    // Contador de visitas (por usuario, usando localStorage)
-    if(localStorage.getItem("visitCount")){
-      let count = parseInt(localStorage.getItem("visitCount"));
-      count++;
-      localStorage.setItem("visitCount", count);
-    } else {
-      localStorage.setItem("visitCount", 1);
-    }
-    document.getElementById("visit-counter").innerText = "Visitas: " + localStorage.getItem("visitCount");
 
     // Mostrar/Ocultar el formulario de registro de vendedor al hacer click en "Trabaja con nosotros"
     document.getElementById("work-with-us").addEventListener("click", function(){
