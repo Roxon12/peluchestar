@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seleccionar Plan</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      text-align: center; 
+      background-color: #6f4f28; /* Color café */
+    }
+    .product-card { 
+      max-width: 300px; 
+      margin: auto; 
+      padding: 10px; 
+      border: 1px solid #ddd; 
+      border-radius: 8px; 
+      display: inline-block; 
+      margin: 10px; 
+      background: #fff;
+    }
+    .product-card img { 
+      width: 100%; 
+      height: auto; 
+      border-radius: 5px; 
+    }
+    .product-card h3 { 
+      font-size: 18px; 
+      margin: 10px 0; 
+    }
+    .product-card button { 
+      margin-top: 10px; 
+      padding: 8px 16px; 
+      background-color: #4CAF50; 
+      color: white; 
+      border: none; 
+      cursor: pointer; 
+    }
+    .product-card button:hover { 
+      background-color: #45a049; 
+    }
+    /* Estilos para el carrito */
+    #cart {
+      display: none; 
+      border: 1px solid #ddd; 
+      padding: 20px; 
+      margin: 20px;
+      background-color: #f8f8f8;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cart-item {
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+    .cart-item button {
+      padding: 4px 8px;
+      background-color: #d9534f;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .cart-item button:hover {
+      background-color: #c9302c;
+    }
+    /* Estilos para la sección de pago */
+    #confirmation {
+      display: none;
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin: 20px;
+      background-color: #f8f8f8;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #confirmation h2, #confirmation h3 {
+      margin-top: 0;
+    }
+    .input-field input, .input-field select {
+      padding: 8px;
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    /* Estilos para el contador de visitas */
+    #visit-counter {
+      margin: 20px;
+      font-size: 18px;
+      color: #fff;
+    }
+    /* Barra de "Trabaja con nosotros" */
+    #work-with-us {
+      background-color: #fff;
+      color: #6f4f28;
+      padding: 10px;
+      cursor: pointer;
+      border: 2px solid #6f4f28;
+      border-radius: 4px;
+      margin: 20px auto;
+      max-width: 300px;
+      font-weight: bold;
+    }
+    /* Estilos para el registro de vendedores */
+    #vendor-registration {
+      display: none; /* Oculto por defecto */
+      border: 1px solid #ddd;
+      background-color: #fff;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 400px;
+      border-radius: 8px;
+      text-align: left;
+    }
+    #vendor-registration h2 {
+      margin-top: 0;
+    }
+    #vendor-registration input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    #vendor-registration button {
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    #vendor-registration button:hover {
+      background-color: #45a049;
+    }
+    /* Mensaje de costo de registro */
+    #vendor-cost {
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>PELUCHE STAR</h1>
+  <img src="images/logo.jpg" alt="Logo" style="max-width: 200px; height: auto; margin-bottom: 20px;">
+  <h1>Seleccionar Plan</h1>
+
+  <!-- Contador de visitas -->
+  <div id="visit-counter"></div>
+
+  <!-- Barra de "Trabaja con nosotros" -->
+  <div id="work-with-us">Trabaja con nosotros</div>
+
+  <!-- Registro de Vendedor (funcionalidad independiente) -->
+  <div id="vendor-registration">
+    <h2>Registro de Vendedor</h2>
+    <div id="vendor-cost">* El registro tiene un costo de $8</div>
+    <form id="vendor-form">
+      <label for="vendor-name">Nombre:</label>
+      <input type="text" id="vendor-name" name="vendor-name" required>
+      <label for="vendor-email">Correo:</label>
+      <input type="email" id="vendor-email" name="vendor-email" required>
+      <label for="vendor-phone">Teléfono:</label>
+      <input type="tel" id="vendor-phone" name="vendor-phone" required>
+      <label for="vendor-receipt">Sube el comprobante de $8:</label>
+      <label for="vendor-receipt">Pichincha 2211163039 (Roxon Nazareno) Guayaquil 0012625809 (Roxon Nazareno):</label>
+      <input type="file" id="vendor-receipt" name="vendor-receipt" accept="image/*" required>
+      <button type="submit">Registrarse como Vendedor</button>
+    </form>
+  </div>
+
+  <!-- Sección del Carrito -->
+  <div id="cart">
+    <h2>Carrito de Compra</h2>
+    <div id="cart-items"></div>
+    <h3 id="cart-total"></h3>
+    <button onclick="goToPayment()">Comprar</button>
+  </div>
+
+  <!-- Confirmación/Pago -->
+  <div id="confirmation">
+    <h2>Confirmación de Compra</h2>
+    <div id="order-summary"></div>
+    <form id="payment-form" method="post" enctype="multipart/form-data">
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" name="name" required><br><br>
+      <label for="email">Correo Electrónico:</label>
+      <input type="email" id="email" name="email" required><br><br>
+      <label for="phone">Teléfono:</label>
+      <input type="tel" id="phone" name="phone" required><br><br>
+      <label for="receipt">Comprobante de Pago (Imagen):</label>
+      <input type="file" id="receipt" name="receipt" accept="image/*" required><br><br>
+
+      <h2>Detalles de Pago</h2>
+      <p>Por favor, realiza el pago a una de las siguientes cuentas:</p>
+      <ul>
+        <li><strong>Pichincha:</strong> 2211163039 (Roxon Nazareno)</li>
+        <li><strong>Guayaquil:</strong> 0012625809 (Roxon Nazareno)</li>
+      </ul>
+
+      <button type="submit">Confirmar Compra</button>
+    </form>
+  </div>
+
+  <!-- Lista de Productos -->
+  <div id="product-list"></div>
+
+  <!-- Se asume que telegram.js contiene la función sendTelegramMessage -->
+  <script src="telegram.js"></script>
+  <script>
+    // Contador de visitas (por usuario, usando localStorage)
+    if(localStorage.getItem("visitCount")){
+      let count = parseInt(localStorage.getItem("visitCount"));
+      count++;
+      localStorage.setItem("visitCount", count);
+    } else {
+      localStorage.setItem("visitCount", 1);
+    }
+    document.getElementById("visit-counter").innerText = "Visitas: " + localStorage.getItem("visitCount");
+
+    // Mostrar/Ocultar el formulario de registro de vendedor al hacer click en "Trabaja con nosotros"
+    document.getElementById("work-with-us").addEventListener("click", function(){
+      let vendorReg = document.getElementById("vendor-registration");
+      if(vendorReg.style.display === "none" || vendorReg.style.display === ""){
+        vendorReg.style.display = "block";
+        window.scrollTo({ top: vendorReg.offsetTop, behavior: 'smooth' });
+      } else {
+        vendorReg.style.display = "none";
+      }
+    });
+
+    // Registro de vendedor (envío independiente a Telegram)
+    document.getElementById("vendor-form").addEventListener("submit", function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      let name    = document.getElementById("vendor-name").value;
+      let email   = document.getElementById("vendor-email").value;
+      let phone   = document.getElementById("vendor-phone").value;
+      let receipt = document.getElementById("vendor-receipt").files[0];
+
+      // Construimos el mensaje para Telegram
+      let message = `*Registro de Vendedor*\n`;
+      message += `*Nombre:* ${name}\n`;
+      message += `*Correo:* ${email}\n`;
+      message += `*Teléfono:* ${phone}\n`;
+      message += `*Comprobante:* ${receipt ? receipt.name : 'No adjunto'}\n`;
+
+      // Envío a Telegram (la función sendTelegramMessage debe estar definida en telegram.js)
+      sendTelegramMessage(message, receipt);
+
+      // También se almacena en localStorage para efectos de demostración
+      let vendors = JSON.parse(localStorage.getItem("vendors") || "[]");
+      vendors.push({ name: name, email: email, phone: phone, receipt: receipt ? receipt.name : "" });
+      localStorage.setItem("vendors", JSON.stringify(vendors));
+
+      alert("Registro de vendedor exitoso. Recibimos tu comprobante de $5.");
+      document.getElementById("vendor-form").reset();
+      document.getElementById("vendor-registration").style.display = "none";
+    });
+
+    // Funcionalidad del carrito y productos
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const products = [
+      { id: 1, name: "Netflix (1 dispositivo)", prices: { "1 mes": 5, "2 meses": 9, "3 meses": 13, "4 meses": 17, "6 meses": 25, "12 meses": 44 }, image: "netflix_1_dispositivo.jpg" },
+      { id: 2, name: "Netflix (2 dispositivos)", prices: { "1 mes": 8.5, "2 meses": 16, "3 meses": 22, "4 meses": 28, "6 meses": 40, "12 meses": 72 }, image: "netflix_2_dispositivos.jpg" },
+      { id: 3, name: "Netflix (4 dispositivos)", prices: { "1 mes": 14.5, "2 meses": 28, "3 meses": 42 }, image: "netflix_4_dispositivos.jpg" },
+      { id: 4, name: "Disney+ Premium (1 dispositivo)", prices: { "1 mes": 3.5 }, image: "disney_plus_1_dispositivo.jpg" },
+      { id: 5, name: "Disney+ Premium (2 dispositivos)", prices: { "1 mes": 6 }, image: "disney_plus_2_dispositivos.jpg" },
+      { id: 6, name: "Zapping (1 dispositivo)", prices: { "1 mes": 3.95, "4 meses": 9 }, image: "zapping_1_dispositivo.png" },
+      { id: 7, name: "Amazon Prime (1 dispositivo)", prices: { "1 mes": 2.75, "3 meses": 6 }, image: "amazon_prime_1_dispositivo.png" },
+      { id: 8, name: "Amazon Prime (4 dispositivos)", prices: { "1 mes": 5.5, "3 meses": 15 }, image: "amazon_prime_4_dispositivos.png" },
+      { id: 9, name: "Max (1 dispositivo)", prices: { "1 mes": 2 }, image: "max_1_dispositivo.png" },
+      { id: 10, name: "Max (Cuenta completa)", prices: { "1 mes": 3.5 }, image: "max_cuenta_completa.png" },
+      { id: 11, name: "Crunchyroll (Cuenta completa)", prices: { "1 mes": 4.5 }, image: "crunchyroll_cuenta_completa.png" },
+      { id: 41, name: "Crunchyroll (1 pantalla)", prices: { "1 mes": 2.00 }, image: "crunchyroll_cuenta_completa.png" },
+      { id: 12, name: "El Canal del Fútbol (Cuenta completa)", prices: { "1 mes": 4.5 }, image: "canal_del_futbol_cuenta_completa.jpg" },
+      { id: 13, name: "Pornhub (Cuenta completa)", prices: { "1 mes": 4.5 }, image: "pornhub_cuenta_completa.png" },
+      { id: 14, name: "Paramount+ (Cuenta personal)", prices: { "1 mes": 4, "3 meses": 7 }, image: "paramount_plus_cuenta_personal.png" },
+      { id: 15, name: "Paramount+ (Cuenta completa)", prices: { "1 mes": 4.5 }, image: "paramount_plus_cuenta_completa.png" },
+      { id: 16, name: "Vix (1 dispositivo)", prices: { "1 mes": 2 }, image: "vix_1_dispositivo.png" },
+      { id: 17, name: "YouTube Premium (1 dispositivo)", prices: { "1 mes": 2.75 }, image: "youtube_premium_1_dispositivo.jpg" },
+      { id: 18, name: "Apple Music, Spotify, Deezer (Cuenta personal)", prices: { "1 mes": 3.5, "2 meses": 4.5, "3 meses": 7 }, image: "apple_music_spotify_deezer_cuenta_personal.png" },
+      { id: 19, name: "Canva (Cuenta completa)", prices: { "1 mes": 2, "2 meses": 3, "3 meses": 5, "6 meses": 8, "12 meses": 10 }, image: "canva_cuenta_completa.png" },
+      { id: 20, name: "Capcut Pro (Cuenta completa)", prices: { "1 mes": 4, "2 meses": 5, "3 meses": 7.5, "6 meses": 10 }, image: "capcut_pro_cuenta_completa.png" },
+      { id: 23, name: "Antivirus Avast (1 año)", prices: { "1 año": 20 }, image: "antivirus_avast_1_ano.jpg" },
+      { id: 24, name: "Antivirus ESET (1 año)", prices: { "1 año": 23 }, image: "antivirus_eset_1_ano.jpg" },
+      { id: 25, name: "Antivirus McAfee (1 año)", prices: { "1 año": 18 }, image: "antivirus_mcafee_1_ano.jpg" },
+      { id: 26, name: "Licencias Windows 10 Pro", prices: { "1 mes": 14 }, image: "licencia_windows_10_pro.jpg" },
+      { id: 27, name: "Licencias Windows 11 Pro", prices: { "1 mes": 14 }, image: "licencia_windows_11_pro.jpg" },
+      { id: 28, name: "Licencias Office 2016", prices: { "1 mes": 15 }, image: "licencia_office_2016.jpg" },
+      { id: 29, name: "Licencias Office 2019", prices: { "1 mes": 15 }, image: "licencia_office_2019.jpg" },
+      { id: 30, name: "Licencias Office 2021", prices: { "1 mes": 27 }, image: "licencia_office_2021.jpg" },
+      { id: 31, name: "Licencias Office 365", prices: { "1 mes": 17 }, image: "licencia_office_365.jpg" },
+      { id: 32, name: "Flujo TV (1 dispositivo)", prices: { "1 mes": 2.5 }, image: "flujo_tv_1_dispositivo.jpg" },
+      { id: 33, name: "Flujo TV (3 conexiones)", prices: { "1 mes": 7 }, image: "flujo_tv_3_conexiones.jpg" },
+      { id: 34, name: "IPTV (1 dispositivo)", prices: { "1 mes": 8 }, image: "iptv_1_dispositivo.jpg" },
+      { id: 35, name: "Recargas Apple iTunes", prices: { "5": 7.5 }, image: "recargas_videojuegos_apple_itunes.jpg" },
+      { id: 36, name: "Recargas Playstation", prices: { "10": 12.5 }, image: "recargas_videojuegos_playstation.jpg" },
+      { id: 37, name: "Diamantes Free Fire", prices: { "110": 1.5, "341": 3.5 }, image: "diamantes_free_fire.jpg" },
+      { id: 38, name: "Diamantes PUBG Mobile", prices: { "60": 1.5 }, image: "diamantes_pubg_mobile.jpg" },
+      { id: 39, name: "Robux Roblox", prices: { "10": 11.5 }, image: "robux_roblox.jpg" },
+      { id: 40, name: "Xbox Game Pass", prices: { "1 mes": 10 }, image: "xbox_game_pass.jpg" }
+    ];
+
+    function updateCartDisplay() {
+      const cartDiv = document.getElementById("cart");
+      const cartItemsDiv = document.getElementById("cart-items");
+      const cartTotalDiv = document.getElementById("cart-total");
+      cartItemsDiv.innerHTML = "";
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += Number(item.price);
+        const itemDiv = document.createElement("div");
+        itemDiv.classList.add("cart-item");
+        itemDiv.innerHTML = `
+          <p><strong>${item.name}</strong></p>
+          <p>Duración: ${item.duration} - Precio: $${item.price}</p>
+          <button onclick="removeFromCart(${index})">Eliminar</button>
+        `;
+        cartItemsDiv.appendChild(itemDiv);
+      });
+      cartTotalDiv.innerHTML = `Total: $${total}`;
+      cartDiv.style.display = cart.length > 0 ? "block" : "none";
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    function addToCart(productId) {
+      const selectedProduct = products.find(product => product.id === productId);
+      const selectEl = document.getElementById(`duration-${productId}`);
+      const durationSelected = selectEl.value;
+      const priceSelected = selectedProduct.prices[durationSelected];
+      
+      cart.push({
+        id: selectedProduct.id,
+        name: selectedProduct.name,
+        duration: durationSelected,
+        price: priceSelected,
+        image: selectedProduct.image
+      });
+      updateCartDisplay();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartDisplay();
+    }
+
+    function goToPayment() {
+      const orderSummaryDiv = document.getElementById("order-summary");
+      let summaryHtml = `<h3>Resumen de Compra:</h3>`;
+      let total = 0;
+      cart.forEach((item, idx) => {
+        total += Number(item.price);
+        summaryHtml += `<p>${idx+1}. ${item.name} - Duración: ${item.duration} - Precio: $${item.price}</p>`;
+      });
+      summaryHtml += `<h3>Total: $${total}</h3>`;
+      orderSummaryDiv.innerHTML = summaryHtml;
+      document.getElementById("confirmation").style.display = "block";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function sendToTelegram(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const receipt = document.getElementById("receipt").files[0];
+
+      let message = `*Confirmación de Compra*\n`;
+      cart.forEach((item, idx) => {
+        message += `*Producto ${idx+1}:* ${item.name}\n`;
+        message += `*Duración:* ${item.duration}\n`;
+        message += `*Precio:* $${item.price}\n\n`;
+      });
+      let total = cart.reduce((acc, item) => acc + Number(item.price), 0);
+      message += `*Total:* $${total}\n`;
+      message += `*Nombre del Usuario:* ${name}\n`;
+      message += `*Correo Electrónico:* ${email}\n`;
+      message += `*Teléfono:* ${phone}\n`;
+
+      sendTelegramMessage(message, receipt);
+
+      let orderData = {
+        items: cart,
+        total: total,
+        customer: {
+          name: name,
+          email: email,
+          phone: phone
+        }
+      };
+      localStorage.setItem("orderData", JSON.stringify(orderData));
+
+      alert("Pago exitoso, espere 5 minutos para que le llegue su cuenta.");
+
+      cart = [];
+      localStorage.removeItem("cart");
+      updateCartDisplay();
+
+      window.location.href = "entregando.html";
+    }
+
+    document.getElementById("payment-form").addEventListener("submit", sendToTelegram);
+
+    const productListContainer = document.getElementById("product-list");
+    products.forEach(product => {
+      const productCard = document.createElement("div");
+      productCard.classList.add("product-card");
+      let durationOptions = "";
+      for (let duration in product.prices) {
+        durationOptions += `<option value="${duration}">${duration} - $${product.prices[duration]}</option>`;
+      }
+      productCard.innerHTML = `
+        <img src="images/${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <label for="duration">Selecciona Duración:</label>
+        <select id="duration-${product.id}" name="duration">
+          ${durationOptions}
+        </select>
+        <button onclick="addToCart(${product.id})">Añadir al Carrito</button>
+      `;
+      productListContainer.appendChild(productCard);
+    });
+
+    updateCartDisplay();
+  </script>
+</body>
+</html>
