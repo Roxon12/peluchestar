@@ -3,27 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seleccionar Plan</title>
+  <title>Compra Digital 2025 - Peluche Star</title>
+  <meta name="description" content="Compra productos y servicios digitales en 2025. Encuentra cuentas de televisión por internet, programas, juegos online y música en un solo lugar.">
+  <!-- Fuente moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary-color: #ff6347; /* Rojo tomate */
       --secondary-color: #f0e68c; /* Amarillo suave */
       --accent-color: #a1c4fd; /* Azul claro */
-      --bg-color: rgba(255, 255, 255, 0.7);
-      --font-family: 'Helvetica Neue', Arial, sans-serif;
-      --card-width: 280px;
+      --bg-white: #ffffff;
+      --bg-light: #f7f7f7;
+      --font-family: 'Roboto', sans-serif;
+      --card-width: 240px;
       --transition-speed: 0.3s;
     }
-
-    /* Reset y base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
+    /* Fondo animado en gradiente */
     body {
       font-family: var(--font-family);
       background: linear-gradient(135deg, #2a2d73, #6f4f28, var(--accent-color), var(--secondary-color), var(--primary-color));
@@ -32,220 +27,241 @@
       color: #333;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      margin: 0;
+      padding: 0;
     }
     @keyframes gradientAnimation {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
-    /* Encabezado */
+    /* Encabezado y logo */
     header {
+      background: var(--bg-white);
+      border-bottom: 1px solid #e0e0e0;
+      padding: 20px;
       text-align: center;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      animation: fadeIn 1s ease-out;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    header h1 {
-      color: #fff;
-      margin-bottom: 10px;
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-    }
-    header img {
-      max-width: 150px;
-      height: auto;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      border: 4px solid var(--primary-color);
-      transition: transform var(--transition-speed) ease;
-      cursor: pointer;
-    }
-    header img:hover {
-      transform: scale(1.05);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Panel Superior: Glassmorphism */
-    #top-cart-container {
-      max-width: 700px;
-      margin: 20px auto;
-      padding: 30px;
-      border-radius: 20px;
-      background: var(--bg-color);
-      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+    .header-logo {
       position: relative;
-      overflow: hidden;
-      transition: transform var(--transition-speed) ease;
+      width: 100%;
+      max-width: 1546px;
+      height: 150px;
+      margin: 0 auto;
     }
-    #top-cart-container:hover {
-      transform: scale(1.02);
-    }
-    #top-cart-container::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(from 0deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--primary-color));
-      animation: rotateGradient 6s linear infinite;
-      opacity: 0.1;
-      z-index: 0;
-    }
-    @keyframes rotateGradient {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    /* Aseguramos que el contenido se muestre sobre la capa animada */
-    #top-cart-container > * {
+    .header-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
       position: relative;
       z-index: 1;
     }
+    .header-logo::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 5px solid;
+      border-image: linear-gradient(45deg, #00ffff, var(--secondary-color), #00ffff, var(--secondary-color)) 1;
+      border-radius: 8px;
+      animation: borderGlow 4s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes borderGlow {
+      0% { filter: hue-rotate(0deg); }
+      50% { filter: hue-rotate(180deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+    /* Panel de Carrito y Confirmación */
+    #top-cart-container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: var(--bg-white);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: all var(--transition-speed);
+    }
+    /* Layout de pago: carrito a la izquierda y confirmación (estilo factura) a la derecha, separados */
+    #top-cart-container.payment-layout {
+      display: flex;
+      gap: 20px;
+    }
+    #top-cart-container.payment-layout #cart {
+      width: 40%;
+    }
+    #top-cart-container.payment-layout #confirmation {
+      width: 60%;
+      border-left: 2px solid #ddd;
+      padding-left: 20px;
+    }
     #top-cart-container h2 {
       margin-bottom: 15px;
+      font-size: 1.5rem;
       color: #333;
-      font-size: 1.8rem;
-    }
-    #cart, #confirmation {
-      margin-bottom: 25px;
-    }
-    #cart {
-      padding-bottom: 15px;
-      border-bottom: 1px solid #ccc;
     }
     .cart-item {
-      padding: 12px 0;
-      border-bottom: 1px solid #eee;
-      font-size: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
     }
-    .cart-item:last-child {
-      border-bottom: none;
-    }
+    .cart-item:last-child { border-bottom: none; }
     #top-cart-container button {
-      padding: 12px 25px;
       background-color: var(--primary-color);
-      color: #fff;
+      color: var(--bg-white);
       border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
       cursor: pointer;
-      border-radius: 10px;
-      font-size: 1rem;
-      transition: background var(--transition-speed) ease;
+      transition: background var(--transition-speed);
     }
     #top-cart-container button:hover {
       background-color: #e5533d;
     }
-
-    /* Barra de búsqueda (Sticky) */
+    /* Estilo elegante de factura para Confirmación */
+    #confirmation {
+      background: #fff;
+      border: 2px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      font-family: 'Roboto', sans-serif;
+    }
+    #confirmation h2 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      color: #333;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    #order-summary p {
+      margin: 5px 0;
+      font-size: 1rem;
+      color: #555;
+    }
+    /* Barra de Búsqueda */
     #search-container {
       max-width: 600px;
-      margin: 0 auto;
+      margin: 20px auto;
       text-align: center;
-      position: sticky;
-      top: 0;
-      background: rgba(255,255,255,0.9);
-      z-index: 100;
-      padding: 15px 0;
     }
     #search-bar {
       width: 90%;
-      max-width: 500px;
-      padding: 15px;
-      border: none;
-      border-radius: 50px;
+      padding: 10px 15px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
       outline: none;
-      font-size: 1.1rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: box-shadow var(--transition-speed) ease;
+      font-size: 1rem;
+      transition: border var(--transition-speed);
     }
-    #search-bar:focus {
-      box-shadow: 0 6px 10px rgba(0,0,0,0.15);
-    }
-
-    /* Lista de Productos */
-    #product-list {
-      margin: 30px auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
+    #search-bar:focus { border-color: var(--primary-color); }
+    /* Secciones de Productos */
+    main {
+      max-width: 1200px;
+      margin: 20px auto;
       padding: 0 20px;
     }
+    section.category {
+      margin-bottom: 40px;
+    }
+    section.category h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #333;
+      border-bottom: 2px solid var(--primary-color);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .products-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(var(--card-width), 1fr));
+      gap: 20px;
+    }
+    /* Tarjetas de Producto con efecto LED animado */
     .product-card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+      background: var(--bg-white);
+      border: 2px solid transparent;
+      border-radius: 8px;
+      padding: 15px;
       position: relative;
       overflow: hidden;
-      width: var(--card-width);
+      text-align: center;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
     }
     .product-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .product-card::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      background: linear-gradient(45deg, var(--secondary-color), var(--accent-color), var(--primary-color), var(--secondary-color));
+      background-size: 300% 300%;
+      z-index: -1;
+      border-radius: 8px;
+      animation: ledGlow 4s linear infinite;
+    }
+    @keyframes ledGlow {
+      0%   { filter: hue-rotate(0deg); }
+      33%  { filter: hue-rotate(90deg); }
+      66%  { filter: hue-rotate(180deg); }
+      100% { filter: hue-rotate(360deg); }
     }
     .product-card img {
       width: 100%;
       height: auto;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      transition: transform var(--transition-speed) ease;
+      border-radius: 4px;
       cursor: pointer;
     }
-    .product-card img:hover {
-      transform: scale(1.03);
-    }
     .product-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
+      font-size: 1.2rem;
+      margin: 10px 0;
       color: #333;
     }
-    .product-card label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1rem;
-      color: #555;
+    /* Animación para el label "Selecciona Duración:" */
+    .duration-label {
+      display: inline-block;
+      animation: textPulse 2s ease-in-out infinite;
+    }
+    @keyframes textPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
     .product-card select {
       width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      margin-bottom: 15px;
-      font-size: 1rem;
-      transition: border var(--transition-speed) ease;
-    }
-    .product-card select:focus {
-      border-color: var(--primary-color);
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 0.9rem;
       outline: none;
     }
     .product-card button {
-      padding: 12px 25px;
       background-color: var(--primary-color);
-      color: #fff;
+      color: var(--bg-white);
       border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
       cursor: pointer;
-      border-radius: 10px;
-      font-size: 1rem;
-      transition: background var(--transition-speed) ease;
+      transition: background var(--transition-speed);
     }
     .product-card button:hover {
       background-color: #e5533d;
     }
-
-    /* Modal para vista rápida de producto */
+    /* Modal de Vista Rápida */
     .modal {
       display: none;
       position: fixed;
@@ -255,198 +271,175 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.6);
     }
     .modal-content {
-      background-color: #fff;
+      background: var(--bg-white);
       margin: 10% auto;
       padding: 20px;
-      border-radius: 16px;
+      border-radius: 8px;
       max-width: 500px;
       text-align: center;
       position: relative;
     }
     .modal-content img {
-      max-width: 100%;
-      border-radius: 12px;
-      margin-bottom: 15px;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 10px;
     }
     .close {
       position: absolute;
       top: 10px;
-      right: 20px;
-      font-size: 28px;
-      font-weight: bold;
+      right: 15px;
+      font-size: 24px;
       cursor: pointer;
+      color: #aaa;
     }
-
     /* Registro de Vendedor */
     #work-with-us {
-      background-color: #fff;
-      color: #6f4f28;
-      padding: 15px;
+      background: var(--bg-white);
+      color: var(--primary-color);
+      padding: 10px 15px;
       cursor: pointer;
-      border: 2px solid #6f4f28;
-      border-radius: 10px;
-      margin: 30px auto;
-      max-width: 300px;
-      font-weight: bold;
+      border: 1px solid var(--primary-color);
+      border-radius: 4px;
+      max-width: 250px;
       text-align: center;
-      transition: background var(--transition-speed) ease;
+      margin: 20px auto;
+      transition: background var(--transition-speed);
     }
-    #work-with-us:hover {
-      background-color: #f8f8f8;
-    }
+    #work-with-us:hover { background: #f1f1f1; }
     #vendor-registration {
       display: none;
+      background: var(--bg-white);
       border: 1px solid #ddd;
-      background-color: #fff;
-      padding: 25px;
-      margin: 30px auto;
+      padding: 20px;
       max-width: 500px;
-      border-radius: 16px;
-      text-align: left;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     #vendor-registration h2 {
-      margin-top: 0;
-      font-size: 1.8rem;
       margin-bottom: 15px;
+      font-size: 1.5rem;
+      color: #333;
     }
     #vendor-registration input {
       width: 100%;
-      padding: 15px;
-      margin-bottom: 15px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
       font-size: 1rem;
     }
     #vendor-registration button {
-      padding: 15px 25px;
       background-color: var(--primary-color);
-      color: #fff;
+      color: var(--bg-white);
       border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
       cursor: pointer;
-      border-radius: 10px;
-      font-size: 1rem;
-      transition: background var(--transition-speed) ease;
+      transition: background var(--transition-speed);
     }
-    #vendor-registration button:hover {
-      background-color: #e5533d;
-    }
-    #vendor-cost {
-      background-color: #f2f2f2;
-      border: 1px solid #ccc;
-      padding: 15px;
-      margin-bottom: 20px;
-      font-weight: bold;
-      text-align: center;
-      border-radius: 10px;
-    }
-
-    /* Pie de Página */
-    footer {
-      text-align: center;
-      padding: 25px;
-    }
-    footer p {
-      color: #fff;
-      font-size: 1rem;
-    }
-
-    /* Asistente Virtual (burbuja) */
-    /* Se elimina el onclick del contenedor y se añade solo al header */
+    #vendor-registration button:hover { background-color: #e5533d; }
+    /* Asistente Virtual */
     #virtual-assistant {
       position: fixed;
       bottom: 20px;
       right: 20px;
       width: 60px;
       height: 60px;
-      background-color: var(--primary-color);
+      background: var(--primary-color);
       border-radius: 50%;
       cursor: pointer;
       z-index: 300;
-      transition: all var(--transition-speed) ease;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: all var(--transition-speed);
       overflow: hidden;
     }
     #virtual-assistant.open {
       width: 300px;
       height: auto;
-      border-radius: 16px;
+      border-radius: 8px;
     }
     #va-header {
-      color: #fff;
+      color: var(--bg-white);
       font-size: 24px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 60px;
     }
     #va-body {
       display: none;
       padding: 15px;
-      background-color: #fff;
+      background: var(--bg-white);
     }
-    #virtual-assistant.open #va-body {
-      display: block;
-    }
+    #virtual-assistant.open #va-body { display: block; }
     #va-form input, #va-form textarea {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
       font-size: 0.9rem;
     }
-    #va-form textarea {
-      resize: vertical;
-      height: 80px;
-    }
+    #va-form textarea { resize: vertical; height: 80px; }
     #va-form button {
       width: 100%;
-      padding: 10px;
-      background-color: var(--primary-color);
-      color: #fff;
+      padding: 8px;
+      background: var(--primary-color);
+      color: var(--bg-white);
       border: none;
-      border-radius: 8px;
+      border-radius: 4px;
       cursor: pointer;
-      font-size: 0.9rem;
     }
+    /* Pie de Página */
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: var(--bg-white);
+      border-top: 1px solid #e0e0e0;
+      margin-top: 20px;
+    }
+    footer p { font-size: 0.9rem; color: #555; }
   </style>
 </head>
 <body>
   <!-- Encabezado con Logo -->
   <header>
-    <h1>PELUCHE STAR</h1>
-    <img src="images/logo.jpg" alt="Logo">
-    <h1>Seleccionar Plan</h1>
+    <div class="header-logo">
+      <img src="images/logo.jpg" alt="Logo de Peluche Star">
+    </div>
   </header>
   
-  <!-- Panel Superior: Carrito y Confirmación -->
-  <div id="top-cart-container">
-    <!-- Carrito de Compra -->
+  <!-- Panel de Carrito y Confirmación (layout de 2 columnas con separación) -->
+  <section id="top-cart-container">
     <div id="cart">
       <h2>Carrito de Compra</h2>
       <div id="cart-items"></div>
       <h3 id="cart-total"></h3>
       <button onclick="goToPayment()">Comprar</button>
     </div>
-    <!-- Confirmación de Compra (oculta inicialmente) -->
     <div id="confirmation" style="display: none;">
       <h2>Confirmación de Compra</h2>
       <div id="order-summary"></div>
       <form id="payment-form" method="post" enctype="multipart/form-data">
         <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required><br><br>
+        <input type="text" id="name" name="name" required>
+        <br><br>
         <label for="email">Correo Electrónico:</label>
-        <input type="email" id="email" name="email" required><br><br>
+        <input type="email" id="email" name="email" required>
+        <br><br>
         <label for="phone">Teléfono:</label>
-        <input type="tel" id="phone" name="phone" required><br><br>
+        <input type="tel" id="phone" name="phone" required>
+        <br><br>
         <label for="receipt">Comprobante de Pago (Imagen):</label>
-        <input type="file" id="receipt" name="receipt" accept="image/*" required><br><br>
+        <input type="file" id="receipt" name="receipt" accept="image/*" required>
+        <br><br>
         <h2>Detalles de Pago</h2>
-        <p>Por favor, realiza el pago a una de las siguientes cuentas:</p>
+        <p>Realiza el pago a una de las siguientes cuentas:</p>
         <ul>
           <li><strong>Pichincha:</strong> 2211163039 (Roxon Nazareno)</li>
           <li><strong>Guayaquil:</strong> 0012625809 (Roxon Nazareno)</li>
@@ -454,19 +447,21 @@
         <button type="submit">Confirmar Compra</button>
       </form>
     </div>
-  </div>
+  </section>
   
-  <!-- Barra de búsqueda -->
+  <!-- Barra de Búsqueda -->
   <div id="search-container">
     <input type="text" id="search-bar" placeholder="Buscar productos...">
   </div>
   
-  <!-- Lista de Productos (tamaño fijo) -->
-  <div id="product-list"></div>
+  <!-- Secciones de Productos -->
+  <main id="product-list">
+    <!-- Se generarán dinámicamente -->
+  </main>
   
-  <!-- Registro de Vendedor (Trabaja con nosotros) -->
+  <!-- Registro de Vendedor -->
   <div id="work-with-us">Trabaja con nosotros</div>
-  <div id="vendor-registration">
+  <section id="vendor-registration">
     <h2>Registro de Vendedor</h2>
     <div id="vendor-cost">* El registro tiene un costo de $8</div>
     <form id="vendor-form">
@@ -477,155 +472,140 @@
       <label for="vendor-phone">Teléfono:</label>
       <input type="tel" id="vendor-phone" name="vendor-phone" required>
       <label for="vendor-receipt">Sube el comprobante de $8:</label>
-      <label>Pichincha 2211163039 (Roxon Nazareno) Guayaquil 0012625809 (Roxon Nazareno):</label>
+      <label>Pichincha 2211163039 (Roxon Nazareno) | Guayaquil 0012625809 (Roxon Nazareno):</label>
       <input type="file" id="vendor-receipt" name="vendor-receipt" accept="image/*" required>
       <button type="submit">Registrarse como Vendedor</button>
     </form>
-  </div>
+  </section>
   
-  <!-- Modal de vista rápida de producto -->
-  <div id="product-modal" class="modal">
+  <!-- Modal de Vista Rápida -->
+  <div id="product-modal" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
       <img id="modal-img" src="" alt="">
       <h3 id="modal-title"></h3>
-      <label for="modal-duration">Selecciona Duración:</label>
+      <label class="duration-label" for="modal-duration">Selecciona Duración:</label>
       <select id="modal-duration"></select>
       <button id="modal-add-btn">Añadir al Carrito</button>
     </div>
   </div>
   
-  <!-- Asistente Virtual (burbuja) -->
-<div id="virtual-assistant" class="closed">
-  <!-- Solo el header activa el toggle -->
-  <div id="va-header" onclick="toggleAssistant()">💬</div>
-  <div id="va-body" onclick="event.stopPropagation();">
-    <form id="va-form" onclick="event.stopPropagation();">
-      <input type="text" id="va-name" placeholder="Tu nombre" required onclick="event.stopPropagation();">
-      <input type="email" id="va-email" placeholder="Tu correo" required onclick="event.stopPropagation();">
-      <textarea id="va-message" placeholder="Tu mensaje" required onclick="event.stopPropagation();"></textarea>
-      <button type="submit" onclick="event.stopPropagation();">Enviar solicitud</button>
-    </form>
+  <!-- Asistente Virtual -->
+  <div id="virtual-assistant" class="closed" onclick="toggleAssistant()">
+    <div id="va-header">💬</div>
+    <div id="va-body" onclick="event.stopPropagation();">
+      <form id="va-form" onclick="event.stopPropagation();">
+        <input type="text" id="va-name" placeholder="Tu nombre" required>
+        <input type="email" id="va-email" placeholder="Tu correo" required>
+        <textarea id="va-message" placeholder="Tu mensaje" required></textarea>
+        <button type="submit">Enviar solicitud</button>
+      </form>
+    </div>
   </div>
-</div>
-
-<script>
-  // Función para alternar la visibilidad del asistente
-  function toggleAssistant() {
-    const assistant = document.getElementById("virtual-assistant");
-    assistant.classList.toggle("open");
-  }
-
-  // Manejo del envío del formulario del asistente virtual
-  document.getElementById("va-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const name = document.getElementById("va-name").value;
-    const email = document.getElementById("va-email").value;
-    const clientMsg = document.getElementById("va-message").value;
-    let message = `*Asistente Virtual - Solicitud*\n`;
-    message += `*Nombre:* ${name}\n`;
-    message += `*Correo:* ${email}\n`;
-    message += `*Mensaje:* ${clientMsg}`;
-    
-    // Envía el mensaje a Telegram
-    sendTelegramMessage(message);
-    
-    alert("Tu solicitud ha sido enviada. Pronto nos pondremos en contacto.");
-    document.getElementById("va-form").reset();
-    toggleAssistant();
-  });
-</script>
   
   <!-- Pie de Página -->
   <footer>
     <p>CEO de la página: MSc. Roxon Nazareno | Copyright &copy; 2025</p>
   </footer>
   
-  <!-- Integración de Telegram (sin cambios) -->
+  <!-- Integración de Telegram (sin modificar) -->
   <script src="telegram.js"></script>
+  
+  <!-- JavaScript Principal -->
   <script>
-    // Mostrar/Ocultar Registro de Vendedor al hacer click en "Trabaja con nosotros"
+    // Función para alternar el asistente virtual
+    function toggleAssistant() {
+      const assistant = document.getElementById("virtual-assistant");
+      assistant.classList.toggle("open");
+    }
+    document.getElementById("va-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("va-name").value;
+      const email = document.getElementById("va-email").value;
+      const clientMsg = document.getElementById("va-message").value;
+      let message = `*Asistente Virtual - Solicitud*\n*Nombre:* ${name}\n*Correo:* ${email}\n*Mensaje:* ${clientMsg}`;
+      sendTelegramMessage(message);
+      alert("Tu solicitud ha sido enviada. Pronto nos pondremos en contacto.");
+      document.getElementById("va-form").reset();
+      toggleAssistant();
+    });
+    
+    // Mostrar/Ocultar Registro de Vendedor
     document.getElementById("work-with-us").addEventListener("click", function(){
       let vendorReg = document.getElementById("vendor-registration");
-      if(vendorReg.style.display === "none" || vendorReg.style.display === ""){
-        vendorReg.style.display = "block";
+      vendorReg.style.display = (vendorReg.style.display === "none" || vendorReg.style.display === "") ? "block" : "none";
+      if(vendorReg.style.display === "block"){
         window.scrollTo({ top: vendorReg.offsetTop, behavior: 'smooth' });
-      } else {
-        vendorReg.style.display = "none";
       }
     });
-
-    // Registro de Vendedor (no modificar líneas de Telegram)
+    
+    // Registro de Vendedor (sin modificar)
     document.getElementById("vendor-form").addEventListener("submit", function(e){
       e.preventDefault();
       e.stopPropagation();
-      let name    = document.getElementById("vendor-name").value;
-      let email   = document.getElementById("vendor-email").value;
-      let phone   = document.getElementById("vendor-phone").value;
+      let name = document.getElementById("vendor-name").value;
+      let email = document.getElementById("vendor-email").value;
+      let phone = document.getElementById("vendor-phone").value;
       let receipt = document.getElementById("vendor-receipt").files[0];
-      
-      let message = `*Registro de Vendedor*\n`;
-      message += `*Nombre:* ${name}\n`;
-      message += `*Correo:* ${email}\n`;
-      message += `*Teléfono:* ${phone}\n`;
-      message += `*Comprobante:* ${receipt ? receipt.name : 'No adjunto'}\n`;
-      
+      let message = `*Registro de Vendedor*\n*Nombre:* ${name}\n*Correo:* ${email}\n*Teléfono:* ${phone}\n*Comprobante:* ${receipt ? receipt.name : 'No adjunto'}\n`;
       sendTelegramMessage(message, receipt);
-      
       let vendors = JSON.parse(localStorage.getItem("vendors") || "[]");
       vendors.push({ name, email, phone, receipt: receipt ? receipt.name : "" });
       localStorage.setItem("vendors", JSON.stringify(vendors));
-      
       alert("Registro de vendedor exitoso. Recibimos tu comprobante de $8.");
       document.getElementById("vendor-form").reset();
       document.getElementById("vendor-registration").style.display = "none";
     });
     
-    // Carrito y Productos
+    // Carrito y productos
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
     const products = [
-      { id: 1, name: "Netflix (1 dispositivo)", prices: { "1 mes": 5, "2 meses": 9, "3 meses": 13, "4 meses": 17, "6 meses": 25, "12 meses": 44 }, image: "netflix_1_dispositivo.jpg" },
-      { id: 2, name: "Netflix (2 dispositivos)", prices: { "1 mes": 8.5, "2 meses": 16, "3 meses": 22, "4 meses": 28, "6 meses": 40, "12 meses": 72 }, image: "netflix_2_dispositivos.jpg" },
-      { id: 3, name: "Netflix (4 dispositivos)", prices: { "1 mes": 14.5, "2 meses": 28, "3 meses": 42 }, image: "netflix_4_dispositivos.jpg" },
-      { id: 4, name: "Disney+ Premium (1 dispositivo)", prices: { "1 mes": 3.5 }, image: "disney_plus_1_dispositivo.jpg" },
-      { id: 5, name: "Disney+ Premium (2 dispositivos)", prices: { "1 mes": 6 }, image: "disney_plus_2_dispositivos.jpg" },
-      { id: 6, name: "Zapping (1 dispositivo)", prices: { "1 mes": 3.95, "4 meses": 9 }, image: "zapping_1_dispositivo.png" },
-      { id: 7, name: "Amazon Prime (1 dispositivo)", prices: { "1 mes": 2.75, "3 meses": 6 }, image: "amazon_prime_1_dispositivo.png" },
-      { id: 8, name: "Amazon Prime (4 dispositivos)", prices: { "1 mes": 5.5, "3 meses": 15 }, image: "amazon_prime_4_dispositivos.png" },
-      { id: 9, name: "Max (1 dispositivo)", prices: { "1 mes": 2 }, image: "max_1_dispositivo.png" },
-      { id: 10, name: "Max (Cuenta completa)", prices: { "1 mes": 3.5 }, image: "max_cuenta_completa.png" },
-      { id: 11, name: "Crunchyroll (Cuenta completa)", prices: { "1 mes": 4.5 }, image: "crunchyroll_cuenta_completa.png" },
-      { id: 41, name: "Crunchyroll (1 pantalla)", prices: { "1 mes": 2.00 }, image: "crunchyroll_cuenta_completa.png" },
-      { id: 12, name: "El Canal del Fútbol (Cuenta completa)", prices: { "1 mes": 4.5 }, image: "canal_del_futbol_cuenta_completa.jpg" },
-      { id: 13, name: "Pornhub (Cuenta completa)", prices: { "1 mes": 4.5 }, image: "pornhub_cuenta_completa.png" },
-      { id: 14, name: "Paramount+ (Cuenta personal)", prices: { "1 mes": 4, "3 meses": 7 }, image: "paramount_plus_cuenta_personal.png" },
-      { id: 15, name: "Paramount+ (Cuenta completa)", prices: { "1 mes": 4.5 }, image: "paramount_plus_cuenta_completa.png" },
-      { id: 16, name: "Vix (1 dispositivo)", prices: { "1 mes": 2 }, image: "vix_1_dispositivo.png" },
-      { id: 17, name: "YouTube Premium (1 dispositivo)", prices: { "1 mes": 2.75 }, image: "youtube_premium_1_dispositivo.jpg" },
-      { id: 18, name: "Apple Music, Spotify, Deezer (Cuenta personal)", prices: { "1 mes": 3.5, "2 meses": 4.5, "3 meses": 7 }, image: "apple_music_spotify_deezer_cuenta_personal.png" },
-      { id: 19, name: "Canva (Cuenta completa)", prices: { "1 mes": 2, "2 meses": 3, "3 meses": 5, "6 meses": 8, "12 meses": 10 }, image: "canva_cuenta_completa.png" },
-      { id: 20, name: "Capcut Pro (Cuenta completa)", prices: { "1 mes": 4, "2 meses": 5, "3 meses": 7.5, "6 meses": 10 }, image: "capcut_pro_cuenta_completa.png" },
-      { id: 23, name: "Antivirus Avast (1 año)", prices: { "1 año": 20 }, image: "antivirus_avast_1_ano.jpg" },
-      { id: 24, name: "Antivirus ESET (1 año)", prices: { "1 año": 23 }, image: "antivirus_eset_1_ano.jpg" },
-      { id: 25, name: "Antivirus McAfee (1 año)", prices: { "1 año": 18 }, image: "antivirus_mcafee_1_ano.jpg" },
-      { id: 26, name: "Licencias Windows 10 Pro", prices: { "1 mes": 14 }, image: "licencia_windows_10_pro.jpg" },
-      { id: 27, name: "Licencias Windows 11 Pro", prices: { "1 mes": 14 }, image: "licencia_windows_11_pro.jpg" },
-      { id: 28, name: "Licencias Office 2016", prices: { "1 mes": 15 }, image: "licencia_office_2016.jpg" },
-      { id: 29, name: "Licencias Office 2019", prices: { "1 mes": 15 }, image: "licencia_office_2019.jpg" },
-      { id: 30, name: "Licencias Office 2021", prices: { "1 mes": 27 }, image: "licencia_office_2021.jpg" },
-      { id: 31, name: "Licencias Office 365", prices: { "1 mes": 17 }, image: "licencia_office_365.jpg" },
-      { id: 32, name: "Flujo TV (1 dispositivo)", prices: { "1 mes": 2.5 }, image: "flujo_tv_1_dispositivo.jpg" },
-      { id: 33, name: "Flujo TV (3 conexiones)", prices: { "1 mes": 7 }, image: "flujo_tv_3_conexiones.jpg" },
-      { id: 34, name: "IPTV (1 dispositivo)", prices: { "1 mes": 8 }, image: "iptv_1_dispositivo.jpg" },
-      { id: 35, name: "Recargas Apple iTunes", prices: { "5": 7.5 }, image: "recargas_videojuegos_apple_itunes.jpg" },
-      { id: 36, name: "Recargas Playstation", prices: { "10": 12.5 }, image: "recargas_videojuegos_playstation.jpg" },
-      { id: 37, name: "Diamantes Free Fire", prices: { "110": 1.5, "341": 3.5 }, image: "diamantes_free_fire.jpg" },
-      { id: 38, name: "Diamantes PUBG Mobile", prices: { "60": 1.5 }, image: "diamantes_pubg_mobile.jpg" },
-      { id: 39, name: "Robux Roblox", prices: { "10": 11.5 }, image: "robux_roblox.jpg" },
-      { id: 40, name: "Xbox Game Pass", prices: { "1 mes": 10 }, image: "xbox_game_pass.jpg" }
+      // Televisión por Internet (primero)
+      { id: 1, name: "Netflix (1 dispositivo)", prices: { "1 mes": 5, "2 meses": 9, "3 meses": 13, "4 meses": 17, "6 meses": 25, "12 meses": 44 }, image: "netflix_1_dispositivo.jpg", category: "Televisión por Internet" },
+      { id: 2, name: "Netflix (2 dispositivos)", prices: { "1 mes": 8.5, "2 meses": 16, "3 meses": 22, "4 meses": 28, "6 meses": 40, "12 meses": 72 }, image: "netflix_2_dispositivos.jpg", category: "Televisión por Internet" },
+      { id: 3, name: "Netflix (4 dispositivos)", prices: { "1 mes": 14.5, "2 meses": 28, "3 meses": 42 }, image: "netflix_4_dispositivos.jpg", category: "Televisión por Internet" },
+      { id: 4, name: "Disney+ Premium (1 dispositivo)", prices: { "1 mes": 3.5 }, image: "disney_plus_1_dispositivo.jpg", category: "Televisión por Internet" },
+      { id: 5, name: "Disney+ Premium (2 dispositivos)", prices: { "1 mes": 6 }, image: "disney_plus_2_dispositivos.jpg", category: "Televisión por Internet" },
+      { id: 6, name: "Zapping (1 dispositivo)", prices: { "1 mes": 3.95, "4 meses": 9 }, image: "zapping_1_dispositivo.png", category: "Televisión por Internet" },
+      { id: 7, name: "Amazon Prime (1 dispositivo)", prices: { "1 mes": 2.75, "3 meses": 6 }, image: "amazon_prime_1_dispositivo.png", category: "Televisión por Internet" },
+      { id: 8, name: "Amazon Prime (4 dispositivos)", prices: { "1 mes": 5.5, "3 meses": 15 }, image: "amazon_prime_4_dispositivos.png", category: "Televisión por Internet" },
+      { id: 9, name: "Max (1 dispositivo)", prices: { "1 mes": 2 }, image: "max_1_dispositivo.png", category: "Televisión por Internet" },
+      { id: 10, name: "Max (Cuenta completa)", prices: { "1 mes": 3.5 }, image: "max_cuenta_completa.png", category: "Televisión por Internet" },
+      { id: 11, name: "Crunchyroll (Cuenta completa)", prices: { "1 mes": 4.5 }, image: "crunchyroll_cuenta_completa.png", category: "Televisión por Internet" },
+      { id: 41, name: "Crunchyroll (1 pantalla)", prices: { "1 mes": 2.00 }, image: "crunchyroll_cuenta_completa.png", category: "Televisión por Internet" },
+      { id: 12, name: "El Canal del Fútbol (Cuenta completa)", prices: { "1 mes": 4.5 }, image: "canal_del_futbol_cuenta_completa.jpg", category: "Televisión por Internet" },
+      { id: 13, name: "Pornhub (Cuenta completa)", prices: { "1 mes": 4.5 }, image: "pornhub_cuenta_completa.png", category: "Televisión por Internet" },
+      { id: 14, name: "Paramount+ (Cuenta personal)", prices: { "1 mes": 4, "3 meses": 7 }, image: "paramount_plus_cuenta_personal.png", category: "Televisión por Internet" },
+      { id: 15, name: "Paramount+ (Cuenta completa)", prices: { "1 mes": 4.5 }, image: "paramount_plus_cuenta_completa.png", category: "Televisión por Internet" },
+      { id: 16, name: "Vix (1 dispositivo)", prices: { "1 mes": 2 }, image: "vix_1_dispositivo.png", category: "Televisión por Internet" },
+      { id: 17, name: "YouTube Premium (1 dispositivo)", prices: { "1 mes": 2.75 }, image: "youtube_premium_1_dispositivo.jpg", category: "Televisión por Internet" },
+      { id: 32, name: "Flujo TV (1 dispositivo)", prices: { "1 mes": 2.5 }, image: "flujo_tv_1_dispositivo.jpg", category: "Televisión por Internet" },
+      { id: 33, name: "Flujo TV (3 conexiones)", prices: { "1 mes": 7 }, image: "flujo_tv_3_conexiones.jpg", category: "Televisión por Internet" },
+      { id: 34, name: "IPTV (1 dispositivo)", prices: { "1 mes": 8 }, image: "iptv_1_dispositivo.jpg", category: "Televisión por Internet" },
+      // Programas (segundo)
+      { id: 26, name: "Licencias Windows 10 Pro", prices: { "1 mes": 14 }, image: "licencia_windows_10_pro.jpg", category: "Programas" },
+      { id: 27, name: "Licencias Windows 11 Pro", prices: { "1 mes": 14 }, image: "licencia_windows_11_pro.jpg", category: "Programas" },
+      { id: 28, name: "Licencias Office 2016", prices: { "1 mes": 15 }, image: "licencia_office_2016.jpg", category: "Programas" },
+      { id: 29, name: "Licencias Office 2019", prices: { "1 mes": 15 }, image: "licencia_office_2019.jpg", category: "Programas" },
+      { id: 30, name: "Licencias Office 2021", prices: { "1 mes": 27 }, image: "licencia_office_2021.jpg", category: "Programas" },
+      { id: 31, name: "Licencias Office 365", prices: { "1 mes": 17 }, image: "licencia_office_365.jpg", category: "Programas" },
+      { id: 19, name: "Canva (Cuenta completa)", prices: { "1 mes": 2, "2 meses": 3, "3 meses": 5, "6 meses": 8, "12 meses": 10 }, image: "canva_cuenta_completa.png", category: "Programas" },
+      { id: 20, name: "Capcut Pro (Cuenta completa)", prices: { "1 mes": 4, "2 meses": 5, "3 meses": 7.5, "6 meses": 10 }, image: "capcut_pro_cuenta_completa.png", category: "Programas" },
+      { id: 23, name: "Antivirus Avast (1 año)", prices: { "1 año": 20 }, image: "antivirus_avast_1_ano.jpg", category: "Programas" },
+      { id: 24, name: "Antivirus ESET (1 año)", prices: { "1 año": 23 }, image: "antivirus_eset_1_ano.jpg", category: "Programas" },
+      { id: 25, name: "Antivirus McAfee (1 año)", prices: { "1 año": 18 }, image: "antivirus_mcafee_1_ano.jpg", category: "Programas" },
+      // Juegos Online
+      { id: 35, name: "Recargas Apple iTunes", prices: { "5": 7.5 }, image: "recargas_videojuegos_apple_itunes.jpg", category: "Juegos Online" },
+      { id: 36, name: "Recargas Playstation", prices: { "10": 12.5 }, image: "recargas_videojuegos_playstation.jpg", category: "Juegos Online" },
+      { id: 37, name: "Diamantes Free Fire", prices: { "110": 1.5, "341": 3.5 }, image: "diamantes_free_fire.jpg", category: "Juegos Online" },
+      { id: 38, name: "Diamantes PUBG Mobile", prices: { "60": 1.5 }, image: "diamantes_pubg_mobile.jpg", category: "Juegos Online" },
+      { id: 39, name: "Robux Roblox", prices: { "10": 11.5 }, image: "robux_roblox.jpg", category: "Juegos Online" },
+      { id: 40, name: "Xbox Game Pass", prices: { "1 mes": 10 }, image: "xbox_game_pass.jpg", category: "Juegos Online" },
+      // Música
+      { id: 18, name: "Apple Music, Spotify, Deezer (Cuenta personal)", prices: { "1 mes": 3.5, "2 meses": 4.5, "3 meses": 7 }, image: "apple_music_spotify_deezer_cuenta_personal.png", category: "Música" }
     ];
     
-    // Función para actualizar el panel del carrito
     function updateCartDisplay() {
       const cartDiv = document.getElementById("cart");
       const cartItemsDiv = document.getElementById("cart-items");
@@ -663,15 +643,8 @@
     
     function addToCart(productId, duration = null) {
       const selectedProduct = products.find(product => product.id === productId);
-      let durationSelected;
-      if(duration) {
-        durationSelected = duration;
-      } else {
-        const selectEl = document.getElementById(`duration-${productId}`);
-        durationSelected = selectEl.value;
-      }
+      let durationSelected = duration ? duration : document.getElementById(`duration-${productId}`).value;
       const priceSelected = selectedProduct.prices[durationSelected];
-      
       cart.push({
         id: selectedProduct.id,
         name: selectedProduct.name,
@@ -690,11 +663,13 @@
     }
     
     function goToPayment() {
+      // Aplica layout de 2 columnas
+      document.getElementById("top-cart-container").classList.add("payment-layout");
+      // Muestra la confirmación de compra
       document.getElementById("confirmation").style.display = "block";
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     
-    // Envío de datos de pago a Telegram (no modificar)
     function sendToTelegram(event) {
       event.preventDefault();
       event.stopPropagation();
@@ -702,28 +677,15 @@
       const email = document.getElementById("email").value;
       const phone = document.getElementById("phone").value;
       const receipt = document.getElementById("receipt").files[0];
-  
       let message = `*Confirmación de Compra*\n`;
       cart.forEach((item, idx) => {
-        message += `*Producto ${idx+1}:* ${item.name}\n`;
-        message += `*Duración:* ${item.duration}\n`;
-        message += `*Precio:* $${item.price}\n\n`;
+        message += `*Producto ${idx+1}:* ${item.name}\n*Duración:* ${item.duration}\n*Precio:* $${item.price}\n\n`;
       });
       let total = cart.reduce((acc, item) => acc + Number(item.price), 0);
-      message += `*Total:* $${total}\n`;
-      message += `*Nombre del Usuario:* ${name}\n`;
-      message += `*Correo Electrónico:* ${email}\n`;
-      message += `*Teléfono:* ${phone}\n`;
-  
+      message += `*Total:* $${total}\n*Nombre:* ${name}\n*Correo:* ${email}\n*Teléfono:* ${phone}\n`;
       sendTelegramMessage(message, receipt);
-  
-      let orderData = {
-        items: cart,
-        total: total,
-        customer: { name, email, phone }
-      };
+      let orderData = { items: cart, total: total, customer: { name, email, phone } };
       localStorage.setItem("orderData", JSON.stringify(orderData));
-  
       alert("Pago exitoso, espere 5 minutos para que le llegue su cuenta.");
       cart = [];
       localStorage.removeItem("cart");
@@ -733,31 +695,48 @@
     
     document.getElementById("payment-form").addEventListener("submit", sendToTelegram);
     
-    // Renderizado de productos con tamaño fijo y funcionalidad de modal
-    const productListContainer = document.getElementById("product-list");
-    products.forEach(product => {
-      const productCard = document.createElement("div");
-      productCard.classList.add("product-card");
-      productCard.setAttribute("data-name", product.name.toLowerCase());
-      let durationOptions = "";
-      for (let duration in product.prices) {
-        durationOptions += `<option value="${duration}">${duration} - $${product.prices[duration]}</option>`;
-      }
-      productCard.innerHTML = `
-        <img src="images/${product.image}" alt="${product.name}" onclick="openModal(${product.id})">
-        <h3>${product.name}</h3>
-        <label>Selecciona Duración:</label>
-        <select id="duration-${product.id}" name="duration">
-          ${durationOptions}
-        </select>
-        <button onclick="addToCart(${product.id})">Añadir al Carrito</button>
-      `;
-      productListContainer.appendChild(productCard);
-    });
+    function renderProducts() {
+      const productList = document.getElementById("product-list");
+      const categoriesOrder = ["Televisión por Internet", "Programas", "Juegos Online", "Música"];
+      let grouped = {};
+      categoriesOrder.forEach(cat => grouped[cat] = []);
+      products.forEach(product => {
+        if(grouped[product.category]) {
+          grouped[product.category].push(product);
+        }
+      });
+      productList.innerHTML = "";
+      categoriesOrder.forEach(category => {
+        if(grouped[category].length) {
+          const section = document.createElement("section");
+          section.classList.add("category");
+          section.innerHTML = `<h2>${category}</h2><div class="products-container"></div>`;
+          const container = section.querySelector(".products-container");
+          grouped[category].forEach(product => {
+            let durationOptions = "";
+            for (let duration in product.prices) {
+              durationOptions += `<option value="${duration}">${duration} - $${product.prices[duration]}</option>`;
+            }
+            const card = document.createElement("div");
+            card.classList.add("product-card");
+            card.setAttribute("data-name", product.name.toLowerCase());
+            card.innerHTML = `
+              <img src="images/${product.image}" alt="${product.name}" onclick="openModal(${product.id})">
+              <h3>${product.name}</h3>
+              <label class="duration-label">Selecciona Duración:</label>
+              <select id="duration-${product.id}" name="duration">${durationOptions}</select>
+              <button onclick="addToCart(${product.id})">Añadir al Carrito</button>
+            `;
+            container.appendChild(card);
+          });
+          productList.appendChild(section);
+        }
+      });
+    }
     
+    renderProducts();
     updateCartDisplay();
     
-    // Función para filtrar productos con debounce sin alterar el tamaño de las tarjetas
     function debounce(func, wait) {
       let timeout;
       return function(...args) {
@@ -765,31 +744,21 @@
         timeout = setTimeout(() => func.apply(this, args), wait);
       };
     }
-    
     const filterProducts = debounce(function(){
       const filter = document.getElementById("search-bar").value.toLowerCase();
-      const productCards = document.querySelectorAll(".product-card");
-      productCards.forEach(card => {
+      const cards = document.querySelectorAll(".product-card");
+      cards.forEach(card => {
         const name = card.getAttribute("data-name");
-        if(name.indexOf(filter) > -1) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
+        card.style.display = name.indexOf(filter) > -1 ? "block" : "none";
       });
     }, 300);
-    
     document.getElementById("search-bar").addEventListener("keyup", filterProducts);
     
-    // Funciones para el modal de vista rápida
     function openModal(productId) {
       const product = products.find(p => p.id === productId);
-      const modal = document.getElementById("product-modal");
       document.getElementById("modal-img").src = "images/" + product.image;
       document.getElementById("modal-img").alt = product.name;
       document.getElementById("modal-title").innerText = product.name;
-      
-      // Llenamos el select de duraciones en el modal
       const modalSelect = document.getElementById("modal-duration");
       modalSelect.innerHTML = "";
       for (let duration in product.prices) {
@@ -798,48 +767,20 @@
         option.text = `${duration} - $${product.prices[duration]}`;
         modalSelect.appendChild(option);
       }
-      
-      // Configuramos el botón del modal para añadir al carrito con la opción seleccionada
-      const modalAddBtn = document.getElementById("modal-add-btn");
-      modalAddBtn.onclick = function() {
+      document.getElementById("modal-add-btn").onclick = function() {
         addToCart(productId, modalSelect.value);
       };
-      
-      modal.style.display = "block";
+      document.getElementById("product-modal").style.display = "block";
     }
     
     function closeModal() {
       document.getElementById("product-modal").style.display = "none";
     }
     
-    // Cerrar modal al hacer click fuera del contenido
     window.onclick = function(event) {
       const modal = document.getElementById("product-modal");
-      if (event.target == modal) {
-        closeModal();
-      }
+      if (event.target == modal) { closeModal(); }
     }
-    
-    // Funciones para el Asistente Virtual (burbuja)
-    function toggleAssistant() {
-      const assistant = document.getElementById("virtual-assistant");
-      assistant.classList.toggle("open");
-    }
-    
-    document.getElementById("va-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const name = document.getElementById("va-name").value;
-      const email = document.getElementById("va-email").value;
-      const clientMsg = document.getElementById("va-message").value;
-      let message = `*Asistente Virtual - Solicitud*\n`;
-      message += `*Nombre:* ${name}\n`;
-      message += `*Correo:* ${email}\n`;
-      message += `*Mensaje:* ${clientMsg}`;
-      sendTelegramMessage(message);
-      alert("Tu solicitud ha sido enviada. Pronto nos pondremos en contacto.");
-      document.getElementById("va-form").reset();
-      toggleAssistant();
-    });
   </script>
 </body>
 </html>
