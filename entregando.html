@@ -4,33 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Entregando su Cuenta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-color: #ff6347;
+      --secondary-color: #f0e68c;
+      --text-color: #333;
+      --background-gradient: linear-gradient(135deg, #6a11cb, #2575fc);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: var(--background-gradient);
+      color: var(--text-color);
       text-align: center;
-      background-color: #f0f0f0;
-      padding: 50px;
+      padding: 20px;
     }
     .logo {
-      width: 200px;
+      width: 1500px;
       height: auto;
-      margin-bottom: 20px;
+      margin-bottom: 250px;
+      animation: fadeIn 1.5s ease-in-out;
     }
     h1 {
-      color: #333;
-      font-size: 24px;
-      margin: 20px 0;
+      font-size: 32px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: var(--text-color);
+      animation: slideIn 1s ease-out;
     }
     p {
       font-size: 18px;
-      color: #666;
+      max-width: 600px;
+      line-height: 1.5;
+      color: #f7f7f7;
+      animation: fadeIn 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
 <body>
   <img src="images/logo.jpg" alt="Logo de Mi Tienda" class="logo">
   <h1>Estamos entregando su cuenta...</h1>
-  <p>Estimado cliente, en 5 minutos le llegará su producto a la información brindada. contactate al +593969468578 nombre Roxon Nazareno</p>
-  
+  <p>Estimado cliente, en 5 minutos le llegará su producto a la información brindada. Contáctate al +593969468578, nombre: Roxon Nazareno.</p>
 </body>
 </html>
