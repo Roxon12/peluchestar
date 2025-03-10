@@ -5,254 +5,467 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seleccionar Plan</title>
   <style>
+    :root {
+      --primary-color: #ff6347; /* Rojo tomate */
+      --secondary-color: #f0e68c; /* Amarillo suave */
+      --accent-color: #a1c4fd; /* Azul claro */
+      --bg-color: rgba(255, 255, 255, 0.7);
+      --font-family: 'Helvetica Neue', Arial, sans-serif;
+      --card-width: 280px;
+      --transition-speed: 0.3s;
+    }
+
+    /* Reset y base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: linear-gradient(135deg, 
-        #2a2d73, /* Azul espacial */
-        #6f4f28, /* Color café */
-        #a1c4fd, /* Azul claro */
-        #f0e68c, /* Amarillo suave */
-        #ff6347  /* Rojo tomate */
-      );
+      font-family: var(--font-family);
+      background: linear-gradient(135deg, #2a2d73, #6f4f28, var(--accent-color), var(--secondary-color), var(--primary-color));
       background-size: 400% 400%;
       animation: gradientAnimation 15s ease infinite;
+      color: #333;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    /* Animación para el borde iluminado del logo */
-    @keyframes borderGlow {
-      0% {
-        border: 5px solid red;
-        box-shadow: 0 0 15px red, 0 0 25px red;
-      }
-      50% {
-        border: 5px solid green;
-        box-shadow: 0 0 15px green, 0 0 25px green;
-      }
-      100% {
-        border: 5px solid red;
-        box-shadow: 0 0 15px red, 0 0 25px red;
-      }
+    /* Encabezado */
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeIn 1s ease-out;
     }
-    /* Estilo del logo con borde iluminado */
-    img {
-      max-width: 200px;
+    header h1 {
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    header img {
+      max-width: 150px;
       height: auto;
       margin-bottom: 20px;
-      border-radius: 10px;
-      animation: borderGlow 2s infinite alternate; /* Animación del borde */
-    }
-
-    .product-card {
-      max-width: 300px; 
-      margin: auto; 
-      padding: 10px; 
-      border: 1px solid #ddd; 
-      border-radius: 8px; 
-      display: inline-block; 
-      margin: 10px; 
-      background: #fff;
-      position: relative;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); /* Efecto de luz LED */
-      transition: all 0.3s ease; /* Transición suave */
-    }
-
-    /* Efecto de parpadeo de la luz LED */
-    @keyframes ledGlow {
-      0% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); }
-      50% { box-shadow: 0 0 30px rgba(0, 255, 255, 1); }
-      100% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); }
-    }
-
-    .product-card:hover { 
-      animation: ledGlow 1.5s ease-in-out infinite; /* Aplica el parpadeo al pasar el mouse */
-    }
-
-    @keyframes gradientAnimation {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-    .product-card { 
-      max-width: 300px; 
-      margin: auto; 
-      padding: 10px; 
-      border: 1px solid #ddd; 
-      border-radius: 8px; 
-      display: inline-block; 
-      margin: 10px; 
-      background: #fff;
-    }
-
-    .product-card img { 
-      width: 100%; 
-      height: auto; 
-      border-radius: 5px; 
-    }
-
-    .product-card h3 { 
-      font-size: 18px; 
-      margin: 10px 0; 
-    }
-
-    .product-card button { 
-      margin-top: 10px; 
-      padding: 8px 16px; 
-      background-color: #4CAF50; 
-      color: white; 
-      border: none; 
-      cursor: pointer; 
-    }
-
-    .product-card button:hover { 
-      background-color: #45a049; 
-    }
-
-    /* Estilos para el carrito */
-    #cart {
-      display: none; 
-      border: 1px solid #ddd; 
-      padding: 20px; 
-      margin: 20px;
-      background-color: #f8f8f8;
-      text-align: left;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .cart-item {
-      border-bottom: 1px solid #ccc;
-      padding: 10px 0;
-    }
-
-    .cart-item button {
-      padding: 4px 8px;
-      background-color: #d9534f;
-      border: none;
-      color: #fff;
+      border-radius: 12px;
+      border: 4px solid var(--primary-color);
+      transition: transform var(--transition-speed) ease;
       cursor: pointer;
-      border-radius: 4px;
+    }
+    header img:hover {
+      transform: scale(1.05);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .cart-item button:hover {
-      background-color: #c9302c;
+    /* Panel Superior: Glassmorphism */
+    #top-cart-container {
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 30px;
+      border-radius: 20px;
+      background: var(--bg-color);
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-speed) ease;
+    }
+    #top-cart-container:hover {
+      transform: scale(1.02);
+    }
+    #top-cart-container::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--primary-color));
+      animation: rotateGradient 6s linear infinite;
+      opacity: 0.1;
+      z-index: 0;
+    }
+    @keyframes rotateGradient {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    /* Aseguramos que el contenido se muestre sobre la capa animada */
+    #top-cart-container > * {
+      position: relative;
+      z-index: 1;
+    }
+    #top-cart-container h2 {
+      margin-bottom: 15px;
+      color: #333;
+      font-size: 1.8rem;
+    }
+    #cart, #confirmation {
+      margin-bottom: 25px;
+    }
+    #cart {
+      padding-bottom: 15px;
+      border-bottom: 1px solid #ccc;
+    }
+    .cart-item {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    #top-cart-container button {
+      padding: 12px 25px;
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: background var(--transition-speed) ease;
+    }
+    #top-cart-container button:hover {
+      background-color: #e5533d;
     }
 
-    /* Estilos para la sección de pago */
-    #confirmation {
-      display: none;
-      border: 1px solid #ddd;
-      padding: 20px;
-      margin: 20px;
-      background-color: #f8f8f8;
-      text-align: left;
+    /* Barra de búsqueda (Sticky) */
+    #search-container {
       max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.9);
+      z-index: 100;
+      padding: 15px 0;
+    }
+    #search-bar {
+      width: 90%;
+      max-width: 500px;
+      padding: 15px;
+      border: none;
+      border-radius: 50px;
+      outline: none;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: box-shadow var(--transition-speed) ease;
+    }
+    #search-bar:focus {
+      box-shadow: 0 6px 10px rgba(0,0,0,0.15);
     }
 
-    #confirmation h2, #confirmation h3 {
-      margin-top: 0;
+    /* Lista de Productos */
+    #product-list {
+      margin: 30px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 0 20px;
     }
-
-    .input-field input, .input-field select {
-      padding: 8px;
+    .product-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+      position: relative;
+      overflow: hidden;
+      width: var(--card-width);
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    }
+    .product-card img {
       width: 100%;
-      border-radius: 4px;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      transition: transform var(--transition-speed) ease;
+      cursor: pointer;
+    }
+    .product-card img:hover {
+      transform: scale(1.03);
+    }
+    .product-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .product-card label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      color: #555;
+    }
+    .product-card select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
       border: 1px solid #ddd;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      transition: border var(--transition-speed) ease;
+    }
+    .product-card select:focus {
+      border-color: var(--primary-color);
+      outline: none;
+    }
+    .product-card button {
+      padding: 12px 25px;
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: background var(--transition-speed) ease;
+    }
+    .product-card button:hover {
+      background-color: #e5533d;
     }
 
+    /* Modal para vista rápida de producto */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 200;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 16px;
+      max-width: 500px;
+      text-align: center;
+      position: relative;
+    }
+    .modal-content img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-    /* Barra de "Trabaja con nosotros" */
+    /* Registro de Vendedor */
     #work-with-us {
       background-color: #fff;
       color: #6f4f28;
-      padding: 10px;
+      padding: 15px;
       cursor: pointer;
       border: 2px solid #6f4f28;
-      border-radius: 4px;
-      margin: 20px auto;
+      border-radius: 10px;
+      margin: 30px auto;
       max-width: 300px;
       font-weight: bold;
+      text-align: center;
+      transition: background var(--transition-speed) ease;
     }
-
-    /* Estilos para el registro de vendedores */
+    #work-with-us:hover {
+      background-color: #f8f8f8;
+    }
     #vendor-registration {
-      display: none; /* Oculto por defecto */
+      display: none;
       border: 1px solid #ddd;
       background-color: #fff;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 400px;
-      border-radius: 8px;
+      padding: 25px;
+      margin: 30px auto;
+      max-width: 500px;
+      border-radius: 16px;
       text-align: left;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-
     #vendor-registration h2 {
       margin-top: 0;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
     }
-
     #vendor-registration input {
       width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
       border: 1px solid #ddd;
-      border-radius: 4px;
+      border-radius: 8px;
+      font-size: 1rem;
     }
-
     #vendor-registration button {
-      padding: 8px 16px;
-      background-color: #4CAF50;
-      color: white;
+      padding: 15px 25px;
+      background-color: var(--primary-color);
+      color: #fff;
       border: none;
       cursor: pointer;
-      border-radius: 4px;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: background var(--transition-speed) ease;
     }
-
     #vendor-registration button:hover {
-      background-color: #45a049;
+      background-color: #e5533d;
     }
-
-    /* Mensaje de costo de registro */
     #vendor-cost {
       background-color: #f2f2f2;
       border: 1px solid #ccc;
-      padding: 10px;
-      margin-bottom: 15px;
+      padding: 15px;
+      margin-bottom: 20px;
       font-weight: bold;
       text-align: center;
+      border-radius: 10px;
     }
 
+    /* Pie de Página */
+    footer {
+      text-align: center;
+      padding: 25px;
+    }
+    footer p {
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    /* Asistente Virtual (burbuja) */
+    /* Se elimina el onclick del contenedor y se añade solo al header */
+    #virtual-assistant {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 300;
+      transition: all var(--transition-speed) ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    #virtual-assistant.open {
+      width: 300px;
+      height: auto;
+      border-radius: 16px;
+    }
+    #va-header {
+      color: #fff;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 60px;
+    }
+    #va-body {
+      display: none;
+      padding: 15px;
+      background-color: #fff;
+    }
+    #virtual-assistant.open #va-body {
+      display: block;
+    }
+    #va-form input, #va-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+    #va-form textarea {
+      resize: vertical;
+      height: 80px;
+    }
+    #va-form button {
+      width: 100%;
+      padding: 10px;
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
-  <h1>PELUCHE STAR</h1>
-  <img src="images/logo.jpg" alt="Logo">
-  <h1>Seleccionar Plan</h1>
-
+  <!-- Encabezado con Logo -->
+  <header>
+    <h1>PELUCHE STAR</h1>
+    <img src="images/logo.jpg" alt="Logo">
+    <h1>Seleccionar Plan</h1>
+  </header>
   
-
-  <!-- Pie de página -->
-  <footer>
-    <p style="color: white; font-size: 14px;">CEO de la página: MSc. Roxon Nazareno | Copyright &copy; 2025</p>
-  </footer>
-</body>
-</html>
-
-  </footer>
-
-  <!-- Barra de "Trabaja con nosotros" -->
+  <!-- Panel Superior: Carrito y Confirmación -->
+  <div id="top-cart-container">
+    <!-- Carrito de Compra -->
+    <div id="cart">
+      <h2>Carrito de Compra</h2>
+      <div id="cart-items"></div>
+      <h3 id="cart-total"></h3>
+      <button onclick="goToPayment()">Comprar</button>
+    </div>
+    <!-- Confirmación de Compra (oculta inicialmente) -->
+    <div id="confirmation" style="display: none;">
+      <h2>Confirmación de Compra</h2>
+      <div id="order-summary"></div>
+      <form id="payment-form" method="post" enctype="multipart/form-data">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="phone">Teléfono:</label>
+        <input type="tel" id="phone" name="phone" required><br><br>
+        <label for="receipt">Comprobante de Pago (Imagen):</label>
+        <input type="file" id="receipt" name="receipt" accept="image/*" required><br><br>
+        <h2>Detalles de Pago</h2>
+        <p>Por favor, realiza el pago a una de las siguientes cuentas:</p>
+        <ul>
+          <li><strong>Pichincha:</strong> 2211163039 (Roxon Nazareno)</li>
+          <li><strong>Guayaquil:</strong> 0012625809 (Roxon Nazareno)</li>
+        </ul>
+        <button type="submit">Confirmar Compra</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Barra de búsqueda -->
+  <div id="search-container">
+    <input type="text" id="search-bar" placeholder="Buscar productos...">
+  </div>
+  
+  <!-- Lista de Productos (tamaño fijo) -->
+  <div id="product-list"></div>
+  
+  <!-- Registro de Vendedor (Trabaja con nosotros) -->
   <div id="work-with-us">Trabaja con nosotros</div>
-
-  <!-- Registro de Vendedor (funcionalidad independiente) -->
   <div id="vendor-registration">
     <h2>Registro de Vendedor</h2>
     <div id="vendor-cost">* El registro tiene un costo de $8</div>
@@ -264,53 +477,74 @@
       <label for="vendor-phone">Teléfono:</label>
       <input type="tel" id="vendor-phone" name="vendor-phone" required>
       <label for="vendor-receipt">Sube el comprobante de $8:</label>
-      <label for="vendor-receipt">Pichincha 2211163039 (Roxon Nazareno) Guayaquil 0012625809 (Roxon Nazareno):</label>
+      <label>Pichincha 2211163039 (Roxon Nazareno) Guayaquil 0012625809 (Roxon Nazareno):</label>
       <input type="file" id="vendor-receipt" name="vendor-receipt" accept="image/*" required>
       <button type="submit">Registrarse como Vendedor</button>
     </form>
   </div>
-
-  <!-- Sección del Carrito -->
-  <div id="cart">
-    <h2>Carrito de Compra</h2>
-    <div id="cart-items"></div>
-    <h3 id="cart-total"></h3>
-    <button onclick="goToPayment()">Comprar</button>
+  
+  <!-- Modal de vista rápida de producto -->
+  <div id="product-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modal-img" src="" alt="">
+      <h3 id="modal-title"></h3>
+      <label for="modal-duration">Selecciona Duración:</label>
+      <select id="modal-duration"></select>
+      <button id="modal-add-btn">Añadir al Carrito</button>
+    </div>
   </div>
-
-  <!-- Confirmación/Pago -->
-  <div id="confirmation">
-    <h2>Confirmación de Compra</h2>
-    <div id="order-summary"></div>
-    <form id="payment-form" method="post" enctype="multipart/form-data">
-      <label for="name">Nombre:</label>
-      <input type="text" id="name" name="name" required><br><br>
-      <label for="email">Correo Electrónico:</label>
-      <input type="email" id="email" name="email" required><br><br>
-      <label for="phone">Teléfono:</label>
-      <input type="tel" id="phone" name="phone" required><br><br>
-      <label for="receipt">Comprobante de Pago (Imagen):</label>
-      <input type="file" id="receipt" name="receipt" accept="image/*" required><br><br>
-
-      <h2>Detalles de Pago</h2>
-      <p>Por favor, realiza el pago a una de las siguientes cuentas:</p>
-      <ul>
-        <li><strong>Pichincha:</strong> 2211163039 (Roxon Nazareno)</li>
-        <li><strong>Guayaquil:</strong> 0012625809 (Roxon Nazareno)</li>
-      </ul>
-
-      <button type="submit">Confirmar Compra</button>
+  
+  <!-- Asistente Virtual (burbuja) -->
+<div id="virtual-assistant" class="closed">
+  <!-- Solo el header activa el toggle -->
+  <div id="va-header" onclick="toggleAssistant()">💬</div>
+  <div id="va-body" onclick="event.stopPropagation();">
+    <form id="va-form" onclick="event.stopPropagation();">
+      <input type="text" id="va-name" placeholder="Tu nombre" required onclick="event.stopPropagation();">
+      <input type="email" id="va-email" placeholder="Tu correo" required onclick="event.stopPropagation();">
+      <textarea id="va-message" placeholder="Tu mensaje" required onclick="event.stopPropagation();"></textarea>
+      <button type="submit" onclick="event.stopPropagation();">Enviar solicitud</button>
     </form>
   </div>
+</div>
 
-  <!-- Lista de Productos -->
-  <div id="product-list"></div>
+<script>
+  // Función para alternar la visibilidad del asistente
+  function toggleAssistant() {
+    const assistant = document.getElementById("virtual-assistant");
+    assistant.classList.toggle("open");
+  }
 
-  <!-- Se asume que telegram.js contiene la función sendTelegramMessage -->
+  // Manejo del envío del formulario del asistente virtual
+  document.getElementById("va-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("va-name").value;
+    const email = document.getElementById("va-email").value;
+    const clientMsg = document.getElementById("va-message").value;
+    let message = `*Asistente Virtual - Solicitud*\n`;
+    message += `*Nombre:* ${name}\n`;
+    message += `*Correo:* ${email}\n`;
+    message += `*Mensaje:* ${clientMsg}`;
+    
+    // Envía el mensaje a Telegram
+    sendTelegramMessage(message);
+    
+    alert("Tu solicitud ha sido enviada. Pronto nos pondremos en contacto.");
+    document.getElementById("va-form").reset();
+    toggleAssistant();
+  });
+</script>
+  
+  <!-- Pie de Página -->
+  <footer>
+    <p>CEO de la página: MSc. Roxon Nazareno | Copyright &copy; 2025</p>
+  </footer>
+  
+  <!-- Integración de Telegram (sin cambios) -->
   <script src="telegram.js"></script>
   <script>
-
-    // Mostrar/Ocultar el formulario de registro de vendedor al hacer click en "Trabaja con nosotros"
+    // Mostrar/Ocultar Registro de Vendedor al hacer click en "Trabaja con nosotros"
     document.getElementById("work-with-us").addEventListener("click", function(){
       let vendorReg = document.getElementById("vendor-registration");
       if(vendorReg.style.display === "none" || vendorReg.style.display === ""){
@@ -321,7 +555,7 @@
       }
     });
 
-    // Registro de vendedor (envío independiente a Telegram)
+    // Registro de Vendedor (no modificar líneas de Telegram)
     document.getElementById("vendor-form").addEventListener("submit", function(e){
       e.preventDefault();
       e.stopPropagation();
@@ -329,30 +563,26 @@
       let email   = document.getElementById("vendor-email").value;
       let phone   = document.getElementById("vendor-phone").value;
       let receipt = document.getElementById("vendor-receipt").files[0];
-
-      // Construimos el mensaje para Telegram
+      
       let message = `*Registro de Vendedor*\n`;
       message += `*Nombre:* ${name}\n`;
       message += `*Correo:* ${email}\n`;
       message += `*Teléfono:* ${phone}\n`;
       message += `*Comprobante:* ${receipt ? receipt.name : 'No adjunto'}\n`;
-
-      // Envío a Telegram (la función sendTelegramMessage debe estar definida en telegram.js)
+      
       sendTelegramMessage(message, receipt);
-
-      // También se almacena en localStorage para efectos de demostración
+      
       let vendors = JSON.parse(localStorage.getItem("vendors") || "[]");
-      vendors.push({ name: name, email: email, phone: phone, receipt: receipt ? receipt.name : "" });
+      vendors.push({ name, email, phone, receipt: receipt ? receipt.name : "" });
       localStorage.setItem("vendors", JSON.stringify(vendors));
-
-      alert("Registro de vendedor exitoso. Recibimos tu comprobante de $5.");
+      
+      alert("Registro de vendedor exitoso. Recibimos tu comprobante de $8.");
       document.getElementById("vendor-form").reset();
       document.getElementById("vendor-registration").style.display = "none";
     });
-
-    // Funcionalidad del carrito y productos
+    
+    // Carrito y Productos
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
     const products = [
       { id: 1, name: "Netflix (1 dispositivo)", prices: { "1 mes": 5, "2 meses": 9, "3 meses": 13, "4 meses": 17, "6 meses": 25, "12 meses": 44 }, image: "netflix_1_dispositivo.jpg" },
       { id: 2, name: "Netflix (2 dispositivos)", prices: { "1 mes": 8.5, "2 meses": 16, "3 meses": 22, "4 meses": 28, "6 meses": 40, "12 meses": 72 }, image: "netflix_2_dispositivos.jpg" },
@@ -394,7 +624,8 @@
       { id: 39, name: "Robux Roblox", prices: { "10": 11.5 }, image: "robux_roblox.jpg" },
       { id: 40, name: "Xbox Game Pass", prices: { "1 mes": 10 }, image: "xbox_game_pass.jpg" }
     ];
-
+    
+    // Función para actualizar el panel del carrito
     function updateCartDisplay() {
       const cartDiv = document.getElementById("cart");
       const cartItemsDiv = document.getElementById("cart-items");
@@ -415,12 +646,30 @@
       cartTotalDiv.innerHTML = `Total: $${total}`;
       cartDiv.style.display = cart.length > 0 ? "block" : "none";
       localStorage.setItem("cart", JSON.stringify(cart));
+      updateOrderSummary();
     }
-
-    function addToCart(productId) {
+    
+    function updateOrderSummary() {
+      const orderSummaryDiv = document.getElementById("order-summary");
+      let summaryHtml = `<h3>Resumen de Compra:</h3>`;
+      let total = 0;
+      cart.forEach((item, idx) => {
+        total += Number(item.price);
+        summaryHtml += `<p>${idx+1}. ${item.name} - Duración: ${item.duration} - Precio: $${item.price}</p>`;
+      });
+      summaryHtml += `<h3>Total: $${total}</h3>`;
+      orderSummaryDiv.innerHTML = summaryHtml;
+    }
+    
+    function addToCart(productId, duration = null) {
       const selectedProduct = products.find(product => product.id === productId);
-      const selectEl = document.getElementById(`duration-${productId}`);
-      const durationSelected = selectEl.value;
+      let durationSelected;
+      if(duration) {
+        durationSelected = duration;
+      } else {
+        const selectEl = document.getElementById(`duration-${productId}`);
+        durationSelected = selectEl.value;
+      }
       const priceSelected = selectedProduct.prices[durationSelected];
       
       cart.push({
@@ -431,28 +680,21 @@
         image: selectedProduct.image
       });
       updateCartDisplay();
+      closeModal();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
+    
     function removeFromCart(index) {
       cart.splice(index, 1);
       updateCartDisplay();
     }
-
+    
     function goToPayment() {
-      const orderSummaryDiv = document.getElementById("order-summary");
-      let summaryHtml = `<h3>Resumen de Compra:</h3>`;
-      let total = 0;
-      cart.forEach((item, idx) => {
-        total += Number(item.price);
-        summaryHtml += `<p>${idx+1}. ${item.name} - Duración: ${item.duration} - Precio: $${item.price}</p>`;
-      });
-      summaryHtml += `<h3>Total: $${total}</h3>`;
-      orderSummaryDiv.innerHTML = summaryHtml;
       document.getElementById("confirmation").style.display = "block";
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
+    
+    // Envío de datos de pago a Telegram (no modificar)
     function sendToTelegram(event) {
       event.preventDefault();
       event.stopPropagation();
@@ -460,7 +702,7 @@
       const email = document.getElementById("email").value;
       const phone = document.getElementById("phone").value;
       const receipt = document.getElementById("receipt").files[0];
-
+  
       let message = `*Confirmación de Compra*\n`;
       cart.forEach((item, idx) => {
         message += `*Producto ${idx+1}:* ${item.name}\n`;
@@ -472,43 +714,39 @@
       message += `*Nombre del Usuario:* ${name}\n`;
       message += `*Correo Electrónico:* ${email}\n`;
       message += `*Teléfono:* ${phone}\n`;
-
+  
       sendTelegramMessage(message, receipt);
-
+  
       let orderData = {
         items: cart,
         total: total,
-        customer: {
-          name: name,
-          email: email,
-          phone: phone
-        }
+        customer: { name, email, phone }
       };
       localStorage.setItem("orderData", JSON.stringify(orderData));
-
+  
       alert("Pago exitoso, espere 5 minutos para que le llegue su cuenta.");
-
       cart = [];
       localStorage.removeItem("cart");
       updateCartDisplay();
-
       window.location.href = "entregando.html";
     }
-
+    
     document.getElementById("payment-form").addEventListener("submit", sendToTelegram);
-
+    
+    // Renderizado de productos con tamaño fijo y funcionalidad de modal
     const productListContainer = document.getElementById("product-list");
     products.forEach(product => {
       const productCard = document.createElement("div");
       productCard.classList.add("product-card");
+      productCard.setAttribute("data-name", product.name.toLowerCase());
       let durationOptions = "";
       for (let duration in product.prices) {
         durationOptions += `<option value="${duration}">${duration} - $${product.prices[duration]}</option>`;
       }
       productCard.innerHTML = `
-        <img src="images/${product.image}" alt="${product.name}">
+        <img src="images/${product.image}" alt="${product.name}" onclick="openModal(${product.id})">
         <h3>${product.name}</h3>
-        <label for="duration">Selecciona Duración:</label>
+        <label>Selecciona Duración:</label>
         <select id="duration-${product.id}" name="duration">
           ${durationOptions}
         </select>
@@ -516,8 +754,92 @@
       `;
       productListContainer.appendChild(productCard);
     });
-
+    
     updateCartDisplay();
+    
+    // Función para filtrar productos con debounce sin alterar el tamaño de las tarjetas
+    function debounce(func, wait) {
+      let timeout;
+      return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
+    
+    const filterProducts = debounce(function(){
+      const filter = document.getElementById("search-bar").value.toLowerCase();
+      const productCards = document.querySelectorAll(".product-card");
+      productCards.forEach(card => {
+        const name = card.getAttribute("data-name");
+        if(name.indexOf(filter) > -1) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }, 300);
+    
+    document.getElementById("search-bar").addEventListener("keyup", filterProducts);
+    
+    // Funciones para el modal de vista rápida
+    function openModal(productId) {
+      const product = products.find(p => p.id === productId);
+      const modal = document.getElementById("product-modal");
+      document.getElementById("modal-img").src = "images/" + product.image;
+      document.getElementById("modal-img").alt = product.name;
+      document.getElementById("modal-title").innerText = product.name;
+      
+      // Llenamos el select de duraciones en el modal
+      const modalSelect = document.getElementById("modal-duration");
+      modalSelect.innerHTML = "";
+      for (let duration in product.prices) {
+        const option = document.createElement("option");
+        option.value = duration;
+        option.text = `${duration} - $${product.prices[duration]}`;
+        modalSelect.appendChild(option);
+      }
+      
+      // Configuramos el botón del modal para añadir al carrito con la opción seleccionada
+      const modalAddBtn = document.getElementById("modal-add-btn");
+      modalAddBtn.onclick = function() {
+        addToCart(productId, modalSelect.value);
+      };
+      
+      modal.style.display = "block";
+    }
+    
+    function closeModal() {
+      document.getElementById("product-modal").style.display = "none";
+    }
+    
+    // Cerrar modal al hacer click fuera del contenido
+    window.onclick = function(event) {
+      const modal = document.getElementById("product-modal");
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+    
+    // Funciones para el Asistente Virtual (burbuja)
+    function toggleAssistant() {
+      const assistant = document.getElementById("virtual-assistant");
+      assistant.classList.toggle("open");
+    }
+    
+    document.getElementById("va-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("va-name").value;
+      const email = document.getElementById("va-email").value;
+      const clientMsg = document.getElementById("va-message").value;
+      let message = `*Asistente Virtual - Solicitud*\n`;
+      message += `*Nombre:* ${name}\n`;
+      message += `*Correo:* ${email}\n`;
+      message += `*Mensaje:* ${clientMsg}`;
+      sendTelegramMessage(message);
+      alert("Tu solicitud ha sido enviada. Pronto nos pondremos en contacto.");
+      document.getElementById("va-form").reset();
+      toggleAssistant();
+    });
   </script>
 </body>
 </html>
