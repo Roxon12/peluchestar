@@ -88,7 +88,7 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       transition: all var(--transition-speed);
     }
-    /* Layout de pago: carrito a la izquierda y confirmación (estilo factura) a la derecha, separados */
+    /* Layout de pago: carrito a la izquierda y formulario de datos a la derecha */
     #top-cart-container.payment-layout {
       display: flex;
       gap: 20px;
@@ -126,7 +126,7 @@
     #top-cart-container button:hover {
       background-color: #e5533d;
     }
-    /* Estilo elegante de factura para Confirmación */
+    /* Estilo de formulario de Confirmación (sin factura aquí) */
     #confirmation {
       background: #fff;
       border: 2px solid #ccc;
@@ -147,6 +147,74 @@
       margin: 5px 0;
       font-size: 1rem;
       color: #555;
+    }
+    /* Modal para la Factura */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 300;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0,0,0,0.6);
+    }
+    .modal-content {
+      background: var(--bg-white);
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 600px;
+      text-align: left;
+      position: relative;
+    }
+    .modal-content .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #aaa;
+    }
+    /* Contenedor de Factura dentro del modal */
+    #invoice-container {
+      border: 1px solid #000;
+      padding: 15px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      border-radius: 4px;
+    }
+    #invoice-container .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .invoice-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #333;
+    }
+    /* Se le asigna un id para actualizarlo dinámicamente */
+    .invoice-number {
+      font-weight: bold;
+      font-size: 0.9rem;
+      color: #333;
+    }
+    #invoice-container .invoice-data p {
+      margin: 3px 0;
+    }
+    #invoice-container hr {
+      margin: 10px 0;
+      border: none;
+      border-top: 1px solid #ccc;
+    }
+    #invoice-container .invoice-client p {
+      margin: 3px 0;
+    }
+    #invoice-summary h3 {
+      margin-top: 0;
     }
     /* Barra de Búsqueda */
     #search-container {
@@ -231,7 +299,6 @@
       margin: 10px 0;
       color: #333;
     }
-    /* Animación para el label "Selecciona Duración:" */
     .duration-label {
       display: inline-block;
       animation: textPulse 2s ease-in-out infinite;
@@ -260,41 +327,6 @@
     }
     .product-card button:hover {
       background-color: #e5533d;
-    }
-    /* Modal de Vista Rápida */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 200;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background: rgba(0,0,0,0.6);
-    }
-    .modal-content {
-      background: var(--bg-white);
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 500px;
-      text-align: center;
-      position: relative;
-    }
-    .modal-content img {
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 24px;
-      cursor: pointer;
-      color: #aaa;
     }
     /* Registro de Vendedor */
     #work-with-us {
@@ -353,7 +385,7 @@
       background: var(--primary-color);
       border-radius: 50%;
       cursor: pointer;
-      z-index: 300;
+      z-index: 400;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       transition: all var(--transition-speed);
       overflow: hidden;
@@ -404,6 +436,22 @@
       margin-top: 20px;
     }
     footer p { font-size: 0.9rem; color: #555; }
+    
+    /* Media Query para dispositivos móviles */
+    @media (max-width: 768px) {
+      #top-cart-container.payment-layout {
+        flex-direction: column;
+      }
+      #top-cart-container.payment-layout #cart,
+      #top-cart-container.payment-layout #confirmation {
+        width: 100%;
+        border: none;
+        padding: 0;
+      }
+      header, main, footer {
+        padding: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -414,7 +462,7 @@
     </div>
   </header>
   
-  <!-- Panel de Carrito y Confirmación (layout de 2 columnas con separación) -->
+  <!-- Panel de Carrito y Confirmación (layout de 2 columnas) -->
   <section id="top-cart-container">
     <div id="cart">
       <h2>Carrito de Compra</h2>
@@ -444,10 +492,41 @@
           <li><strong>Pichincha:</strong> 2211163039 (Roxon Nazareno)</li>
           <li><strong>Guayaquil:</strong> 0012625809 (Roxon Nazareno)</li>
         </ul>
+        <!-- Al hacer submit se abrirá el modal de factura -->
         <button type="submit">Confirmar Compra</button>
       </form>
     </div>
   </section>
+  
+  <!-- Modal para la Factura -->
+  <div id="invoice-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeInvoiceModal()">&times;</span>
+      <div id="invoice-container">
+        <div class="invoice-header">
+          <div class="invoice-title">FACTURA</div>
+          <!-- Se genera dinámicamente el número -->
+          <div class="invoice-number" id="invoice-number"></div>
+        </div>
+        <div class="invoice-data">
+          <p><strong>Ambiente:</strong> PRUEBAS</p>
+          <p><strong>Emisión:</strong> Normal</p>
+        </div>
+        <hr>
+        <div class="invoice-client">
+          <!-- Se rellenan con los datos del cliente -->
+          <p id="invoice-client-name"></p>
+          <p id="invoice-client-email"></p>
+          <p id="invoice-client-phone"></p>
+        </div>
+        <hr>
+        <!-- Resumen de Compra -->
+        <div id="invoice-summary"></div>
+      </div>
+      <!-- Botón para continuar y finalizar la compra -->
+      <button onclick="finalizePurchase()">Continuar</button>
+    </div>
+  </div>
   
   <!-- Barra de Búsqueda -->
   <div id="search-container">
@@ -463,7 +542,7 @@
   <div id="work-with-us">Trabaja con nosotros</div>
   <section id="vendor-registration">
     <h2>Registro de Vendedor</h2>
-    <div id="vendor-cost">* El registro tiene un costo de $8</div>
+    <div id="vendor-cost">* El registro tiene un costo de $8 +593969468578</div>
     <form id="vendor-form">
       <label for="vendor-name">Nombre:</label>
       <input type="text" id="vendor-name" name="vendor-name" required>
@@ -478,7 +557,7 @@
     </form>
   </section>
   
-  <!-- Modal de Vista Rápida -->
+  <!-- Modal de Vista Rápida de Productos -->
   <div id="product-modal" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
@@ -561,7 +640,6 @@
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     
     const products = [
-      // Televisión por Internet (primero)
       { id: 1, name: "Netflix (1 dispositivo)", prices: { "1 mes": 5, "2 meses": 9, "3 meses": 13, "4 meses": 17, "6 meses": 25, "12 meses": 44 }, image: "netflix_1_dispositivo.jpg", category: "Televisión por Internet" },
       { id: 2, name: "Netflix (2 dispositivos)", prices: { "1 mes": 8.5, "2 meses": 16, "3 meses": 22, "4 meses": 28, "6 meses": 40, "12 meses": 72 }, image: "netflix_2_dispositivos.jpg", category: "Televisión por Internet" },
       { id: 3, name: "Netflix (4 dispositivos)", prices: { "1 mes": 14.5, "2 meses": 28, "3 meses": 42 }, image: "netflix_4_dispositivos.jpg", category: "Televisión por Internet" },
@@ -583,7 +661,7 @@
       { id: 32, name: "Flujo TV (1 dispositivo)", prices: { "1 mes": 2.5 }, image: "flujo_tv_1_dispositivo.jpg", category: "Televisión por Internet" },
       { id: 33, name: "Flujo TV (3 conexiones)", prices: { "1 mes": 7 }, image: "flujo_tv_3_conexiones.jpg", category: "Televisión por Internet" },
       { id: 34, name: "IPTV (1 dispositivo)", prices: { "1 mes": 8 }, image: "iptv_1_dispositivo.jpg", category: "Televisión por Internet" },
-      // Programas (segundo)
+      // Programas
       { id: 26, name: "Licencias Windows 10 Pro", prices: { "1 mes": 14 }, image: "licencia_windows_10_pro.jpg", category: "Programas" },
       { id: 27, name: "Licencias Windows 11 Pro", prices: { "1 mes": 14 }, image: "licencia_windows_11_pro.jpg", category: "Programas" },
       { id: 28, name: "Licencias Office 2016", prices: { "1 mes": 15 }, image: "licencia_office_2016.jpg", category: "Programas" },
@@ -663,37 +741,82 @@
     }
     
     function goToPayment() {
-      // Aplica layout de 2 columnas
       document.getElementById("top-cart-container").classList.add("payment-layout");
-      // Muestra la confirmación de compra
       document.getElementById("confirmation").style.display = "block";
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     
-    function sendToTelegram(event) {
+    // Al enviar el formulario se muestra el modal de factura
+    document.getElementById("payment-form").addEventListener("submit", confirmPayment);
+    
+    function confirmPayment(event) {
       event.preventDefault();
       event.stopPropagation();
+      // Obtenemos los datos del cliente
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      
+      fillInvoiceModal(name, email, phone);
+      document.getElementById("invoice-modal").style.display = "block";
+    }
+    
+    // Función para generar un número de factura automático
+    function generateInvoiceNumber() {
+      const now = new Date();
+      const timestamp = now.getTime().toString();
+      // Tomamos los últimos 9 dígitos para formar el número
+      const lastDigits = timestamp.slice(-9);
+      return "001-001-" + lastDigits;
+    }
+    
+    function fillInvoiceModal(name, email, phone) {
+      document.getElementById("invoice-client-name").textContent = "Nombre: " + name;
+      document.getElementById("invoice-client-email").textContent = "Correo: " + email;
+      document.getElementById("invoice-client-phone").textContent = "Teléfono: " + phone;
+      // Generamos y mostramos el número de factura automáticamente
+      document.getElementById("invoice-number").textContent = "No. " + generateInvoiceNumber();
+      
+      let invoiceSummaryDiv = document.getElementById("invoice-summary");
+      let summaryHtml = `<h3>Resumen de Compra:</h3>`;
+      let total = 0;
+      cart.forEach((item, idx) => {
+        total += Number(item.price);
+        summaryHtml += `<p>${idx+1}. ${item.name} - Duración: ${item.duration} - Precio: $${item.price}</p>`;
+      });
+      summaryHtml += `<h3>Total: $${total}</h3>`;
+      invoiceSummaryDiv.innerHTML = summaryHtml;
+    }
+    
+    function finalizePurchase() {
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
       const phone = document.getElementById("phone").value;
       const receipt = document.getElementById("receipt").files[0];
+      
       let message = `*Confirmación de Compra*\n`;
       cart.forEach((item, idx) => {
         message += `*Producto ${idx+1}:* ${item.name}\n*Duración:* ${item.duration}\n*Precio:* $${item.price}\n\n`;
       });
       let total = cart.reduce((acc, item) => acc + Number(item.price), 0);
       message += `*Total:* $${total}\n*Nombre:* ${name}\n*Correo:* ${email}\n*Teléfono:* ${phone}\n`;
+      
       sendTelegramMessage(message, receipt);
+      
       let orderData = { items: cart, total: total, customer: { name, email, phone } };
       localStorage.setItem("orderData", JSON.stringify(orderData));
+      
       alert("Pago exitoso, espere 5 minutos para que le llegue su cuenta.");
+      
       cart = [];
       localStorage.removeItem("cart");
       updateCartDisplay();
       window.location.href = "entregando.html";
     }
     
-    document.getElementById("payment-form").addEventListener("submit", sendToTelegram);
+    function closeInvoiceModal() {
+      document.getElementById("invoice-modal").style.display = "none";
+    }
     
     function renderProducts() {
       const productList = document.getElementById("product-list");
@@ -780,6 +903,8 @@
     window.onclick = function(event) {
       const modal = document.getElementById("product-modal");
       if (event.target == modal) { closeModal(); }
+      const invoiceModal = document.getElementById("invoice-modal");
+      if (event.target == invoiceModal) { closeInvoiceModal(); }
     }
   </script>
 </body>
