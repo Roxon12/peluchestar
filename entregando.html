@@ -23,16 +23,17 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       background: var(--background-gradient);
       color: var(--text-color);
       text-align: center;
       padding: 20px;
     }
     .logo {
-      width: 1500px;
+      width: 100%;
+      max-width: 400px; /* Se adapta según el tamaño de pantalla */
       height: auto;
-      margin-bottom: 250px;
+      margin-bottom: 30px;
       animation: fadeIn 1.5s ease-in-out;
     }
     h1 {
@@ -57,11 +58,23 @@
       from { transform: translateY(-20px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
+    /* Ajustes responsivos adicionales para pantallas pequeñas */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 24px;
+      }
+      p {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
   <img src="images/logo.jpg" alt="Logo de Mi Tienda" class="logo">
   <h1>Estamos entregando su cuenta...</h1>
-  <p>Estimado cliente, en 5 minutos le llegará su producto a la información brindada. Contáctate al +593969468578, nombre: Roxon Nazareno.</p>
+  <p>
+    Estimado cliente, en 5 minutos le llegará su producto a la información brindada. 
+    Contáctate al +593969468578, nombre: Roxon Nazareno.
+  </p>
 </body>
 </html>
