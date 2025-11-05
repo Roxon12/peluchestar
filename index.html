@@ -1,63 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Compra Digital 2025 - Peluche Star</title>
-  <meta name="description" content="Compra productos y servicios digitales en 2025. Cuentas de streaming, programas, juegos y música.">
-  <meta name="keywords" content="Peluche Star, Netflix, Disney+, cuentas streaming, compra digital, pagar en línea">
+  <meta name="description" content="Compra productos digitales - Peluche Star. Cuentas de streaming, programas, juegos y música.">
+  <meta name="keywords" content="Peluche Star, streaming, Netflix, Disney+, Amazon Prime, compras digitales">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg: #0b1020;
-      --card: #fff;
-      --muted: #6b7280;
+      --card: #0f1724;
+      --muted: #9ca3af;
       --accent: #ff6b4a;
-      --glass: rgba(255,255,255,0.06);
+      --glass: rgba(255,255,255,0.03);
       --radius: 12px;
       --max-width: 1200px;
+      --white: #ffffff;
     }
-    *{box-sizing: border-box}
+    *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      font-family: 'Roboto', sans-serif;
       margin:0;
-      min-height:100%;
-      background: linear-gradient(135deg,#0f1724 0%, #0b1020 40%, #1b2938 100%);
-      color:#111827;
+      font-family:'Roboto',sans-serif;
+      background: linear-gradient(135deg,#0f1724 0%, #0b1020 40%, #0b1320 100%);
+      color:var(--white);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      padding-bottom:60px;
       display:flex;
       justify-content:center;
+      padding:24px;
     }
     .container{
       width:100%;
       max-width:var(--max-width);
-      padding:20px;
+      padding:18px;
     }
 
     header{
-      background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      border-radius: var(--radius);
+      background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
       padding:18px;
       display:flex;
       gap:16px;
       align-items:center;
       margin-bottom:18px;
-      box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
     }
     .logo{
-      width:220px;
-      height:64px;
-      display:flex;
-      align-items:center;
-      gap:12px;
+      width:220px; height:64px; display:flex; align-items:center;
     }
-    .logo img{width:100%; height:auto; object-fit:contain; border-radius:8px}
-    header .title { font-size:1.2rem; font-weight:700; color:#fff }
-    header .subtitle { font-size:0.85rem; color:var(--muted) }
+    .logo .brand{
+      width:64px; height:64px; border-radius:10px; background:linear-gradient(135deg,#1f2937,#0b1320); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff;
+    }
+    header .title{ font-size:1.2rem; font-weight:700; color:var(--white) }
+    header .subtitle{ font-size:0.85rem; color:var(--muted) }
 
     main.grid{
       display:grid;
@@ -66,9 +64,9 @@
       align-items:start;
     }
 
-    /* Product area */
+    /* PRODUCTS */
     section.products{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      background:var(--glass);
       padding:18px;
       border-radius:12px;
       box-shadow: 0 6px 18px rgba(2,6,23,0.5);
@@ -76,54 +74,50 @@
     .category-title{
       display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px;
     }
-    .category-title h2{ color:#fff; margin:0; font-size:1.1rem; border-bottom:3px solid var(--accent); display:inline-block; padding-bottom:6px}
+    .category-title h2{ color:var(--white); margin:0; font-size:1.05rem; border-bottom:3px solid var(--accent); display:inline-block; padding-bottom:6px }
+    #search-bar{ padding:8px 10px; border-radius:10px; border: none; min-width:200px; background:#0e1724; color:var(--white) }
+
     .products-grid{
       display:grid;
-      grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
-      gap:14px;
+      grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+      gap:16px;
+      margin-top:10px;
     }
     .product-card{
-      background:var(--card);
-      border-radius:10px;
-      padding:10px;
-      text-align:center;
-      box-shadow:0 6px 18px rgba(14,30,37,0.15);
-      transition: transform .18s ease, box-shadow .18s ease;
+      background: #fff0; border-radius:10px; padding:12px; display:flex; flex-direction:column; gap:10px; min-height:220px;
+      box-shadow: 0 6px 16px rgba(2,6,23,0.45); border:1px solid rgba(255,255,255,0.03);
     }
-    .product-card:hover{ transform: translateY(-6px); box-shadow:0 12px 30px rgba(14,30,37,0.18) }
-    .product-card img{ width:100%; height:110px; object-fit:cover; border-radius:6px }
-    .product-card h3{ font-size:0.98rem; margin:8px 0 6px; color:#111827 }
-    .product-card select, .product-card button{
-      width:100%; padding:8px; border-radius:8px; border:1px solid #e6e6e6; margin-top:6px;
+    .product-art{
+      height:110px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--white); font-weight:700; font-size:1rem;
+      box-shadow: inset 0 -10px 30px rgba(0,0,0,0.25);
     }
-    .product-card button{
-      background:var(--accent); color:#fff; border:none; cursor:pointer;
-    }
+    .product-title{ color:var(--white); font-weight:700; font-size:0.96rem; text-align:center; margin-top:4px }
+    .product-controls{ margin-top:auto; display:flex; flex-direction:column; gap:8px; }
+    .product-controls select, .product-controls button{ width:100%; padding:8px 10px; border-radius:8px; border: none; }
+    .product-controls select{ background:#0e1724; color:var(--white); border:1px solid rgba(255,255,255,0.03); }
+    .product-controls button{ background:var(--accent); color:#fff; cursor:pointer; font-weight:700 }
 
-    /* Sidebar: carrito + confirm */
+    /* SIDEBAR */
     aside.sidebar{
-      position:sticky; top:20px;
-      align-self:start;
-      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      padding:14px; border-radius:12px;
-      box-shadow: 0 8px 24px rgba(2,6,23,0.5);
+      position:sticky; top:20px; align-self:start; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:14px; border-radius:12px; box-shadow: 0 8px 24px rgba(2,6,23,0.5);
+      min-height:200px;
     }
-    .cart-header{ display:flex; justify-content:space-between; align-items:center; gap:8px }
-    .cart-items { margin-top:12px; max-height:300px; overflow:auto; padding-right:6px }
-    .cart-item{ display:flex; gap:8px; align-items:center; margin-bottom:10px; background:var(--card); padding:8px; border-radius:8px }
-    .cart-item img{ width:56px; height:40px; object-fit:cover; border-radius:6px }
-    .cart-item .meta{ flex:1 }
-    .cart-item .meta b{ display:block; font-size:0.95rem }
-    .cart-summary { margin-top:12px; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.04) }
-    .total { font-weight:700; font-size:1.1rem; color:#111827 }
+    .cart-header{ display:flex; justify-content:space-between; align-items:center; gap:8px; color:var(--muted) }
+    .cart-items{ margin-top:12px; max-height:320px; overflow:auto; padding-right:6px }
+    .cart-item{ display:flex; gap:8px; align-items:center; margin-bottom:10px; background:rgba(255,255,255,0.02); padding:8px; border-radius:8px }
+    .cart-thumb{ width:56px; height:44px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; }
+    .cart-item .meta b{ display:block; font-size:0.95rem; color:var(--white) }
+    .cart-summary{ margin-top:12px; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.04) }
+    .total{ font-weight:700; font-size:1.05rem; color:var(--white) }
 
-    /* Payment area */
-    #confirmation{ margin-top:12px; background:var(--card); padding:12px; border-radius:10px }
-    label{ display:block; font-size:0.85rem; margin-top:8px; color: #374151 }
+    /* Confirmation form */
+    #confirmation{ margin-top:12px; background:#09111a; padding:12px; border-radius:10px }
+    label{ display:block; font-size:0.85rem; margin-top:8px; color: var(--muted) }
     input[type="text"], input[type="email"], input[type="tel"], input[type="file"], textarea{
-      width:100%; padding:8px; border-radius:8px; border:1px solid #e5e7eb; margin-top:6px;
+      width:100%; padding:8px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); margin-top:6px; background:#07101a; color:var(--white)
     }
-    .btn{ display:inline-block; padding:10px 12px; border-radius:10px; background:var(--accent); color:#fff; border:none; cursor:pointer; margin-top:10px }
+    .btn{ display:inline-block; padding:10px 12px; border-radius:10px; background:var(--accent); color:#fff; border:none; cursor:pointer; margin-top:10px; font-weight:700 }
 
     /* WhatsApp floating */
     .whatsapp {
@@ -132,29 +126,26 @@
     }
     .whatsapp a{ color:#fff; text-decoration:none; font-weight:700 }
 
-    /* Modals */
+    /* Modal */
     .modal{ display:none; position:fixed; inset:0; background:rgba(2,6,23,0.6); z-index:1000; justify-content:center; align-items:center }
-    .modal .modal-card{ background:var(--card); padding:18px; border-radius:12px; width:720px; max-width:96%; max-height:90%; overflow:auto }
+    .modal .modal-card{ background:#07101a; padding:18px; border-radius:12px; width:720px; max-width:96%; max-height:90%; overflow:auto; color:var(--white) }
     .modal .close{ float:right; cursor:pointer; font-weight:700 }
 
-    /* Admin panel */
-    #admin-panel{ margin-top:14px; background:var(--card); padding:10px; border-radius:10px }
-    .order-row{ padding:8px; border-bottom:1px solid #f3f4f6; display:flex; justify-content:space-between; gap:8px }
-    .order-row:last-child{ border-bottom:none }
-
-    footer{ text-align:center; margin-top:18px; color:#fff; opacity:0.8 }
+    footer{ text-align:center; margin-top:18px; color:var(--muted); opacity:0.9; font-size:0.88rem }
 
     @media (max-width:980px){
       main.grid{ grid-template-columns: 1fr; }
       aside.sidebar{ position:relative; top:auto; }
+      .products-grid{ grid-template-columns: repeat(auto-fill,minmax(160px,1fr)); }
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <header>
       <div class="logo">
-        <img src="images/logo.jpg" alt="Peluche Star logo" />
+        <div class="brand">PS</div>
       </div>
       <div>
         <div class="title">Peluche Star — Compra Digital 2025</div>
@@ -167,13 +158,11 @@
       <section class="products" aria-label="Productos">
         <div class="category-title">
           <h2>Televisión por Internet • Programas • Juegos • Música</h2>
-          <div>
-            <input id="search-bar" placeholder="Buscar productos..." style="padding:8px;border-radius:8px;border:1px solid #e6e6e6" />
-          </div>
+          <input id="search-bar" placeholder="Buscar productos..." />
         </div>
 
         <div id="product-list" class="products-grid">
-          <!-- Se generan dinámicamente -->
+          <!-- Cards generadas por JS -->
         </div>
       </section>
 
@@ -181,20 +170,20 @@
       <aside class="sidebar" aria-label="Carrito y pago">
         <div class="cart-header">
           <div><strong>Carrito</strong></div>
-          <div id="item-count" style="color:var(--muted)">0 items</div>
+          <div id="item-count" style="color:var(--muted)">0 item(s)</div>
         </div>
 
         <div class="cart-items" id="cart-items"></div>
 
         <div class="cart-summary">
-          <div class="total" id="cart-total">Total: $0</div>
-          <div style="margin-top:8px">
+          <div class="total" id="cart-total">Total: $0.00</div>
+          <div style="margin-top:8px; display:flex; gap:8px">
             <button class="btn" id="btn-payment-method-choose">Ir a pago</button>
-            <button class="btn" id="btn-clear-cart" style="background:#ef4444; margin-left:6px">Vaciar</button>
+            <button class="btn" id="btn-clear-cart" style="background:#ef4444">Vaciar</button>
           </div>
         </div>
 
-        <!-- Confirmation area (se muestra cuando se elige pagar) -->
+        <!-- Confirmation area -->
         <div id="confirmation" style="display:none; margin-top:12px">
           <h3>Confirmación y Envío a WhatsApp</h3>
           <div id="order-summary" style="margin-bottom:8px"></div>
@@ -210,29 +199,25 @@
             <input type="tel" id="phone" required />
 
             <div style="margin-top:10px">
-              <strong>Método de pago:</strong>
-              <div style="margin-top:6px">
-                <label><input type="radio" name="payment-method" value="transfer" checked /> Transferencia (adjunta comprobante manualmente en WhatsApp)</label>
-                <label style="margin-left:10px"><input type="radio" name="payment-method" value="other" /> Otro método (indicar en el mensaje)</label>
+              <strong>Método de pago</strong>
+              <div style="margin-top:6px; color:var(--muted)">
+                <label><input type="radio" name="payment-method" value="transfer" checked /> Transferencia</label>
+                <label style="margin-left:10px"><input type="radio" name="payment-method" value="other" /> Otro</label>
               </div>
             </div>
 
-            <!-- Upload (optional, but we will tell user to attach manually in WhatsApp) -->
             <div id="transfer-area" style="margin-top:12px">
-              <p>Realiza la transferencia a:</p>
-              <ul>
+              <p style="color:var(--muted)">Realiza la transferencia a:</p>
+              <ul style="color:var(--muted);padding-left:18px;">
                 <li><strong>Pichincha:</strong> 2211163039 (Roxon Nazareno) — Ahorros</li>
                 <li><strong>Guayaquil:</strong> 0012625809 (Roxon Nazareno) — Ahorros</li>
               </ul>
-              <label for="receipt">Si quieres, selecciona el archivo del comprobante (opcional)</label>
+
+              <label for="receipt">Selecciona comprobante (opcional)</label>
               <input type="file" id="receipt" accept="image/*" />
               <div style="font-size:0.9rem; color:var(--muted); margin-top:6px">
-                <em>Nota: después de presionar "Confirmar compra" se abrirá WhatsApp. Adjunta el comprobante manualmente en la conversación.</em>
+                <em>Al confirmar la compra se abrirá WhatsApp. Adjunta el comprobante manualmente en la conversación.</em>
               </div>
-            </div>
-
-            <div style="margin-top:12px; font-size:0.9rem; color:var(--muted)">
-              <p>Al confirmar, tu pedido se guardará localmente y se abrirá WhatsApp para que completes el envío del comprobante.</p>
             </div>
 
             <div style="margin-top:10px">
@@ -243,7 +228,7 @@
           <div id="admin-panel" style="margin-top:12px">
             <details>
               <summary>Panel Admin (local)</summary>
-              <div id="orders-list" style="margin-top:8px"></div>
+              <div id="orders-list" style="margin-top:8px; color:var(--muted)"></div>
             </details>
           </div>
         </div>
@@ -251,11 +236,11 @@
     </main>
 
     <footer>
-      <small style="color:#fff; opacity:.9">CEO: MSc. Roxon Nazareno | © 2025 Peluche Star</small>
+      <small>CEO: MSc. Roxon Nazareno | © 2025 Peluche Star</small>
     </footer>
   </div>
 
-  <!-- WhatsApp quick contact -->
+  <!-- WhatsApp floating -->
   <div class="whatsapp" id="whatsapp-btn" title="Contactar por WhatsApp">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2))">
       <path d="M20.5 3.5L3.5 20.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -263,64 +248,70 @@
     <a id="whatsapp-link" href="#" target="_blank">WhatsApp</a>
   </div>
 
-  <!-- SCRIPT COMPLETO: carrito, confirmación, WhatsApp y admin local -->
+  <!-- SCRIPT: productos, carrito, confirmación y WhatsApp -->
   <script>
   (function(){
     'use strict';
 
-    /* ====== CONFIG ====== */
-    const WHATSAPP_NUMBER = '593969468578'; // sin +, ya me diste el número
-    // Si quieres recibir también en Telegram, pega tus credenciales aquí:
-    const TELEGRAM_BOT_TOKEN = ''; // opcional
-    const TELEGRAM_CHAT_ID  = ''; // opcional
+    // Número WhatsApp (sin +)
+    const WHATSAPP_NUMBER = '593969468578';
 
-    /* ====== DATOS DE PRODUCTOS (usa tu lista completa) ====== */
+    // Lista completa de productos (tal como me diste)
     const products = [
-      { id:1, name:"Netflix (1 dispositivo)", prices: {"1 mes":5,"2 meses":9,"3 meses":13,"4 meses":17,"6 meses":25,"12 meses":44}, image:"netflix_1_dispositivo.jpg", category:"Televisión por Internet"},
-      { id:2, name:"Netflix (2 dispositivos)", prices: {"1 mes":8.5,"2 meses":16,"3 meses":22,"4 meses":28,"6 meses":40,"12 meses":72}, image:"netflix_2_dispositivos.jpg", category:"Televisión por Internet"},
-      { id:3, name:"Netflix (4 dispositivos)", prices: {"1 mes":14.5,"2 meses":28,"3 meses":42}, image:"netflix_4_dispositivos.jpg", category:"Televisión por Internet"},
-      { id:4, name:"Disney+ Premium (1 dispositivo)", prices: {"1 mes":3.5}, image:"disney_plus_1_dispositivo.jpg", category:"Televisión por Internet"},
-      { id:5, name:"Disney+ Premium (2 dispositivos)", prices: {"1 mes":6}, image:"disney_plus_2_dispositivos.jpg", category:"Televisión por Internet"},
-      { id:6, name:"Zapping (1 dispositivo)", prices: {"1 mes":3.95,"4 meses":9}, image:"zapping_1_dispositivo.png", category:"Televisión por Internet"},
-      { id:7, name:"Amazon Prime (1 dispositivo)", prices: {"1 mes":2.75,"3 meses":6}, image:"amazon_prime_1_dispositivo.png", category:"Televisión por Internet"},
-      { id:8, name:"Amazon Prime (4 dispositivos)", prices: {"1 mes":5.5,"3 meses":15}, image:"amazon_prime_4_dispositivos.png", category:"Televisión por Internet"},
-      { id:9, name:"Max (1 dispositivo)", prices: {"1 mes":2}, image:"max_1_dispositivo.png", category:"Televisión por Internet"},
-      { id:10, name:"Max (Cuenta completa)", prices: {"1 mes":3.5}, image:"max_cuenta_completa.png", category:"Televisión por Internet"},
-      { id:11, name:"Crunchyroll (Cuenta completa)", prices: {"1 mes":4.5}, image:"crunchyroll_cuenta_completa.png", category:"Televisión por Internet"},
-      { id:41, name:"Crunchyroll (1 pantalla)", prices: {"1 mes":2.00}, image:"crunchyroll_cuenta_completa.png", category:"Televisión por Internet"},
-      { id:12, name:"El Canal del Fútbol (Cuenta completa)", prices: {"1 mes":4.5}, image:"canal_del_futbol_cuenta_completa.jpg", category:"Televisión por Internet"},
-      { id:13, name:"Pornhub (Cuenta completa)", prices: {"1 mes":4.5}, image:"pornhub_cuenta_completa.png", category:"Televisión por Internet"},
-      { id:14, name:"Paramount+ (Cuenta personal)", prices: {"1 mes":4,"3 meses":7}, image:"paramount_plus_cuenta_personal.png", category:"Televisión por Internet"},
-      { id:15, name:"Paramount+ (Cuenta completa)", prices: {"1 mes":4.5}, image:"paramount_plus_cuenta_completa.png", category:"Televisión por Internet"},
-      { id:16, name:"Vix (1 dispositivo)", prices: {"1 mes":2}, image:"vix_1_dispositivo.png", category:"Televisión por Internet"},
-      { id:17, name:"YouTube Premium (1 dispositivo)", prices: {"1 mes":2.75}, image:"youtube_premium_1_dispositivo.jpg", category:"Televisión por Internet"},
-      { id:32, name:"Flujo TV (1 dispositivo)", prices: {"1 mes":2.5}, image:"flujo_tv_1_dispositivo.jpg", category:"Televisión por Internet"},
-      { id:33, name:"Flujo TV (3 conexiones)", prices: {"1 mes":7}, image:"flujo_tv_3_conexiones.jpg", category:"Televisión por Internet"},
-      { id:34, name:"IPTV (1 dispositivo)", prices: {"1 mes":8}, image:"iptv_1_dispositivo.jpg", category:"Televisión por Internet"},
-      /* Programas */
-      { id:26, name:"Licencias Windows 10 Pro", prices: {"1 mes":14}, image:"licencia_windows_10_pro.jpg", category:"Programas"},
-      { id:27, name:"Licencias Windows 11 Pro", prices: {"1 mes":14}, image:"licencia_windows_11_pro.jpg", category:"Programas"},
-      { id:28, name:"Licencias Office 2016", prices: {"1 mes":15}, image:"licencia_office_2016.jpg", category:"Programas"},
-      { id:29, name:"Licencias Office 2019", prices: {"1 mes":15}, image:"licencia_office_2019.jpg", category:"Programas"},
-      { id:30, name:"Licencias Office 2021", prices: {"1 mes":27}, image:"licencia_office_2021.jpg", category:"Programas"},
-      { id:31, name:"Licencias Office 365", prices: {"1 mes":17}, image:"licencia_office_365.jpg", category:"Programas"},
-      { id:19, name:"Canva (Cuenta completa)", prices: {"1 mes":2,"2 meses":3,"3 meses":5,"6 meses":8,"12 meses":10}, image:"canva_cuenta_completa.png", category:"Programas"},
-      { id:20, name:"Capcut Pro (Cuenta completa)", prices: {"1 mes":4,"2 meses":5,"3 meses":7.5,"6 meses":10}, image:"capcut_pro_cuenta_completa.png", category:"Programas"},
-      { id:23, name:"Antivirus Avast (1 año)", prices: {"1 año":20}, image:"antivirus_avast_1_ano.jpg", category:"Programas"},
-      { id:24, name:"Antivirus ESET (1 año)", prices: {"1 año":23}, image:"antivirus_eset_1_ano.jpg", category:"Programas"},
-      { id:25, name:"Antivirus McAfee (1 año)", prices: {"1 año":18}, image:"antivirus_mcafee_1_ano.jpg", category:"Programas"},
-      /* Juegos */
-      { id:35, name:"Recargas Apple iTunes", prices: {"5":7.5}, image:"recargas_videojuegos_apple_itunes.jpg", category:"Juegos Online"},
-      { id:36, name:"Recargas Playstation", prices: {"10":12.5}, image:"recargas_videojuegos_playstation.jpg", category:"Juegos Online"},
-      { id:37, name:"Diamantes Free Fire", prices: {"110":1.5,"341":3.5}, image:"diamantes_free_fire.jpg", category:"Juegos Online"},
-      { id:38, name:"Diamantes PUBG Mobile", prices: {"60":1.5}, image:"diamantes_pubg_mobile.jpg", category:"Juegos Online"},
-      { id:39, name:"Robux Roblox", prices: {"10":11.5}, image:"robux_roblox.jpg", category:"Juegos Online"},
-      { id:40, name:"Xbox Game Pass", prices: {"1 mes":10}, image:"xbox_game_pass.jpg", category:"Juegos Online"},
-      /* Música */
-      { id:18, name:"Apple Music, Spotify, Deezer (Cuenta personal)", prices: {"1 mes":3.5,"2 meses":4.5,"3 meses":7}, image:"apple_music_spotify_deezer_cuenta_personal.png", category:"Música"}
+      { id:1, name:"Netflix (1 dispositivo)", prices: {"1 mes":5,"2 meses":9,"3 meses":13,"4 meses":17,"6 meses":25,"12 meses":44}, category:"Televisión por Internet" },
+      { id:2, name:"Netflix (2 dispositivos)", prices: {"1 mes":8.5,"2 meses":16,"3 meses":22,"4 meses":28,"6 meses":40,"12 meses":72}, category:"Televisión por Internet" },
+      { id:3, name:"Netflix (4 dispositivos)", prices: {"1 mes":14.5,"2 meses":28,"3 meses":42}, category:"Televisión por Internet" },
+      { id:4, name:"Disney+ Premium (1 dispositivo)", prices: {"1 mes":3.5}, category:"Televisión por Internet" },
+      { id:5, name:"Disney+ Premium (2 dispositivos)", prices: {"1 mes":6}, category:"Televisión por Internet" },
+      { id:6, name:"Zapping (1 dispositivo)", prices: {"1 mes":3.95,"4 meses":9}, category:"Televisión por Internet" },
+      { id:7, name:"Amazon Prime (1 dispositivo)", prices: {"1 mes":2.75,"3 meses":6}, category:"Televisión por Internet" },
+      { id:8, name:"Amazon Prime (4 dispositivos)", prices: {"1 mes":5.5,"3 meses":15}, category:"Televisión por Internet" },
+      { id:9, name:"Max (1 dispositivo)", prices: {"1 mes":2}, category:"Televisión por Internet" },
+      { id:10, name:"Max (Cuenta completa)", prices: {"1 mes":3.5}, category:"Televisión por Internet" },
+      { id:11, name:"Crunchyroll (Cuenta completa)", prices: {"1 mes":4.5}, category:"Televisión por Internet" },
+      { id:41, name:"Crunchyroll (1 pantalla)", prices: {"1 mes":2.00}, category:"Televisión por Internet" },
+      { id:12, name:"El Canal del Fútbol (Cuenta completa)", prices: {"1 mes":4.5}, category:"Televisión por Internet" },
+      { id:13, name:"Pornhub (Cuenta completa)", prices: {"1 mes":4.5}, category:"Televisión por Internet" },
+      { id:14, name:"Paramount+ (Cuenta personal)", prices: {"1 mes":4,"3 meses":7}, category:"Televisión por Internet" },
+      { id:15, name:"Paramount+ (Cuenta completa)", prices: {"1 mes":4.5}, category:"Televisión por Internet" },
+      { id:16, name:"Vix (1 dispositivo)", prices: {"1 mes":2}, category:"Televisión por Internet" },
+      { id:17, name:"YouTube Premium (1 dispositivo)", prices: {"1 mes":2.75}, category:"Televisión por Internet" },
+      { id:32, name:"Flujo TV (1 dispositivo)", prices: {"1 mes":2.5}, category:"Televisión por Internet" },
+      { id:33, name:"Flujo TV (3 conexiones)", prices: {"1 mes":7}, category:"Televisión por Internet" },
+      { id:34, name:"IPTV (1 dispositivo)", prices: {"1 mes":8}, category:"Televisión por Internet" },
+      { id:26, name:"Licencias Windows 10 Pro", prices: {"1 mes":14}, category:"Programas" },
+      { id:27, name:"Licencias Windows 11 Pro", prices: {"1 mes":14}, category:"Programas" },
+      { id:28, name:"Licencias Office 2016", prices: {"1 mes":15}, category:"Programas" },
+      { id:29, name:"Licencias Office 2019", prices: {"1 mes":15}, category:"Programas" },
+      { id:30, name:"Licencias Office 2021", prices: {"1 mes":27}, category:"Programas" },
+      { id:31, name:"Licencias Office 365", prices: {"1 mes":17}, category:"Programas" },
+      { id:19, name:"Canva (Cuenta completa)", prices: {"1 mes":2,"2 meses":3,"3 meses":5,"6 meses":8,"12 meses":10}, category:"Programas" },
+      { id:20, name:"Capcut Pro (Cuenta completa)", prices: {"1 mes":4,"2 meses":5,"3 meses":7.5,"6 meses":10}, category:"Programas" },
+      { id:23, name:"Antivirus Avast (1 año)", prices: {"1 año":20}, category:"Programas" },
+      { id:24, name:"Antivirus ESET (1 año)", prices: {"1 año":23}, category:"Programas" },
+      { id:25, name:"Antivirus McAfee (1 año)", prices: {"1 año":18}, category:"Programas" },
+      { id:35, name:"Recargas Apple iTunes", prices: {"5":7.5}, category:"Juegos Online" },
+      { id:36, name:"Recargas Playstation", prices: {"10":12.5}, category:"Juegos Online" },
+      { id:37, name:"Diamantes Free Fire", prices: {"110":1.5,"341":3.5}, category:"Juegos Online" },
+      { id:38, name:"Diamantes PUBG Mobile", prices: {"60":1.5}, category:"Juegos Online" },
+      { id:39, name:"Robux Roblox", prices: {"10":11.5}, category:"Juegos Online" },
+      { id:40, name:"Xbox Game Pass", prices: {"1 mes":10}, category:"Juegos Online" },
+      { id:18, name:"Apple Music, Spotify, Deezer (Cuenta personal)", prices: {"1 mes":3.5,"2 meses":4.5,"3 meses":7}, category:"Música" }
     ];
 
-    /* ====== ELEMENTS ====== */
+    /* Paleta de colores para tarjetas (se reutiliza según ID) */
+    const colorPalette = [
+      ['#1f2937','#111827'], ['#7c3aed','#5b21b6'], ['#0ea5a4','#075985'],
+      ['#ef4444','#b91c1c'], ['#f97316','#c2410c'], ['#06b6d4','#0e7490'],
+      ['#10b981','#065f46'], ['#3b82f6','#1e3a8a'], ['#f43f5e','#9f1239'],
+      ['#f59e0b','#b45309'], ['#8b5cf6','#5b21b6'], ['#06b6d4','#075985'],
+    ];
+
+    /* Helpers: format */
+    const currencyFormat = n => Number(n).toFixed(2);
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+    /* ELEMENTS */
     const productListEl = document.getElementById('product-list');
     const searchBar = document.getElementById('search-bar');
     const cartItemsEl = document.getElementById('cart-items');
@@ -335,89 +326,106 @@
     const ordersListEl = document.getElementById('orders-list');
     const whatsappLinkFloating = document.getElementById('whatsapp-link');
 
-    /* ====== CART STATE ====== */
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    /* STATE */
+    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
 
-    /* ====== UTIL ====== */
-    function saveCartToStorage() {
-      localStorage.setItem('cart', JSON.stringify(cart));
-      renderCart();
+    /* RENDER PRODUCTS: tarjetas CSS generadas */
+    function getColorForId(id){
+      return colorPalette[id % colorPalette.length];
     }
 
-    function currencyFormat(n){ return Number(n).toFixed(2); }
+    function initialsFromName(name){
+      const words = name.split(/\s+/);
+      if(words.length === 1) return words[0].slice(0,2).toUpperCase();
+      return (words[0][0] + (words[1] ? words[1][0] : '')).toUpperCase();
+    }
 
-    /* ====== RENDER PRODUCTS ====== */
     function renderProducts(filter=''){
       productListEl.innerHTML = '';
       const list = products.filter(p => !filter || p.name.toLowerCase().includes(filter.toLowerCase()));
-      list.forEach(product => {
-        const durations = Object.keys(product.prices);
-        const options = durations.map(d => `<option value="${d}">${d} - $${product.prices[d]}</option>`).join('');
+      list.forEach(p=>{
+        const idxColor = getColorForId(p.id);
+        const bg = `linear-gradient(135deg, ${idxColor[0]}, ${idxColor[1]})`;
+        const initials = initialsFromName(p.name);
+
+        const durations = Object.keys(p.prices);
+        const options = durations.map(d => `<option value="${d}">${escapeHtml(d)} - $${currencyFormat(p.prices[d])}</option>`).join('');
+
         const card = document.createElement('div');
         card.className = 'product-card';
         card.innerHTML = `
-          <img src="images/${product.image}" alt="${escapeHtml(product.name)}" onerror="this.src='images/placeholder.png'"/>
-          <h3>${escapeHtml(product.name)}</h3>
-          <select id="duration-${product.id}">${options}</select>
-          <button data-id="${product.id}" class="add-btn">Añadir al carrito</button>
+          <div class="product-art" style="background:${bg}">
+            <div style="text-align:center">
+              <div style="font-size:22px; opacity:0.95">${escapeHtml(initials)}</div>
+              <div style="font-size:12px; opacity:0.9; margin-top:6px">${escapeHtml(p.category)}</div>
+            </div>
+          </div>
+          <div class="product-title">${escapeHtml(p.name)}</div>
+          <div class="product-controls">
+            <select id="duration-${p.id}">${options}</select>
+            <button class="add-btn" data-id="${p.id}">Añadir al carrito</button>
+          </div>
         `;
         productListEl.appendChild(card);
       });
 
-      // attach listeners for add buttons
-      document.querySelectorAll('.add-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
+      // attach add listeners
+      productListEl.querySelectorAll('.add-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
           const id = Number(btn.dataset.id);
           addToCart(id);
         });
       });
     }
 
-    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
-
-    /* ====== CART CRUD ====== */
-    function addToCart(productId){
-      const product = products.find(p => p.id === productId);
-      if(!product) return;
-      const select = document.getElementById(`duration-${productId}`);
-      const duration = select ? select.value : Object.keys(product.prices)[0];
-      const price = Number(product.prices[duration]);
-      // avoid exact duplicates (same product + duration)
-      const exists = cart.find(c => c.id === productId && c.duration === duration);
-      if(exists){
-        alert('Este producto con esa duración ya está en el carrito.');
-        return;
-      }
-      cart.push({ id: product.id, name: product.name, duration, price, image: product.image, qty: 1 });
-      saveCartToStorage();
-      toast(`${product.name} añadido al carrito`);
+    /* CART CRUD */
+    function saveCart(){
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
     }
 
-    function removeFromCart(index){
-      cart.splice(index,1);
-      saveCartToStorage();
+    function addToCart(productId){
+      const product = products.find(x=>x.id===productId);
+      if(!product) return;
+      const sel = document.getElementById(`duration-${productId}`);
+      const duration = sel ? sel.value : Object.keys(product.prices)[0];
+      const price = Number(product.prices[duration]);
+      // avoid duplicate same product+duration
+      const exists = cart.find(c => c.id===productId && c.duration===duration);
+      if(exists){
+        alert('El producto ya está en el carrito con esa duración.');
+        return;
+      }
+      cart.push({ id: product.id, name: product.name, duration, price, qty:1 });
+      saveCart();
+      toast(`${product.name} añadido`);
+    }
+
+    function removeFromCart(idx){
+      cart.splice(idx,1); saveCart();
     }
 
     function clearCart(){
-      cart = [];
-      saveCartToStorage();
+      cart = []; saveCart();
     }
 
     function renderCart(){
       cartItemsEl.innerHTML = '';
       let total = 0;
-      cart.forEach((item, idx) => {
-        total += Number(item.price) * item.qty;
+      cart.forEach((it, i) => {
+        total += Number(it.price) * it.qty;
+        const [c1,c2] = getColorForId(it.id);
+        const thumbBg = `linear-gradient(135deg, ${c1}, ${c2})`;
         const div = document.createElement('div');
         div.className = 'cart-item';
         div.innerHTML = `
-          <img src="images/${item.image}" alt="${escapeHtml(item.name)}" onerror="this.src='images/placeholder.png'"/>
-          <div class="meta">
-            <b>${escapeHtml(item.name)}</b>
-            <small>Duración: ${escapeHtml(item.duration)} • $${currencyFormat(item.price)}</small>
+          <div class="cart-thumb" style="background:${thumbBg}">${escapeHtml(initialsFromName(it.name))}</div>
+          <div class="meta" style="flex:1">
+            <b>${escapeHtml(it.name)}</b>
+            <small style="color:var(--muted)">${escapeHtml(it.duration)} • $${currencyFormat(it.price)}</small>
           </div>
           <div style="text-align:right">
-            <button data-idx="${idx}" class="remove-item" style="background:#ef4444;color:#fff;border:none;padding:6px 8px;border-radius:8px">Eliminar</button>
+            <button data-idx="${i}" class="remove-item" style="background:#ef4444;color:#fff;border:none;padding:6px 8px;border-radius:8px">Eliminar</button>
           </div>
         `;
         cartItemsEl.appendChild(div);
@@ -426,54 +434,48 @@
       cartTotalEl.textContent = `Total: $${currencyFormat(total)}`;
       itemCountEl.textContent = `${cart.length} item(s)`;
       localStorage.setItem('cart', JSON.stringify(cart));
-      updateOrderSummary();
+
       // attach remove handlers
-      document.querySelectorAll('.remove-item').forEach(b => b.addEventListener('click', (e) => {
-        const i = Number(b.dataset.idx);
-        removeFromCart(i);
-      }));
+      document.querySelectorAll('.remove-item').forEach(b => {
+        b.addEventListener('click', () => {
+          const idx = Number(b.dataset.idx);
+          removeFromCart(idx);
+        });
+      });
+
+      updateOrderSummary();
     }
 
     function updateOrderSummary(){
       let html = '<strong>Resumen:</strong><br/>';
       let total = 0;
-      cart.forEach((it, i)=>{
-        total += Number(it.price) * it.qty;
-        html += `${i+1}. ${escapeHtml(it.name)} — ${escapeHtml(it.duration)} — $${currencyFormat(it.price)}<br/>`;
-      });
+      cart.forEach((it,i)=> { total += it.price * it.qty; html += `${i+1}. ${escapeHtml(it.name)} — ${escapeHtml(it.duration)} — $${currencyFormat(it.price)}<br/>`; });
       html += `<div style="margin-top:8px;"><b>Total: $${currencyFormat(total)}</b></div>`;
       orderSummaryEl.innerHTML = html;
     }
 
-    /* ====== ADMIN (local) ====== */
+    /* ADMIN (local) */
     function saveOrderLocal(order){
-      const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+      const orders = JSON.parse(localStorage.getItem('orders')||'[]');
       orders.unshift(order);
       localStorage.setItem('orders', JSON.stringify(orders));
       renderOrdersAdmin();
     }
-
     function renderOrdersAdmin(){
-      const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+      const orders = JSON.parse(localStorage.getItem('orders')||'[]');
       ordersListEl.innerHTML = '';
-      if(orders.length === 0){
-        ordersListEl.innerHTML = "<div style='padding:8px;color:#6b7280'>No hay pedidos</div>";
-        return;
-      }
-      orders.forEach(o => {
+      if(!orders.length){ ordersListEl.innerHTML = "<div style='padding:8px;color:var(--muted)'>No hay pedidos</div>"; return; }
+      orders.forEach(o=>{
         const div = document.createElement('div');
         div.className = 'order-row';
-        div.innerHTML = `<div><b>${o.id}</b><div style="font-size:0.85rem;color:#6b7280">${escapeHtml(o.buyerName)} • ${escapeHtml(o.buyerEmail)}</div></div>
-                         <div style="text-align:right"><small>$${currencyFormat(o.total)}</small><div style="font-size:0.8rem;color:#6b7280">${new Date(o.createdAt).toLocaleString()}</div></div>`;
+        div.innerHTML = `<div><b>${o.id}</b><div style="font-size:0.85rem;color:var(--muted)">${escapeHtml(o.buyerName)} • ${escapeHtml(o.buyerEmail)}</div></div>
+                         <div style="text-align:right"><small>$${currencyFormat(o.total)}</small><div style="font-size:0.8rem;color:var(--muted)">${new Date(o.createdAt).toLocaleString()}</div></div>`;
         div.addEventListener('click', ()=> showOrderDetails(o));
         ordersListEl.appendChild(div);
       });
     }
-
     function showOrderDetails(order){
-      const modal = document.createElement('div');
-      modal.className = 'modal';
-      modal.style.display = 'flex';
+      const modal = document.createElement('div'); modal.className='modal'; modal.style.display='flex';
       modal.innerHTML = `<div class="modal-card">
           <div style="display:flex;justify-content:space-between">
             <h3>Pedido ${escapeHtml(order.id)}</h3>
@@ -491,18 +493,14 @@
       modal.querySelector('#btn-close-modal').addEventListener('click', ()=> modal.remove());
     }
 
-    /* ====== WHATSAPP ORDER FLOW ====== */
-    function buildOrderObject(buyerName, buyerEmail, buyerPhone, method){
-      const items = cart.map(i=>({ id:i.id, name:i.name, duration:i.duration, price: Number(i.price), qty: i.qty }));
+    /* ORDER & WHATSAPP FLOW */
+    function buildOrderObject(name, email, phone, method){
+      const items = cart.map(i=>({ id:i.id, name:i.name, duration:i.duration, price:Number(i.price), qty:i.qty }));
       const total = items.reduce((s,i)=>s + i.price * i.qty, 0);
-      return {
-        id: 'ORD-' + Date.now().toString().slice(-8),
-        buyerName, buyerEmail, buyerPhone,
-        items, total, createdAt: new Date().toISOString(), paymentMethod: method
-      };
+      return { id:'ORD-'+Date.now().toString().slice(-8), buyerName:name, buyerEmail:email, buyerPhone:phone, items, total, createdAt:new Date().toISOString(), paymentMethod:method };
     }
 
-    function buildWhatsAppMessage(order, note = ''){
+    function buildWhatsAppMessage(order, note=''){
       const lines = [];
       lines.push('Nuevo Pedido — Peluche Star');
       lines.push(`ID: ${order.id}`);
@@ -515,133 +513,67 @@
       order.items.forEach(it => lines.push(`• ${it.name} (${it.duration}) - $${currencyFormat(it.price)}`));
       lines.push('');
       lines.push(`Total: $${currencyFormat(order.total)}`);
-      if(note) lines.push('');
-      if(note) lines.push(`Nota: ${note}`);
+      if(note) { lines.push(''); lines.push(`Nota: ${note}`); }
       lines.push('');
-      lines.push('Por favor, *adjunta el comprobante de pago en esta conversación* (imagen).');
+      lines.push('Por favor, adjunta el comprobante de pago (imagen) en esta conversación.');
       lines.push('Gracias.');
       return lines.join('\n');
     }
 
-    async function trySendToTelegramIfConfigured(order, receiptFile){
-      if(!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return false;
-      try {
-        // Send text
-        const messageText = `
-Nuevo Pedido — Peluche Star
-ID: ${order.id}
-Cliente: ${order.buyerName}
-Correo: ${order.buyerEmail}
-Teléfono: ${order.buyerPhone}
-Total: $${currencyFormat(order.total)}
-Fecha: ${new Date(order.createdAt).toLocaleString()}
-Products:
-${order.items.map(i=>`- ${i.name} (${i.duration}) - $${currencyFormat(i.price)}`).join('\n')}
-        `;
-        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type':'application/json' },
-          body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: messageText })
-        });
-
-        if(receiptFile){
-          const fd = new FormData();
-          fd.append('chat_id', TELEGRAM_CHAT_ID);
-          fd.append('photo', receiptFile, receiptFile.name || 'comprobante.jpg');
-          await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fd });
-        }
-        return true;
-      } catch(err){
-        console.warn('Telegram send failed:', err);
-        return false;
-      }
-    }
-
     async function onConfirmOrder(){
-      // validate form
-      const name = (document.getElementById('name') || {}).value || '';
-      const email = (document.getElementById('email') || {}).value || '';
-      const phone = (document.getElementById('phone') || {}).value || '';
-      const method = (document.querySelector('input[name="payment-method"]:checked') || {}).value || 'transfer';
+      const name = (document.getElementById('name')||{}).value || '';
+      const email = (document.getElementById('email')||{}).value || '';
+      const phone = (document.getElementById('phone')||{}).value || '';
+      const method = (document.querySelector('input[name="payment-method"]:checked')||{}).value || 'transfer';
 
-      if(!name || !email || !phone){
-        alert('Por favor completa Nombre, Correo y Teléfono antes de continuar.');
-        return;
-      }
-      if(!cart || cart.length === 0){
-        alert('El carrito está vacío.');
-        return;
-      }
+      if(!name || !email || !phone){ alert('Por favor completa Nombre, Correo y Teléfono antes de continuar.'); return; }
+      if(!cart || cart.length===0){ alert('El carrito está vacío.'); return; }
 
-      // build order object and save locally
-      const order = buildOrderObject(name, email, phone, method);
+      const order = buildOrderObject(name,email,phone,method);
       saveOrderLocal(order);
 
-      // optionally try sending to telegram (if configured)
-      const file = receiptInput && receiptInput.files && receiptInput.files[0] ? receiptInput.files[0] : null;
-      if(TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID){
-        trySendToTelegramIfConfigured(order, file).then(ok => {
-          if(ok) console.log('Pedido enviado a Telegram.');
-        });
-      }
-
-      // build whatsapp message
+      // Optionally we could attempt to send via Telegram if you later add token.
+      // Save order and then open WhatsApp with prefilled message
       const msg = buildWhatsAppMessage(order);
       const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+      window.open(waUrl,'_blank');
 
-      // open whatsapp in new tab/window
-      window.open(waUrl, '_blank');
+      alert('Pedido creado. Se abrirá WhatsApp en una nueva pestaña. Adjunta el comprobante manualmente en la conversación.');
 
-      // feedback to user
-      alert('Se ha generado tu pedido y se abrirá WhatsApp. Adjunta el comprobante manualmente en la conversación para completar la compra.');
-
-      // clear cart and UI
-      clearCart();
-      confirmationEl.style.display = 'none';
+      // clear cart & UI
+      clearCart(); confirmationEl.style.display='none';
     }
 
-    /* ====== small UI helpers ====== */
-    function toast(text, ms = 1600){
+    /* UI helpers */
+    function toast(text,ms=1400){
       const el = document.createElement('div');
-      el.style.position = 'fixed';
-      el.style.right = '18px';
-      el.style.bottom = '110px';
-      el.style.background = '#111';
-      el.style.color = '#fff';
-      el.style.padding = '10px 14px';
-      el.style.borderRadius = '10px';
-      el.style.boxShadow = '0 8px 30px rgba(0,0,0,0.5)';
-      el.style.zIndex = 99999;
-      el.textContent = text;
-      document.body.appendChild(el);
-      setTimeout(()=> el.remove(), ms);
+      el.style.position='fixed'; el.style.right='18px'; el.style.bottom='110px'; el.style.background='rgba(0,0,0,0.85)';
+      el.style.color='#fff'; el.style.padding='10px 14px'; el.style.borderRadius='10px'; el.style.zIndex=99999; el.textContent=text;
+      document.body.appendChild(el); setTimeout(()=> el.remove(), ms);
     }
 
-    /* ====== EVENTS ====== */
-    document.addEventListener('DOMContentLoaded', () => {
+    /* EVENTS */
+    document.addEventListener('DOMContentLoaded', ()=>{
       renderProducts();
       renderCart();
       renderOrdersAdmin();
-      // floating whatsapp link default
       whatsappLinkFloating.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola! Tengo una consulta sobre una compra en Peluche Star.')}`;
     });
 
-    searchBar.addEventListener('input', (e) => renderProducts(e.target.value));
+    searchBar.addEventListener('input', e => renderProducts(e.target.value));
 
-    btnClearCart.addEventListener('click', () => {
+    btnClearCart.addEventListener('click', ()=> {
       if(confirm('Vaciar carrito?')) clearCart();
     });
 
-    btnPaymentChoose.addEventListener('click', () => {
-      if(!cart || cart.length === 0){ alert('El carrito está vacío.'); return; }
-      confirmationEl.style.display = 'block';
-      updateOrderSummary();
-      window.scrollTo({ top: confirmationEl.offsetTop - 20, behavior: 'smooth' });
+    btnPaymentChoose.addEventListener('click', ()=> {
+      if(!cart || cart.length===0){ alert('El carrito está vacío.'); return; }
+      confirmationEl.style.display = 'block'; updateOrderSummary(); window.scrollTo({ top: confirmationEl.offsetTop - 20, behavior:'smooth' });
     });
 
     btnConfirmOrder.addEventListener('click', onConfirmOrder);
 
-    /* expose some for console debugging if needed */
+    /* expose for debugging */
     window._ps_cart = cart;
     window._ps_products = products;
 
