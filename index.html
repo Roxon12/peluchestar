@@ -1,583 +1,381 @@
+MSc. Roxon Nazareno
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Compra Digital 2025 - Peluche Star</title>
-  <meta name="description" content="Compra productos digitales - Peluche Star. Cuentas de streaming, programas, juegos y música.">
-  <meta name="keywords" content="Peluche Star, streaming, Netflix, Disney+, Amazon Prime, compras digitales">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --bg: #0b1020;
-      --card: #0f1724;
-      --muted: #9ca3af;
-      --accent: #ff6b4a;
-      --glass: rgba(255,255,255,0.03);
-      --radius: 12px;
-      --max-width: 1200px;
-      --white: #ffffff;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:'Roboto',sans-serif;
-      background: linear-gradient(135deg,#0f1724 0%, #0b1020 40%, #0b1320 100%);
-      color:var(--white);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      display:flex;
-      justify-content:center;
-      padding:24px;
-    }
-    .container{
-      width:100%;
-      max-width:var(--max-width);
-      padding:18px;
-    }
-
-    header{
-      background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border-radius:var(--radius);
-      padding:18px;
-      display:flex;
-      gap:16px;
-      align-items:center;
-      margin-bottom:18px;
-      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
-    }
-    .logo{
-      width:220px; height:64px; display:flex; align-items:center;
-    }
-    .logo .brand{
-      width:64px; height:64px; border-radius:10px; background:linear-gradient(135deg,#1f2937,#0b1320); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff;
-    }
-    header .title{ font-size:1.2rem; font-weight:700; color:var(--white) }
-    header .subtitle{ font-size:0.85rem; color:var(--muted) }
-
-    main.grid{
-      display:grid;
-      grid-template-columns: 1fr 360px;
-      gap:20px;
-      align-items:start;
-    }
-
-    /* PRODUCTS */
-    section.products{
-      background:var(--glass);
-      padding:18px;
-      border-radius:12px;
-      box-shadow: 0 6px 18px rgba(2,6,23,0.5);
-    }
-    .category-title{
-      display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px;
-    }
-    .category-title h2{ color:var(--white); margin:0; font-size:1.05rem; border-bottom:3px solid var(--accent); display:inline-block; padding-bottom:6px }
-    #search-bar{ padding:8px 10px; border-radius:10px; border: none; min-width:200px; background:#0e1724; color:var(--white) }
-
-    .products-grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
-      gap:16px;
-      margin-top:10px;
-    }
-    .product-card{
-      background: #fff0; border-radius:10px; padding:12px; display:flex; flex-direction:column; gap:10px; min-height:220px;
-      box-shadow: 0 6px 16px rgba(2,6,23,0.45); border:1px solid rgba(255,255,255,0.03);
-    }
-    .product-art{
-      height:110px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--white); font-weight:700; font-size:1rem;
-      box-shadow: inset 0 -10px 30px rgba(0,0,0,0.25);
-    }
-    .product-title{ color:var(--white); font-weight:700; font-size:0.96rem; text-align:center; margin-top:4px }
-    .product-controls{ margin-top:auto; display:flex; flex-direction:column; gap:8px; }
-    .product-controls select, .product-controls button{ width:100%; padding:8px 10px; border-radius:8px; border: none; }
-    .product-controls select{ background:#0e1724; color:var(--white); border:1px solid rgba(255,255,255,0.03); }
-    .product-controls button{ background:var(--accent); color:#fff; cursor:pointer; font-weight:700 }
-
-    /* SIDEBAR */
-    aside.sidebar{
-      position:sticky; top:20px; align-self:start; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      padding:14px; border-radius:12px; box-shadow: 0 8px 24px rgba(2,6,23,0.5);
-      min-height:200px;
-    }
-    .cart-header{ display:flex; justify-content:space-between; align-items:center; gap:8px; color:var(--muted) }
-    .cart-items{ margin-top:12px; max-height:320px; overflow:auto; padding-right:6px }
-    .cart-item{ display:flex; gap:8px; align-items:center; margin-bottom:10px; background:rgba(255,255,255,0.02); padding:8px; border-radius:8px }
-    .cart-thumb{ width:56px; height:44px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; }
-    .cart-item .meta b{ display:block; font-size:0.95rem; color:var(--white) }
-    .cart-summary{ margin-top:12px; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.04) }
-    .total{ font-weight:700; font-size:1.05rem; color:var(--white) }
-
-    /* Confirmation form */
-    #confirmation{ margin-top:12px; background:#09111a; padding:12px; border-radius:10px }
-    label{ display:block; font-size:0.85rem; margin-top:8px; color: var(--muted) }
-    input[type="text"], input[type="email"], input[type="tel"], input[type="file"], textarea{
-      width:100%; padding:8px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); margin-top:6px; background:#07101a; color:var(--white)
-    }
-    .btn{ display:inline-block; padding:10px 12px; border-radius:10px; background:var(--accent); color:#fff; border:none; cursor:pointer; margin-top:10px; font-weight:700 }
-
-    /* WhatsApp floating */
-    .whatsapp {
-      position:fixed; right:18px; bottom:18px; z-index:999;
-      background: #25D366; color:#fff; padding:12px 14px; border-radius:50px; display:flex; gap:8px; align-items:center; box-shadow:0 10px 30px rgba(2,6,23,0.4)
-    }
-    .whatsapp a{ color:#fff; text-decoration:none; font-weight:700 }
-
-    /* Modal */
-    .modal{ display:none; position:fixed; inset:0; background:rgba(2,6,23,0.6); z-index:1000; justify-content:center; align-items:center }
-    .modal .modal-card{ background:#07101a; padding:18px; border-radius:12px; width:720px; max-width:96%; max-height:90%; overflow:auto; color:var(--white) }
-    .modal .close{ float:right; cursor:pointer; font-weight:700 }
-
-    footer{ text-align:center; margin-top:18px; color:var(--muted); opacity:0.9; font-size:0.88rem }
-
-    @media (max-width:980px){
-      main.grid{ grid-template-columns: 1fr; }
-      aside.sidebar{ position:relative; top:auto; }
-      .products-grid{ grid-template-columns: repeat(auto-fill,minmax(160px,1fr)); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peluche Star | Tienda Digital</title>
+    <style>
+        :root {
+            --primary-color: #E50914; --success-color: #28a745; --font-family: 'Segoe UI', 'Roboto', sans-serif;
+            --bg-color: #F5F5F5; --surface-color: #FFFFFF; --text-color: #141414; --border-color: #EAEAEA; --menu-bg: #141414; --menu-text: #FFFFFF;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212; --surface-color: #1E1E1E; --text-color: #E0E0E0; --border-color: #333333; --menu-bg: #1E1E1E; --menu-text: #E0E0E0;
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; background-color: var(--bg-color); color: var(--text-color); font-family: var(--font-family); transition: background-color 0.3s, color 0.3s; }
+        .topbar { background: var(--surface-color); padding: 12px 20px; display: flex; align-items: center; gap: 20px; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; transition: background-color 0.3s, border-color 0.3s; }
+        #main-logo { height: 40px; width: auto; }
+        .search { flex: 1; display: flex; }
+        .search input { width: 100%; padding: 10px 15px; border: 1px solid var(--border-color); border-radius: 25px 0 0 25px; font-size: 15px; background-color: var(--bg-color); color: var(--text-color); transition: border-color 0.3s, background-color 0.3s; }
+        .search input:focus { outline: none; border-color: var(--primary-color); }
+        .search button { background: var(--text-color); color: var(--surface-color); border: none; padding: 0 15px; border-radius: 0 25px 25px 0; cursor: pointer; font-size: 16px; }
+        .theme-switch-wrapper { display: flex; align-items: center; gap: 8px; }
+        .theme-switch { display: inline-block; height: 24px; position: relative; width: 44px; }
+        .theme-switch input { display:none; }
+        .slider { background-color: #ccc; bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0; transition: .4s; border-radius: 24px; }
+        .slider:before { background-color: white; bottom: 4px; content: ""; height: 16px; left: 4px; position: absolute; transition: .4s; width: 16px; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--primary-color); }
+        input:checked + .slider:before { transform: translateX(20px); }
+        .menu { background: var(--menu-bg); color: var(--menu-text); padding: 12px 20px; display: flex; justify-content: center; gap: 20px; font-weight: 600; overflow-x: auto; white-space: nowrap; transition: background-color 0.3s; }
+        .menu div { cursor: pointer; transition: color 0.2s; }
+        .menu div:hover { color: var(--primary-color); }
+        .banner img { width: 100%; height: 250px; object-fit: cover; }
+        .container { padding: 15px; max-width: 1600px; margin: 0 auto; }
+        .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .card { background: var(--surface-color); border-radius: 12px; border: 1px solid var(--border-color); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; overflow: hidden; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); }
+        .card-image-wrapper { cursor: pointer; padding: 15px; }
+        .card img { width: 100%; height: 140px; object-fit: contain; }
+        .card-content { padding: 0 15px 15px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card h4 { font-size: 15px; margin: 0 0 10px 0; flex-grow: 1; }
+        .price { color: var(--primary-color); font-weight: bold; font-size: 18px; margin-bottom: 10px; }
+        .card select { width: 100%; padding: 8px; border: 1px solid var(--border-color); border-radius: 6px; background-color: var(--bg-color); color: var(--text-color); }
+        .card button { width: 100%; padding: 10px; margin-top: 10px; background: var(--primary-color); color: #FFF; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; transition: background-color 0.3s; }
+        .card button:hover { background-color: #B80710; }
+        .cart-container { display: none; }
+        .cart-toggle-btn { position: fixed; bottom: 20px; right: 20px; background-color: var(--primary-color); color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1001; cursor: pointer; }
+        .cart-item-count { position: absolute; top: -5px; right: -5px; background-color: var(--dark-color); color: white; border-radius: 50%; padding: 4px 8px; font-size: 12px; font-weight: bold; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content { background: var(--surface-color); padding: 25px; border-radius: 15px; width: 90%; max-width: 500px; max-height: 85vh; overflow-y: auto; position: relative; transform: scale(0.9); transition: transform 0.3s; }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-color); }
+        .modal-content h3 { margin-top: 0; color: var(--primary-color); }
+        .modal-image-content img { width: 100%; max-height: 70vh; object-fit: contain; }
+        .cart-item { display: flex; justify-content: space-between; font-size: 15px; padding: 10px 0; border-bottom: 1px solid var(--border-color); }
+        .cart-item span:first-child { flex: 1; padding-right: 10px; }
+        .total { font-weight: bold; font-size: 20px; margin-top: 20px; text-align: right; }
+        .pay { width: 100%; padding: 12px; background: var(--success-color); color: #FFF; border: none; font-size: 16px; margin-top: 15px; cursor: pointer; border-radius: 6px; font-weight: bold; }
+        .empty-cart-btn { width: 100%; padding: 12px; background: #6c757d; color: #FFF; border: none; font-size: 16px; margin-top: 10px; cursor: pointer; border-radius: 6px; font-weight: bold; transition: background-color 0.3s; }
+        .empty-cart-btn:hover { background-color: #5a6268; }
+        .notification { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background-color: #222; color: #FFF; padding: 12px 20px; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 2001; transition: bottom 0.5s ease-in-out; }
+        @media (min-width: 768px) {
+            .banner img { height: 350px; }
+            .container { display: grid; grid-template-columns: 240px 1fr 320px; gap: 20px; padding: 25px; }
+            .cart-toggle-btn { display: none; }
+            .cart-container { display: block; background: var(--surface-color); border-radius: 12px; padding: 20px; position: sticky; top: 85px; transition: background-color 0.3s; }
+            .cart-container h3 { margin-top: 0; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; }
+            aside { display: block; background: var(--surface-color); border-radius: 12px; padding: 20px; position: sticky; top: 85px; transition: background-color 0.3s; }
+            aside h3 { margin-top: 0; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; }
+            aside button { width: 100%; margin-bottom: 8px; padding: 12px; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; font-weight: 500; text-align: left; transition: all 0.2s; }
+            aside button:hover { background-color: var(--text-color); color: var(--surface-color); }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">
-        <div class="brand">PS</div>
-      </div>
-      <div>
-        <div class="title">Peluche Star — Compra Digital 2025</div>
-        <div class="subtitle">Cuentas, programas, juegos y música — confirmar y enviar por WhatsApp</div>
-      </div>
-    </header>
 
-    <main class="grid">
-      <!-- PRODUCTS -->
-      <section class="products" aria-label="Productos">
-        <div class="category-title">
-          <h2>Televisión por Internet • Programas • Juegos • Música</h2>
-          <input id="search-bar" placeholder="Buscar productos..." />
+    <div class="topbar">
+        <img src="images/logo.png" alt="Logo Tienda" id="main-logo">
+        <div class="search">
+            <input id="searchInput" placeholder="¿Qué estás buscando?">
+            <button>🔍</button>
         </div>
-
-        <div id="product-list" class="products-grid">
-          <!-- Cards generadas por JS -->
+        <div class="theme-switch-wrapper">
+            <span>🌙</span>
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider"></span>
+            </label>
+            <span>☀️</span>
         </div>
-      </section>
+    </div>
 
-      <!-- SIDEBAR: CART + PAYMENT -->
-      <aside class="sidebar" aria-label="Carrito y pago">
-        <div class="cart-header">
-          <div><strong>Carrito</strong></div>
-          <div id="item-count" style="color:var(--muted)">0 item(s)</div>
+    <div class="menu">
+        <div onclick="filterCat('Todos')">Ofertas</div>
+        <div onclick="filterCat('Televisión por Internet')">Streaming</div>
+        <div onclick="filterCat('Programas')">Programas</div>
+        <div onclick="filterCat('Juegos Online')">Juegos</div>
+        <div onclick="filterCat('Música')">Música</div>
+    </div>
+
+    <div class="banner">
+        <img src="images/banner.png" alt="Banner de ofertas">
+    </div>
+
+    <div class="container">
+        <aside>
+            <h3>Categorías</h3>
+            <button onclick="filterCat('Todos')">Todos</button>
+            <button onclick="filterCat('Televisión por Internet')">TV</button>
+            <button onclick="filterCat('Programas')">Programas</button>
+            <button onclick="filterCat('Juegos Online')">Juegos</button>
+            <button onclick="filterCat('Música')">Música</button>
+        </aside>
+
+        <div class="products" id="products"></div>
+
+        <div class="cart-container" id="cart-sidebar">
+            <h3>🛒 Carrito</h3>
+            <div id="cartItems-sidebar"></div>
+            <div class="total">Total: $<span id="total-sidebar">0.00</span></div>
+            <button class="empty-cart-btn" onclick="emptyCart()">Vaciar Carrito</button>
+            <button class="pay" onclick="payByWhatsApp()">Pagar por WhatsApp</button>
         </div>
+    </div>
 
-        <div class="cart-items" id="cart-items"></div>
+    <button class="cart-toggle-btn" id="cart-toggle-btn">
+        🛒
+        <span class="cart-item-count" id="cart-item-count">0</span>
+    </button>
 
-        <div class="cart-summary">
-          <div class="total" id="cart-total">Total: $0.00</div>
-          <div style="margin-top:8px; display:flex; gap:8px">
-            <button class="btn" id="btn-payment-method-choose">Ir a pago</button>
-            <button class="btn" id="btn-clear-cart" style="background:#ef4444">Vaciar</button>
-          </div>
-        </div>
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content" id="modal-content"></div>
+    </div>
 
-        <!-- Confirmation area -->
-        <div id="confirmation" style="display:none; margin-top:12px">
-          <h3>Confirmación y Envío a WhatsApp</h3>
-          <div id="order-summary" style="margin-bottom:8px"></div>
+    <div class="notification" id="notification"></div>
+    <script>
+        // --- VARIABLES GLOBALES Y ELEMENTOS DEL DOM ---
+        const products = [ /* Tu lista de productos va aquí, igual que antes */  {id:1,name:"Netflix (1 dispositivo)",prices:{"1 mes":5,"2 meses":9,"3 meses":13,"4 meses":17,"6 meses":25,"12 meses":44},category:"Televisión por Internet"},
+            {id:2,name:"Netflix (2 dispositivos)",prices:{"1 mes":8.5,"2 meses":16,"3 meses":22,"4 meses":28,"6 meses":40,"12 meses":72},category:"Televisión por Internet"},
+            {id:3,name:"Netflix (4 dispositivos)",prices:{"1 mes":14.5,"2 meses":28,"3 meses":42},category:"Televisión por Internet"},
+            {id:4,name:"Disney+ Premium (1 dispositivo)",prices:{"1 mes":3.5},category:"Televisión por Internet"},
+            {id:5,name:"Disney+ Premium (2 dispositivos)",prices:{"1 mes":6},category:"Televisión por Internet"},
+            {id:6,name:"Zapping (1 dispositivo)",prices:{"1 mes":3.95,"4 meses":9},category:"Televisión por Internet"},
+            {id:7,name:"Amazon Prime (1 dispositivo)",prices:{"1 mes":2.75,"3 meses":6},category:"Televisión por Internet"},
+            {id:8,name:"Amazon Prime (4 dispositivos)",prices:{"1 mes":5.5,"3 meses":15},category:"Televisión por Internet"},
+            {id:9,name:"Max (1 dispositivo)",prices:{"1 mes":2},category:"Televisión por Internet"},
+            {id:10,name:"Max (Cuenta completa)",prices:{"1 mes":3.5},category:"Televisión por Internet"},
+            {id:11,name:"Crunchyroll (Cuenta completa)",prices:{"1 mes":4.5},category:"Televisión por Internet"},
+            {id:41,name:"Crunchyroll (1 pantalla)",prices:{"1 mes":2},category:"Televisión por Internet"},
+            {id:12,name:"El Canal del Fútbol (Cuenta completa)",prices:{"1 mes":4.5},category:"Televisión por Internet"},
+            {id:13,name:"Pornhub (Cuenta completa)",prices:{"1 mes":4.5},category:"Televisión por Internet"},
+            {id:14,name:"Paramount+ (Cuenta personal)",prices:{"1 mes":4,"3 meses":7},category:"Televisión por Internet"},
+            {id:15,name:"Paramount+ (Cuenta completa)",prices:{"1 mes":4.5},category:"Televisión por Internet"},
+            {id:16,name:"Vix (1 dispositivo)",prices:{"1 mes":2},category:"Televisión por Internet"},
+            {id:17,name:"YouTube Premium (1 dispositivo)",prices:{"1 mes":2.75},category:"Televisión por Internet"},
+            {id:32,name:"Flujo TV (1 dispositivo)",prices:{"1 mes":2.5},category:"Televisión por Internet"},
+            {id:33,name:"Flujo TV (3 conexiones)",prices:{"1 mes":7},category:"Televisión por Internet"},
+            {id:34,name:"IPTV (1 dispositivo)",prices:{"1 mes":8},category:"Televisión por Internet"},
+            {id:26,name:"Windows 10 Pro",prices:{"Licencia":14},category:"Programas"},
+            {id:27,name:"Windows 11 Pro",prices:{"Licencia":14},category:"Programas"},
+            {id:28,name:"Office 2016",prices:{"Licencia":15},category:"Programas"},
+            {id:29,name:"Office 2019",prices:{"Licencia":15},category:"Programas"},
+            {id:30,name:"Office 2021",prices:{"Licencia":27},category:"Programas"},
+            {id:31,name:"Office 365",prices:{"Licencia":17},category:"Programas"},
+            {id:19,name:"Canva Pro",prices:{"1 mes":2,"2 meses":3,"3 meses":5,"6 meses":8,"12 meses":10},category:"Programas"},
+            {id:20,name:"CapCut Pro",prices:{"1 mes":4,"2 meses":5,"3 meses":7.5,"6 meses":10},category:"Programas"},
+            {id:23,name:"Antivirus Avast (1 año)",prices:{"1 año":20},category:"Programas"},
+            {id:24,name:"Antivirus ESET (1 año)",prices:{"1 año":23},category:"Programas"},
+            {id:25,name:"Antivirus McAfee (1 año)",prices:{"1 año":18},category:"Programas"},
+            {id:37,name:"Diamantes Free Fire",prices:{"110":1.5,"341":3.5},category:"Juegos Online"},
+            {id:38,name:"Diamantes PUBG Mobile",prices:{"60":1.5},category:"Juegos Online"},
+            {id:39,name:"Robux Roblox",prices:{"10":11.5},category:"Juegos Online"},
+            {id:40,name:"Xbox Game Pass",prices:{"1 mes":10},category:"Juegos Online"},
+            {id:18,name:"Apple Music / Spotify / Deezer",prices:{"1 mes":3.5,"2 meses":4.5,"3 meses":7},category:"Música"}
+        ]; 
+        let cart = [];
+        let currentCategory = "Todos";
 
-          <form id="payment-form" enctype="multipart/form-data" onsubmit="return false;">
-            <label for="name">Nombre completo</label>
-            <input type="text" id="name" required />
+        const productsContainer = document.getElementById('products');
+        const searchInput = document.getElementById('searchInput');
+        const themeToggle = document.getElementById('theme-toggle');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalContent = document.getElementById('modal-content');
+        const cartToggleButton = document.getElementById('cart-toggle-btn');
 
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" required />
+        // --- LÓGICA DE LA APLICACIÓN ---
 
-            <label for="phone">Teléfono / contacto</label>
-            <input type="tel" id="phone" required />
+        // Función para obtener la imagen de un producto
+        function imageFor(name) {
+            const lowerCaseName = name.toLowerCase();
+           if (lowerCaseName.includes("netflix")) return "images/netflix_1_dispositivo.jpg";
+            if (lowerCaseName.includes("disney")) return "images/disney_plus_1_dispositivo.jpg";
+            if (lowerCaseName.includes("amazon")) return "images/amazon_prime_1_dispositivo.png";
+            if (lowerCaseName.includes("max")) return "images/max_1_dispositivo.png";
+            if (lowerCaseName.includes("crunchyroll")) return "images/crunchyroll_cuenta_completa.png";
+            if (lowerCaseName.includes("canal del fútbol")) return "images/canal_del_futbol_cuenta_completa.jpg";
+            if (lowerCaseName.includes("pornhub")) return "images/pornhub_cuenta_completa.png";
+            if (lowerCaseName.includes("paramount")) return "images/paramount_plus_cuenta_completa.png";
+            if (lowerCaseName.includes("vix")) return "images/vix_1_dispositivo.png";
+            if (lowerCaseName.includes("youtube")) return "images/youtube_premium_1_dispositivo.jpg";
+            if (lowerCaseName.includes("zapping")) return "images/zapping_1_dispositivo.png";
+            if (lowerCaseName.includes("flujo")) return "images/flujo_tv_1_dispositivo.jpg";
+            if (lowerCaseName.includes("iptv")) return "images/iptv_1_dispositivo.jpg";
+            if (lowerCaseName.includes("windows 10")) return "images/licencia_windows_10_pro.jpg";
+            if (lowerCaseName.includes("windows 11")) return "images/licencia_windows_11_pro.jpg";
+            if (lowerCaseName.includes("office 2016")) return "images/licencia_office_2016.jpg";
+            if (lowerCaseName.includes("office 2019")) return "images/licencia_office_2019.jpg";
+            if (lowerCaseName.includes("office 2021")) return "images/licencia_office_2021.jpg";
+            if (lowerCaseName.includes("office 365")) return "images/licencia_office_365.jpg";
+            if (lowerCaseName.includes("canva")) return "images/canva_cuenta_completa.png";
+            if (lowerCaseName.includes("capcut")) return "images/capcut_pro_cuenta_completa.png";
+            if (lowerCaseName.includes("avast")) return "images/antivirus_avast_1_ano.jpg";
+            if (lowerCaseName.includes("eset")) return "images/antivirus_eset_1_ano.jpg";
+            if (lowerCaseName.includes("mcafee")) return "images/antivirus_mcafee_1_ano.jpg";
+            if (lowerCaseName.includes("free fire")) return "images/diamantes_free_fire.jpg";
+            if (lowerCaseName.includes("pubg")) return "images/diamantes_pubg_mobile.jpg";
+            if (lowerCaseName.includes("robux")) return "images/robux_roblox.jpg";
+            if (lowerCaseName.includes("playstation")) return "images/recargas_playstation.jpg";
+            if (lowerCaseName.includes("xbox")) return "images/xbox_game_pass.jpg";
+            if (lowerCaseName.includes("spotify") || lowerCaseName.includes("music") || lowerCaseName.includes("apple music")) {
+                return "images/apple_music_spotify_deezer_cuenta_personal.png";
+            }
+            return "images/logo.png";
+        }
 
-            <div style="margin-top:10px">
-              <strong>Método de pago</strong>
-              <div style="margin-top:6px; color:var(--muted)">
-                <label><input type="radio" name="payment-method" value="transfer" checked /> Transferencia</label>
-                <label style="margin-left:10px"><input type="radio" name="payment-method" value="other" /> Otro</label>
-              </div>
-            </div>
+        // Renderizar productos en la página
+      
+        function renderProducts(filterText = '') {
+            productsContainer.innerHTML = "";
+            const filtered = products.filter(p => (currentCategory === "Todos" || p.category === currentCategory) && (p.name.toLowerCase().includes(filterText.toLowerCase())));
+            filtered.forEach(p => {
+                let opts = "";
+                for (let k in p.prices) opts += `<option value="${p.prices[k]}">${k} - $${p.prices[k]}</option>`;
+                const imageUrl = imageFor(p.name);
+                productsContainer.innerHTML += `<div class="card"><div class="card-image-wrapper" onclick="showProductModal('${p.name}', '${imageUrl}')"><img src="${imageUrl}" alt="${p.name}"></div><div class="card-content"><h4>${p.name}</h4><div class="price">$${Object.values(p.prices)[0]}</div><select>${opts}</select><button onclick="add(event, '${p.name}')">Agregar</button></div></div>`;
+            });
+        }
 
-            <div id="transfer-area" style="margin-top:12px">
-              <p style="color:var(--muted)">Realiza la transferencia a:</p>
-              <ul style="color:var(--muted);padding-left:18px;">
-                <li><strong>Pichincha:</strong> 2211163039 (Roxon Nazareno) — Ahorros</li>
-                <li><strong>Guayaquil:</strong> 0012625809 (Roxon Nazareno) — Ahorros</li>
-              </ul>
+        function add(event, name) {
+            const select = event.target.previousElementSibling;
+            cart.push({ name, price: parseFloat(select.value) });
+            saveCart();
+            renderCart();
+            showNotification(`✅ "${name}" añadido al carrito.`);
+        }
 
-              <label for="receipt">Selecciona comprobante (opcional)</label>
-              <input type="file" id="receipt" accept="image/*" />
-              <div style="font-size:0.9rem; color:var(--muted); margin-top:6px">
-                <em>Al confirmar la compra se abrirá WhatsApp. Adjunta el comprobante manualmente en la conversación.</em>
-              </div>
-            </div>
+        function renderCart() {
+            const cartSidebar = document.getElementById('cartItems-sidebar');
+            const totalSidebar = document.getElementById('total-sidebar');
+            const cartItemCount = document.getElementById('cart-item-count');
+            let total = 0;
+            let cartHTML = '';
+            if (cart.length === 0) {
+                cartHTML = '<p>Tu carrito está vacío.</p>';
+            } else {
+                cart.forEach(item => {
+                    total += item.price;
+                    cartHTML += `<div class="cart-item"><span>${item.name}</span><span>$${item.price.toFixed(2)}</span></div>`;
+                });
+            }
+            if(cartSidebar) cartSidebar.innerHTML = cartHTML;
+            if(totalSidebar) totalSidebar.innerText = total.toFixed(2);
+            cartItemCount.innerText = cart.length;
+            cartItemCount.style.display = cart.length > 0 ? 'block' : 'none';
+        }
 
-            <div style="margin-top:10px">
-              <button type="button" id="btn-confirm-order" class="btn">Confirmar compra y enviar a WhatsApp</button>
-            </div>
-          </form>
+        function filterCat(category) {
+            currentCategory = category;
+            searchInput.value = '';
+            renderProducts();
+        }
+        
+        function emptyCart() {
+            if (cart.length > 0 && confirm("¿Estás seguro de que quieres vaciar el carrito?")) {
+                cart = [];
+                saveCart();
+                renderCart();
+                closeModal();
+                showNotification("🗑️ Carrito vaciado.");
+            }
+        }
 
-          <div id="admin-panel" style="margin-top:12px">
-            <details>
-              <summary>Panel Admin (local)</summary>
-              <div id="orders-list" style="margin-top:8px; color:var(--muted)"></div>
-            </details>
-          </div>
-        </div>
-      </aside>
-    </main>
+        function payByWhatsApp() {
+            const tuNumero = "593123456789"; // ¡¡¡REEMPLAZA ESTE NÚMERO!!!
+            if (cart.length === 0) { alert("Tu carrito está vacío."); return; }
+            let mensaje = "¡Hola! 👋 Quiero realizar el siguiente pedido:\n\n";
+            let total = 0;
+            cart.forEach(item => {
+                mensaje += `*Producto:* ${item.name}\n*Precio:* $${item.price.toFixed(2)}\n\n`;
+                total += item.price;
+            });
+            mensaje += `*TOTAL A PAGAR: $${total.toFixed(2)}*`;
+            const url = `https://wa.me/${tuNumero}?text=${encodeURIComponent(mensaje )}`;
+            window.open(url, '_blank');
+        }
 
-    <footer>
-      <small>CEO: MSc. Roxon Nazareno | © 2025 Peluche Star</small>
-    </footer>
-  </div>
+        function showModal(contentHTML) {
+            modalContent.innerHTML = contentHTML;
+            modalOverlay.classList.add('active');
+        }
 
-  <!-- WhatsApp floating -->
-  <div class="whatsapp" id="whatsapp-btn" title="Contactar por WhatsApp">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2))">
-      <path d="M20.5 3.5L3.5 20.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <a id="whatsapp-link" href="#" target="_blank">WhatsApp</a>
-  </div>
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+        }
 
-  <!-- SCRIPT: productos, carrito, confirmación y WhatsApp -->
-  <script>
-  (function(){
-    'use strict';
+        function showProductModal(name, imageUrl) {
+            showModal(`<button class="modal-close" onclick="closeModal()">✖</button><h3>${name}</h3><div class="modal-image-content"><img src="${imageUrl}" alt="${name}"></div>`);
+        }
+        
 
-    // Número WhatsApp (sin +)
-    const WHATSAPP_NUMBER = '593969468578';
+        function showCartModal() {
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            let cartHTML = cart.length > 0 
+                ? cart.map(item => `<div class="cart-item"><span>${item.name}</span><span>$${item.price.toFixed(2)}</span></div>`).join('')
+                : '<p>Tu carrito está vacío.</p>';
 
-    // Lista completa de productos (tal como me diste)
-    const products = [
-      { id:1, name:"Netflix (1 dispositivo)", prices: {"1 mes":5,"2 meses":9,"3 meses":13,"4 meses":17,"6 meses":25,"12 meses":44}, category:"Televisión por Internet" },
-      { id:2, name:"Netflix (2 dispositivos)", prices: {"1 mes":8.5,"2 meses":16,"3 meses":22,"4 meses":28,"6 meses":40,"12 meses":72}, category:"Televisión por Internet" },
-      { id:3, name:"Netflix (4 dispositivos)", prices: {"1 mes":14.5,"2 meses":28,"3 meses":42}, category:"Televisión por Internet" },
-      { id:4, name:"Disney+ Premium (1 dispositivo)", prices: {"1 mes":3.5}, category:"Televisión por Internet" },
-      { id:5, name:"Disney+ Premium (2 dispositivos)", prices: {"1 mes":6}, category:"Televisión por Internet" },
-      { id:6, name:"Zapping (1 dispositivo)", prices: {"1 mes":3.95,"4 meses":9}, category:"Televisión por Internet" },
-      { id:7, name:"Amazon Prime (1 dispositivo)", prices: {"1 mes":2.75,"3 meses":6}, category:"Televisión por Internet" },
-      { id:8, name:"Amazon Prime (4 dispositivos)", prices: {"1 mes":5.5,"3 meses":15}, category:"Televisión por Internet" },
-      { id:9, name:"Max (1 dispositivo)", prices: {"1 mes":2}, category:"Televisión por Internet" },
-      { id:10, name:"Max (Cuenta completa)", prices: {"1 mes":3.5}, category:"Televisión por Internet" },
-      { id:11, name:"Crunchyroll (Cuenta completa)", prices: {"1 mes":4.5}, category:"Televisión por Internet" },
-      { id:41, name:"Crunchyroll (1 pantalla)", prices: {"1 mes":2.00}, category:"Televisión por Internet" },
-      { id:12, name:"El Canal del Fútbol (Cuenta completa)", prices: {"1 mes":4.5}, category:"Televisión por Internet" },
-      { id:13, name:"Pornhub (Cuenta completa)", prices: {"1 mes":4.5}, category:"Televisión por Internet" },
-      { id:14, name:"Paramount+ (Cuenta personal)", prices: {"1 mes":4,"3 meses":7}, category:"Televisión por Internet" },
-      { id:15, name:"Paramount+ (Cuenta completa)", prices: {"1 mes":4.5}, category:"Televisión por Internet" },
-      { id:16, name:"Vix (1 dispositivo)", prices: {"1 mes":2}, category:"Televisión por Internet" },
-      { id:17, name:"YouTube Premium (1 dispositivo)", prices: {"1 mes":2.75}, category:"Televisión por Internet" },
-      { id:32, name:"Flujo TV (1 dispositivo)", prices: {"1 mes":2.5}, category:"Televisión por Internet" },
-      { id:33, name:"Flujo TV (3 conexiones)", prices: {"1 mes":7}, category:"Televisión por Internet" },
-      { id:34, name:"IPTV (1 dispositivo)", prices: {"1 mes":8}, category:"Televisión por Internet" },
-      { id:26, name:"Licencias Windows 10 Pro", prices: {"1 mes":14}, category:"Programas" },
-      { id:27, name:"Licencias Windows 11 Pro", prices: {"1 mes":14}, category:"Programas" },
-      { id:28, name:"Licencias Office 2016", prices: {"1 mes":15}, category:"Programas" },
-      { id:29, name:"Licencias Office 2019", prices: {"1 mes":15}, category:"Programas" },
-      { id:30, name:"Licencias Office 2021", prices: {"1 mes":27}, category:"Programas" },
-      { id:31, name:"Licencias Office 365", prices: {"1 mes":17}, category:"Programas" },
-      { id:19, name:"Canva (Cuenta completa)", prices: {"1 mes":2,"2 meses":3,"3 meses":5,"6 meses":8,"12 meses":10}, category:"Programas" },
-      { id:20, name:"Capcut Pro (Cuenta completa)", prices: {"1 mes":4,"2 meses":5,"3 meses":7.5,"6 meses":10}, category:"Programas" },
-      { id:23, name:"Antivirus Avast (1 año)", prices: {"1 año":20}, category:"Programas" },
-      { id:24, name:"Antivirus ESET (1 año)", prices: {"1 año":23}, category:"Programas" },
-      { id:25, name:"Antivirus McAfee (1 año)", prices: {"1 año":18}, category:"Programas" },
-      { id:35, name:"Recargas Apple iTunes", prices: {"5":7.5}, category:"Juegos Online" },
-      { id:36, name:"Recargas Playstation", prices: {"10":12.5}, category:"Juegos Online" },
-      { id:37, name:"Diamantes Free Fire", prices: {"110":1.5,"341":3.5}, category:"Juegos Online" },
-      { id:38, name:"Diamantes PUBG Mobile", prices: {"60":1.5}, category:"Juegos Online" },
-      { id:39, name:"Robux Roblox", prices: {"10":11.5}, category:"Juegos Online" },
-      { id:40, name:"Xbox Game Pass", prices: {"1 mes":10}, category:"Juegos Online" },
-      { id:18, name:"Apple Music, Spotify, Deezer (Cuenta personal)", prices: {"1 mes":3.5,"2 meses":4.5,"3 meses":7}, category:"Música" }
-    ];
+            showModal(`
+                <button class="modal-close" onclick="closeModal()">✖</button>
+                <h3>🛒 Carrito</h3>
+                <div id="cartItems-modal">${cartHTML}</div>
+                <div class="total">Total: $${total.toFixed(2)}</div>
+                <button class="pay" onclick="payByWhatsApp()">Pagar por WhatsApp</button>
+            `);
+        }
 
-    /* Paleta de colores para tarjetas (se reutiliza según ID) */
-    const colorPalette = [
-      ['#1f2937','#111827'], ['#7c3aed','#5b21b6'], ['#0ea5a4','#075985'],
-      ['#ef4444','#b91c1c'], ['#f97316','#c2410c'], ['#06b6d4','#0e7490'],
-      ['#10b981','#065f46'], ['#3b82f6','#1e3a8a'], ['#f43f5e','#9f1239'],
-      ['#f59e0b','#b45309'], ['#8b5cf6','#5b21b6'], ['#06b6d4','#075985'],
-    ];
+        // --- NOTIFICACIONES ---
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.innerText = message;
+            notification.style.bottom = '20px';
+            setTimeout(() => { notification.style.bottom = '-100px'; }, 3000);
+        }
 
-    /* Helpers: format */
-    const currencyFormat = n => Number(n).toFixed(2);
-    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+        // --- LOCALSTORAGE (Guardar Carrito) ---
+        function saveCart() {
+            localStorage.setItem('tiendaDigitalCart', JSON.stringify(cart));
+        }
 
-    /* ELEMENTS */
-    const productListEl = document.getElementById('product-list');
-    const searchBar = document.getElementById('search-bar');
-    const cartItemsEl = document.getElementById('cart-items');
-    const cartTotalEl = document.getElementById('cart-total');
-    const itemCountEl = document.getElementById('item-count');
-    const btnClearCart = document.getElementById('btn-clear-cart');
-    const btnPaymentChoose = document.getElementById('btn-payment-method-choose');
-    const confirmationEl = document.getElementById('confirmation');
-    const orderSummaryEl = document.getElementById('order-summary');
-    const btnConfirmOrder = document.getElementById('btn-confirm-order');
-    const receiptInput = document.getElementById('receipt');
-    const ordersListEl = document.getElementById('orders-list');
-    const whatsappLinkFloating = document.getElementById('whatsapp-link');
+        function loadCart() {
+            const savedCart = localStorage.getItem('tiendaDigitalCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+            }
+        }
 
-    /* STATE */
-    let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+        // --- MODO OSCURO ---
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            themeToggle.checked = theme === 'dark';
+        }
 
-    /* RENDER PRODUCTS: tarjetas CSS generadas */
-    function getColorForId(id){
-      return colorPalette[id % colorPalette.length];
-    }
+        function toggleTheme() {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            applyTheme(newTheme);
+        }
 
-    function initialsFromName(name){
-      const words = name.split(/\s+/);
-      if(words.length === 1) return words[0].slice(0,2).toUpperCase();
-      return (words[0][0] + (words[1] ? words[1][0] : '')).toUpperCase();
-    }
+        // --- EVENT LISTENERS ---
+        searchInput.addEventListener('input', (e) => renderProducts(e.target.value));
+        themeToggle.addEventListener('change', toggleTheme);
+        modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+        cartToggleButton.addEventListener('click', showCartModal);
 
-    function renderProducts(filter=''){
-      productListEl.innerHTML = '';
-      const list = products.filter(p => !filter || p.name.toLowerCase().includes(filter.toLowerCase()));
-      list.forEach(p=>{
-        const idxColor = getColorForId(p.id);
-        const bg = `linear-gradient(135deg, ${idxColor[0]}, ${idxColor[1]})`;
-        const initials = initialsFromName(p.name);
-
-        const durations = Object.keys(p.prices);
-        const options = durations.map(d => `<option value="${d}">${escapeHtml(d)} - $${currencyFormat(p.prices[d])}</option>`).join('');
-
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-          <div class="product-art" style="background:${bg}">
-            <div style="text-align:center">
-              <div style="font-size:22px; opacity:0.95">${escapeHtml(initials)}</div>
-              <div style="font-size:12px; opacity:0.9; margin-top:6px">${escapeHtml(p.category)}</div>
-            </div>
-          </div>
-          <div class="product-title">${escapeHtml(p.name)}</div>
-          <div class="product-controls">
-            <select id="duration-${p.id}">${options}</select>
-            <button class="add-btn" data-id="${p.id}">Añadir al carrito</button>
-          </div>
-        `;
-        productListEl.appendChild(card);
-      });
-
-      // attach add listeners
-      productListEl.querySelectorAll('.add-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const id = Number(btn.dataset.id);
-          addToCart(id);
+        // --- INICIALIZACIÓN ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cargar carrito guardado
+            loadCart();
+            // Cargar tema guardado
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            applyTheme(savedTheme);
+            // Renderizar todo
+            renderProducts();
+            renderCart();
         });
-      });
-    }
+    </script>
 
-    /* CART CRUD */
-    function saveCart(){
-      localStorage.setItem('cart', JSON.stringify(cart));
-      renderCart();
-    }
-
-    function addToCart(productId){
-      const product = products.find(x=>x.id===productId);
-      if(!product) return;
-      const sel = document.getElementById(`duration-${productId}`);
-      const duration = sel ? sel.value : Object.keys(product.prices)[0];
-      const price = Number(product.prices[duration]);
-      // avoid duplicate same product+duration
-      const exists = cart.find(c => c.id===productId && c.duration===duration);
-      if(exists){
-        alert('El producto ya está en el carrito con esa duración.');
-        return;
-      }
-      cart.push({ id: product.id, name: product.name, duration, price, qty:1 });
-      saveCart();
-      toast(`${product.name} añadido`);
-    }
-
-    function removeFromCart(idx){
-      cart.splice(idx,1); saveCart();
-    }
-
-    function clearCart(){
-      cart = []; saveCart();
-    }
-
-    function renderCart(){
-      cartItemsEl.innerHTML = '';
-      let total = 0;
-      cart.forEach((it, i) => {
-        total += Number(it.price) * it.qty;
-        const [c1,c2] = getColorForId(it.id);
-        const thumbBg = `linear-gradient(135deg, ${c1}, ${c2})`;
-        const div = document.createElement('div');
-        div.className = 'cart-item';
-        div.innerHTML = `
-          <div class="cart-thumb" style="background:${thumbBg}">${escapeHtml(initialsFromName(it.name))}</div>
-          <div class="meta" style="flex:1">
-            <b>${escapeHtml(it.name)}</b>
-            <small style="color:var(--muted)">${escapeHtml(it.duration)} • $${currencyFormat(it.price)}</small>
-          </div>
-          <div style="text-align:right">
-            <button data-idx="${i}" class="remove-item" style="background:#ef4444;color:#fff;border:none;padding:6px 8px;border-radius:8px">Eliminar</button>
-          </div>
-        `;
-        cartItemsEl.appendChild(div);
-      });
-
-      cartTotalEl.textContent = `Total: $${currencyFormat(total)}`;
-      itemCountEl.textContent = `${cart.length} item(s)`;
-      localStorage.setItem('cart', JSON.stringify(cart));
-
-      // attach remove handlers
-      document.querySelectorAll('.remove-item').forEach(b => {
-        b.addEventListener('click', () => {
-          const idx = Number(b.dataset.idx);
-          removeFromCart(idx);
-        });
-      });
-
-      updateOrderSummary();
-    }
-
-    function updateOrderSummary(){
-      let html = '<strong>Resumen:</strong><br/>';
-      let total = 0;
-      cart.forEach((it,i)=> { total += it.price * it.qty; html += `${i+1}. ${escapeHtml(it.name)} — ${escapeHtml(it.duration)} — $${currencyFormat(it.price)}<br/>`; });
-      html += `<div style="margin-top:8px;"><b>Total: $${currencyFormat(total)}</b></div>`;
-      orderSummaryEl.innerHTML = html;
-    }
-
-    /* ADMIN (local) */
-    function saveOrderLocal(order){
-      const orders = JSON.parse(localStorage.getItem('orders')||'[]');
-      orders.unshift(order);
-      localStorage.setItem('orders', JSON.stringify(orders));
-      renderOrdersAdmin();
-    }
-    function renderOrdersAdmin(){
-      const orders = JSON.parse(localStorage.getItem('orders')||'[]');
-      ordersListEl.innerHTML = '';
-      if(!orders.length){ ordersListEl.innerHTML = "<div style='padding:8px;color:var(--muted)'>No hay pedidos</div>"; return; }
-      orders.forEach(o=>{
-        const div = document.createElement('div');
-        div.className = 'order-row';
-        div.innerHTML = `<div><b>${o.id}</b><div style="font-size:0.85rem;color:var(--muted)">${escapeHtml(o.buyerName)} • ${escapeHtml(o.buyerEmail)}</div></div>
-                         <div style="text-align:right"><small>$${currencyFormat(o.total)}</small><div style="font-size:0.8rem;color:var(--muted)">${new Date(o.createdAt).toLocaleString()}</div></div>`;
-        div.addEventListener('click', ()=> showOrderDetails(o));
-        ordersListEl.appendChild(div);
-      });
-    }
-    function showOrderDetails(order){
-      const modal = document.createElement('div'); modal.className='modal'; modal.style.display='flex';
-      modal.innerHTML = `<div class="modal-card">
-          <div style="display:flex;justify-content:space-between">
-            <h3>Pedido ${escapeHtml(order.id)}</h3>
-            <span class="close" style="cursor:pointer">✖</span>
-          </div>
-          <div><b>Cliente:</b> ${escapeHtml(order.buyerName)} (${escapeHtml(order.buyerEmail)})</div>
-          <div><b>Teléfono:</b> ${escapeHtml(order.buyerPhone)}</div>
-          <div style="margin-top:8px"><b>Items:</b></div>
-          <ul>${order.items.map(i=>`<li>${escapeHtml(i.name)} — ${escapeHtml(i.duration)} — $${currencyFormat(i.price)}</li>`).join('')}</ul>
-          <div style="margin-top:8px"><b>Total:</b> $${currencyFormat(order.total)}</div>
-          <div style="margin-top:12px"><button id="btn-close-modal" class="btn">Cerrar</button></div>
-        </div>`;
-      document.body.appendChild(modal);
-      modal.querySelector('.close').addEventListener('click', ()=> modal.remove());
-      modal.querySelector('#btn-close-modal').addEventListener('click', ()=> modal.remove());
-    }
-
-    /* ORDER & WHATSAPP FLOW */
-    function buildOrderObject(name, email, phone, method){
-      const items = cart.map(i=>({ id:i.id, name:i.name, duration:i.duration, price:Number(i.price), qty:i.qty }));
-      const total = items.reduce((s,i)=>s + i.price * i.qty, 0);
-      return { id:'ORD-'+Date.now().toString().slice(-8), buyerName:name, buyerEmail:email, buyerPhone:phone, items, total, createdAt:new Date().toISOString(), paymentMethod:method };
-    }
-
-    function buildWhatsAppMessage(order, note=''){
-      const lines = [];
-      lines.push('Nuevo Pedido — Peluche Star');
-      lines.push(`ID: ${order.id}`);
-      lines.push('');
-      lines.push(`Cliente: ${order.buyerName}`);
-      lines.push(`Correo: ${order.buyerEmail}`);
-      lines.push(`Teléfono: ${order.buyerPhone}`);
-      lines.push('');
-      lines.push('Productos:');
-      order.items.forEach(it => lines.push(`• ${it.name} (${it.duration}) - $${currencyFormat(it.price)}`));
-      lines.push('');
-      lines.push(`Total: $${currencyFormat(order.total)}`);
-      if(note) { lines.push(''); lines.push(`Nota: ${note}`); }
-      lines.push('');
-      lines.push('Por favor, adjunta el comprobante de pago (imagen) en esta conversación.');
-      lines.push('Gracias.');
-      return lines.join('\n');
-    }
-
-    async function onConfirmOrder(){
-      const name = (document.getElementById('name')||{}).value || '';
-      const email = (document.getElementById('email')||{}).value || '';
-      const phone = (document.getElementById('phone')||{}).value || '';
-      const method = (document.querySelector('input[name="payment-method"]:checked')||{}).value || 'transfer';
-
-      if(!name || !email || !phone){ alert('Por favor completa Nombre, Correo y Teléfono antes de continuar.'); return; }
-      if(!cart || cart.length===0){ alert('El carrito está vacío.'); return; }
-
-      const order = buildOrderObject(name,email,phone,method);
-      saveOrderLocal(order);
-
-      // Optionally we could attempt to send via Telegram if you later add token.
-      // Save order and then open WhatsApp with prefilled message
-      const msg = buildWhatsAppMessage(order);
-      const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-      window.open(waUrl,'_blank');
-
-      alert('Pedido creado. Se abrirá WhatsApp en una nueva pestaña. Adjunta el comprobante manualmente en la conversación.');
-
-      // clear cart & UI
-      clearCart(); confirmationEl.style.display='none';
-    }
-
-    /* UI helpers */
-    function toast(text,ms=1400){
-      const el = document.createElement('div');
-      el.style.position='fixed'; el.style.right='18px'; el.style.bottom='110px'; el.style.background='rgba(0,0,0,0.85)';
-      el.style.color='#fff'; el.style.padding='10px 14px'; el.style.borderRadius='10px'; el.style.zIndex=99999; el.textContent=text;
-      document.body.appendChild(el); setTimeout(()=> el.remove(), ms);
-    }
-
-    /* EVENTS */
-    document.addEventListener('DOMContentLoaded', ()=>{
-      renderProducts();
-      renderCart();
-      renderOrdersAdmin();
-      whatsappLinkFloating.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola! Tengo una consulta sobre una compra en Peluche Star.')}`;
-    });
-
-    searchBar.addEventListener('input', e => renderProducts(e.target.value));
-
-    btnClearCart.addEventListener('click', ()=> {
-      if(confirm('Vaciar carrito?')) clearCart();
-    });
-
-    btnPaymentChoose.addEventListener('click', ()=> {
-      if(!cart || cart.length===0){ alert('El carrito está vacío.'); return; }
-      confirmationEl.style.display = 'block'; updateOrderSummary(); window.scrollTo({ top: confirmationEl.offsetTop - 20, behavior:'smooth' });
-    });
-
-    btnConfirmOrder.addEventListener('click', onConfirmOrder);
-
-    /* expose for debugging */
-    window._ps_cart = cart;
-    window._ps_products = products;
-
-  })();
-  </script>
 </body>
 </html>
