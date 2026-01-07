@@ -277,13 +277,15 @@ MSc. Roxon Nazareno
                 cart = [];
                 saveCart();
                 renderCart();
-                closeModal();
+                if (modalOverlay.classList.contains('active')) {
+                    showCartModal();
+                }
                 showNotification("🗑️ Carrito vaciado.");
             }
         }
 
         function payByWhatsApp() {
-            const tuNumero = "593969468578"; // ¡¡¡REEMPLAZA ESTE NÚMERO!!!
+            const tuNumero = "593123456789"; // ¡¡¡REEMPLAZA ESTE NÚMERO!!!
             if (cart.length === 0) { alert("Tu carrito está vacío."); return; }
             let mensaje = "¡Hola! 👋 Quiero realizar el siguiente pedido:\n\n";
             let total = 0;
@@ -308,24 +310,13 @@ MSc. Roxon Nazareno
         function showProductModal(name, imageUrl) {
             showModal(`<button class="modal-close" onclick="closeModal()">✖</button><h3>${name}</h3><div class="modal-image-content"><img src="${imageUrl}" alt="${name}"></div>`);
         }
-        
 
         function showCartModal() {
             let total = cart.reduce((sum, item) => sum + item.price, 0);
-            let cartHTML = cart.length > 0 
-                ? cart.map(item => `<div class="cart-item"><span>${item.name}</span><span>$${item.price.toFixed(2)}</span></div>`).join('')
-                : '<p>Tu carrito está vacío.</p>';
-
-            showModal(`
-                <button class="modal-close" onclick="closeModal()">✖</button>
-                <h3>🛒 Carrito</h3>
-                <div id="cartItems-modal">${cartHTML}</div>
-                <div class="total">Total: $${total.toFixed(2)}</div>
-                <button class="pay" onclick="payByWhatsApp()">Pagar por WhatsApp</button>
-            `);
+            let cartHTML = cart.length > 0 ? cart.map(item => `<div class="cart-item"><span>${item.name}</span><span>$${item.price.toFixed(2)}</span></div>`).join('') : '<p>Tu carrito está vacío.</p>';
+            showModal(`<button class="modal-close" onclick="closeModal()">✖</button><h3>🛒 Carrito</h3><div id="cartItems-modal">${cartHTML}</div><div class="total">Total: $${total.toFixed(2)}</div><button class="empty-cart-btn" onclick="emptyCart()">Vaciar Carrito</button><button class="pay" onclick="payByWhatsApp()">Pagar por WhatsApp</button>`);
         }
 
-        // --- NOTIFICACIONES ---
         function showNotification(message) {
             const notification = document.getElementById('notification');
             notification.innerText = message;
@@ -333,7 +324,6 @@ MSc. Roxon Nazareno
             setTimeout(() => { notification.style.bottom = '-100px'; }, 3000);
         }
 
-        // --- LOCALSTORAGE (Guardar Carrito) ---
         function saveCart() {
             localStorage.setItem('tiendaDigitalCart', JSON.stringify(cart));
         }
@@ -345,7 +335,6 @@ MSc. Roxon Nazareno
             }
         }
 
-        // --- MODO OSCURO ---
         function applyTheme(theme) {
             document.documentElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
@@ -353,8 +342,7 @@ MSc. Roxon Nazareno
         }
 
         function toggleTheme() {
-            const currentTheme = localStorage.getItem('theme') || 'light';
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            const newTheme = themeToggle.checked ? 'dark' : 'light';
             applyTheme(newTheme);
         }
 
@@ -366,12 +354,9 @@ MSc. Roxon Nazareno
 
         // --- INICIALIZACIÓN ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Cargar carrito guardado
             loadCart();
-            // Cargar tema guardado
             const savedTheme = localStorage.getItem('theme') || 'light';
             applyTheme(savedTheme);
-            // Renderizar todo
             renderProducts();
             renderCart();
         });
